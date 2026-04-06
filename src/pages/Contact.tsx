@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import Section from '../components/Section';
 import { cn } from '../lib/utils';
 
@@ -104,23 +104,12 @@ export default function Contact() {
               </div>
               <div className="flex items-start gap-6">
                 <div className="w-12 h-12 bg-zinc-100 dark:bg-zinc-900 rounded-xl flex items-center justify-center shrink-0">
-                  <Phone className="w-6 h-6 text-zinc-900 dark:text-white" />
-                </div>
-                <div className="space-y-1">
-                  <h4 className="font-bold text-zinc-900 dark:text-white uppercase tracking-widest text-xs">Phone</h4>
-                  <a href="tel:+1234567890" className="text-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
-                    +1 (234) 567-890
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start gap-6">
-                <div className="w-12 h-12 bg-zinc-100 dark:bg-zinc-900 rounded-xl flex items-center justify-center shrink-0">
                   <MapPin className="w-6 h-6 text-zinc-900 dark:text-white" />
                 </div>
                 <div className="space-y-1">
                   <h4 className="font-bold text-zinc-900 dark:text-white uppercase tracking-widest text-xs">Office</h4>
                   <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                    123 Tech Plaza, Gotham City, GC 10001
+                    Calslaan 47j, 051, Enschede, 7522MJ, Netherlands
                   </p>
                 </div>
               </div>

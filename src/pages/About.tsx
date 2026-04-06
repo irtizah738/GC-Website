@@ -27,10 +27,9 @@ const values = [
 ];
 
 const team = [
-  { name: 'Alex Rivers', role: 'Founder & CEO', image: 'https://picsum.photos/seed/alex/400/400' },
-  { name: 'Sarah Chen', role: 'CTO', image: 'https://picsum.photos/seed/sarah/400/400' },
-  { name: 'Marcus Thorne', role: 'Head of Engineering', image: 'https://picsum.photos/seed/marcus/400/400' },
-  { name: 'Elena Vance', role: 'Principal Architect', image: 'https://picsum.photos/seed/elena/400/400' },
+  { name: 'Irtiza Haider', role: 'Founder & CEO', image: 'https://res.cloudinary.com/dzeiyvngc/image/upload/v1749992405/IMG-20230106-WA0013_lixkqr.jpg' },
+  { name: 'Areeba Batool', role: 'Head of Engineering', image: 'https://res.cloudinary.com/dzeiyvngc/image/upload/v1775505240/areeba_lkhbqh.png' },
+  { name: 'Ufaq Waqas', role: 'MBBS, Pharm D', image: 'https://res.cloudinary.com/dzeiyvngc/image/upload/v1750199539/download_lckqja.png' },
 ];
 
 export default function About() {
@@ -125,9 +124,9 @@ export default function About() {
           <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-zinc-500">Leadership</h2>
           <h3 className="text-3xl md:text-5xl font-bold text-zinc-900 dark:text-white">Expert Engineering Team</h3>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="flex flex-wrap justify-center gap-12">
           {team.map((member) => (
-            <div key={member.name} className="space-y-4 group">
+            <div key={member.name} className="space-y-4 group w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-2rem)] max-w-sm text-center">
               <div className="relative aspect-square rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-900">
                 <img
                   src={member.image}

@@ -44,8 +44,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-zinc-900 dark:bg-white rounded-lg flex items-center justify-center transition-transform group-hover:scale-105">
-              <Code2 className="text-white dark:text-zinc-900 w-6 h-6" />
+            <div className="w-10 h-10 bg-zinc-900 dark:bg-white rounded-lg flex items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
+              <img 
+                src="https://res.cloudinary.com/dzeiyvngc/image/upload/v1775505673/WhatsApp_Image_2024-07-05_at_22.02.10_aded31b9_ymcyhp.jpg" 
+                alt="Gotham Coders Logo" 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
             </div>
             <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
               Gotham<span className="text-zinc-500 font-normal">Coders</span>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Code2, Github, Linkedin, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import { Code2, Github, Linkedin, Mail, MapPin } from 'lucide-react';
 
 const footerLinks = [
   {
@@ -40,8 +40,13 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-6">
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-zinc-900 dark:bg-white rounded-lg flex items-center justify-center">
-                <Code2 className="text-white dark:text-zinc-900 w-6 h-6" />
+              <div className="w-10 h-10 bg-zinc-900 dark:bg-white rounded-lg flex items-center justify-center overflow-hidden">
+                <img 
+                  src="https://res.cloudinary.com/dzeiyvngc/image/upload/v1775505673/WhatsApp_Image_2024-07-05_at_22.02.10_aded31b9_ymcyhp.jpg" 
+                  alt="Gotham Coders Logo" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
               </div>
               <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
                 Gotham<span className="text-zinc-500 font-normal">Coders</span>
@@ -52,14 +57,11 @@ export default function Footer() {
               healthcare solutions, and scalable backend architectures for global enterprises.
             </p>
             <div className="flex items-center gap-4">
-              <a href="#" className="p-2 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
+              <a href="https://github.com/irtizah738" target="_blank" rel="noopener noreferrer" className="p-2 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
                 <Github className="w-5 h-5" />
               </a>
-              <a href="#" className="p-2 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
+              <a href="https://www.linkedin.com/company/gotham-coders/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="p-2 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
                 <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="#" className="p-2 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
-                <Twitter className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -93,18 +95,12 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-sm text-zinc-500 dark:text-zinc-400">
                 <MapPin className="w-5 h-5 shrink-0 text-zinc-400" />
-                <span>123 Tech Plaza, Gotham City, GC 10001</span>
+                <span>Calslaan 47j, 051, Enschede, 7522MJ, Netherlands</span>
               </li>
               <li className="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
                 <Mail className="w-5 h-5 shrink-0 text-zinc-400" />
                 <a href="mailto:hello@gothamcoders.com" className="hover:text-zinc-900 dark:hover:text-white transition-colors">
                   hello@gothamcoders.com
-                </a>
-              </li>
-              <li className="flex items-center gap-3 text-sm text-zinc-500 dark:text-zinc-400">
-                <Phone className="w-5 h-5 shrink-0 text-zinc-400" />
-                <a href="tel:+1234567890" className="hover:text-zinc-900 dark:hover:text-white transition-colors">
-                  +1 (234) 567-890
                 </a>
               </li>
             </ul>
@@ -120,7 +116,7 @@ export default function Footer() {
               Built for Performance
             </span>
             <span className="text-xs font-mono text-zinc-400 uppercase tracking-tighter">
-              v1.0.0
+              v1.1.7
             </span>
           </div>
         </div>
