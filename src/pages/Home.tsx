@@ -29,7 +29,8 @@ export default function Home() {
       </Helmet>
 
       {/* Hero Section */}
-      <Section className="relative min-h-[85vh] flex items-center" animate={false}>
+      <Section className="relative min-h-[90vh] flex items-center pt-0" animate={false}>
+        <div className="absolute inset-0 bg-grid-zinc bg-grid-fade opacity-50 -z-10" />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -37,14 +38,14 @@ export default function Home() {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="space-y-8"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400">
-              <span className="w-2 h-2 rounded-full bg-zinc-900 dark:bg-white animate-pulse" />
-              Systems Engineering Firm
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              Systems Engineering Firm // v1.1.7
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-zinc-900 dark:text-white leading-[1.1]">
-              We build <span className="text-zinc-500 italic">mission-critical</span> software systems.
+            <h1 className="text-5xl md:text-8xl font-display font-bold tracking-tighter text-zinc-900 dark:text-white leading-[0.9]">
+              We build <span className="text-zinc-400 italic font-light">mission-critical</span> systems.
             </h1>
-            <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-xl leading-relaxed">
+            <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-xl leading-relaxed font-light">
               Specializing in high-complexity domains: ERP, HMIS, SaaS, and 
               research-driven platforms. Built for resilience, scale, and data integrity.
             </p>
@@ -115,29 +116,33 @@ export default function Home() {
       </Section>
 
       {/* Systems We Build Overview */}
-      <Section variant="muted">
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-zinc-500">Systems We Build</h2>
-          <h3 className="text-3xl md:text-5xl font-bold text-zinc-900 dark:text-white">Engineering for High-Complexity</h3>
+      <Section variant="muted" className="relative">
+        <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
+        <div className="text-center space-y-4 mb-20">
+          <h2 className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-500">Systems We Build</h2>
+          <h3 className="text-4xl md:text-6xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">Engineering for <span className="italic font-light">High-Complexity</span></h3>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {systems.map((system) => {
             const Icon = iconMap[system.icon];
             return (
               <Link
                 key={system.id}
                 to={`/systems#${system.id}`}
-                className="group bg-white dark:bg-zinc-950 p-8 rounded-2xl border border-zinc-200 dark:border-zinc-900 hover:border-zinc-900 dark:hover:border-white transition-all duration-300 hover:shadow-xl"
+                className="group relative bg-white dark:bg-zinc-950 p-8 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:border-zinc-900 dark:hover:border-white transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 overflow-hidden"
               >
-                <div className="w-12 h-12 bg-zinc-100 dark:bg-zinc-900 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <Icon className="w-6 h-6 text-zinc-900 dark:text-white" />
+                <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <Icon className="w-24 h-24 -mr-8 -mt-8 rotate-12" />
                 </div>
-                <h4 className="text-xl font-bold text-zinc-900 dark:text-white mb-3">{system.title}</h4>
-                <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed mb-6">
+                <div className="w-12 h-12 bg-zinc-900 dark:bg-zinc-100 rounded-lg flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-lg">
+                  <Icon className="w-6 h-6 text-white dark:text-zinc-900" />
+                </div>
+                <h4 className="text-xl font-display font-bold text-zinc-900 dark:text-white mb-3 tracking-tight">{system.title}</h4>
+                <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed mb-8 font-light">
                   {system.description}
                 </p>
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-zinc-900 dark:text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                  View System Details <ArrowRight className="w-4 h-4" />
+                <div className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-900 dark:text-white group-hover:translate-x-1 transition-transform">
+                  System Specs <ArrowRight className="w-3 h-3" />
                 </div>
               </Link>
             );
@@ -183,10 +188,11 @@ export default function Home() {
       </Section>
 
       {/* Engineering Principles */}
-      <Section variant="dark">
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-zinc-400">Engineering Approach</h2>
-          <h3 className="text-3xl md:text-5xl font-bold">Built for Resilience</h3>
+      <Section variant="dark" className="relative">
+        <div className="absolute inset-0 bg-grid-zinc opacity-5 -z-10" />
+        <div className="text-center space-y-4 mb-20">
+          <h2 className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-500">Engineering Approach</h2>
+          <h3 className="text-4xl md:text-6xl font-display font-bold tracking-tight">Built for <span className="italic font-light text-zinc-400">Resilience</span></h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {principles.slice(0, 3).map((principle) => {
@@ -194,13 +200,22 @@ export default function Home() {
             return (
               <div
                 key={principle.id}
-                className="p-8 bg-zinc-800/50 border border-zinc-700 rounded-2xl space-y-6"
+                className="p-10 bg-zinc-950 border border-zinc-800 rounded-xl space-y-8 relative group overflow-hidden"
               >
-                <Icon className="w-8 h-8 text-zinc-300" />
-                <h4 className="text-xl font-bold">{principle.title}</h4>
-                <p className="text-zinc-400 text-sm leading-relaxed">
-                  {principle.description}
-                </p>
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-zinc-700 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="w-14 h-14 bg-zinc-900 border border-zinc-800 rounded-lg flex items-center justify-center group-hover:border-zinc-500 transition-colors">
+                  <Icon className="w-7 h-7 text-zinc-400 group-hover:text-white transition-colors" />
+                </div>
+                <div className="space-y-4">
+                  <h4 className="text-2xl font-display font-bold tracking-tight">{principle.title}</h4>
+                  <p className="text-zinc-500 text-sm leading-relaxed font-light">
+                    {principle.description}
+                  </p>
+                </div>
+                <div className="pt-4 flex items-center gap-4">
+                  <div className="h-px flex-1 bg-zinc-800" />
+                  <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest">0{principle.id === 'resilience' ? 1 : principle.id === 'security' ? 2 : 3}</span>
+                </div>
               </div>
             );
           })}
@@ -216,45 +231,52 @@ export default function Home() {
       </Section>
 
       {/* Featured Case Studies */}
-      <Section>
-        <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
+      <Section className="relative">
+        <div className="absolute inset-0 bg-grid-zinc opacity-5 -z-10" />
+        <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-20">
           <div className="space-y-4">
-            <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-zinc-500">Case Studies</h2>
-            <h3 className="text-3xl md:text-5xl font-bold text-zinc-900 dark:text-white">Proven Systems</h3>
+            <h2 className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-500">Case Studies</h2>
+            <h3 className="text-4xl md:text-7xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">Proven <span className="italic font-light">Systems</span></h3>
           </div>
           <Link
             to="/case-studies"
-            className="text-zinc-900 dark:text-white font-bold flex items-center gap-2 group"
+            className="text-zinc-900 dark:text-white font-bold flex items-center gap-2 group border-b-2 border-zinc-900 dark:border-white pb-1"
           >
             All Projects <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {caseStudies.slice(0, 2).map((study) => (
             <Link
               key={study.id}
               to={`/case-studies#${study.id}`}
-              className="group block space-y-6"
+              className="group block space-y-8"
             >
-              <div className="relative aspect-[16/10] overflow-hidden rounded-3xl bg-zinc-100 dark:bg-zinc-900">
+              <div className="relative aspect-[16/11] overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm">
                 <img
                   src={study.imageUrl}
                   alt={study.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-bold uppercase tracking-widest text-zinc-500">{study.client}</span>
-                  <div className="w-1 h-1 rounded-full bg-zinc-300" />
-                  <span className="text-xs font-bold uppercase tracking-widest text-zinc-500">{study.industry}</span>
+                <div className="absolute inset-0 bg-zinc-900/10 group-hover:bg-transparent transition-colors duration-500" />
+                <div className="absolute bottom-6 left-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                  <div className="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md p-4 rounded-xl border border-white/20 shadow-2xl">
+                    <p className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-500 mb-1">Impact Analysis</p>
+                    <p className="text-sm font-medium text-zinc-900 dark:text-white line-clamp-1">{study.outcome}</p>
+                  </div>
                 </div>
-                <h4 className="text-2xl font-bold text-zinc-900 dark:text-white group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-zinc-400">{study.client}</span>
+                  <div className="h-px w-8 bg-zinc-200 dark:bg-zinc-800" />
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-zinc-400">{study.industry}</span>
+                </div>
+                <h4 className="text-3xl font-display font-bold text-zinc-900 dark:text-white group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors tracking-tight">
                   {study.title}
                 </h4>
-                <p className="text-zinc-500 dark:text-zinc-400 line-clamp-2 text-sm">
+                <p className="text-zinc-500 dark:text-zinc-400 line-clamp-2 text-base font-light leading-relaxed">
                   {study.problemContext}
                 </p>
               </div>
@@ -264,18 +286,19 @@ export default function Home() {
       </Section>
 
       {/* Final CTA */}
-      <Section className="text-center">
-        <div className="max-w-3xl mx-auto space-y-10">
-          <h2 className="text-4xl md:text-6xl font-bold text-zinc-900 dark:text-white leading-tight">
-            Ready to Build a <span className="text-zinc-500 italic">Resilient</span> System?
+      <Section className="text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
+        <div className="max-w-4xl mx-auto space-y-12">
+          <h2 className="text-5xl md:text-8xl font-display font-bold text-zinc-900 dark:text-white leading-[0.85] tracking-tighter">
+            Ready to Build a <span className="text-zinc-400 italic font-light">Resilient</span> System?
           </h2>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400">
+          <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed">
             Let's discuss your system requirements and how our engineering team can help you scale.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link
               to="/contact"
-              className="w-full sm:w-auto px-10 py-5 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-2xl font-bold text-xl hover:scale-[1.02] transition-transform flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-12 py-6 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-bold text-xl hover:scale-[1.05] transition-transform flex items-center justify-center gap-3 shadow-2xl"
             >
               Discuss Your System
               <ArrowRight className="w-6 h-6" />

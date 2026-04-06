@@ -13,13 +13,16 @@ export default function CaseStudies() {
       </Helmet>
 
       {/* Hero */}
-      <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900">
-        <div className="max-w-3xl space-y-6">
-          <h1 className="text-sm font-bold uppercase tracking-[0.3em] text-zinc-500">Case Studies</h1>
-          <h2 className="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-white leading-tight">
-            Proven <span className="text-zinc-500 italic">Systems</span>
-          </h2>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+      <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-zinc opacity-20 -z-10" />
+        <div className="max-w-4xl space-y-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-200 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400">
+            Portfolio // Case Studies
+          </div>
+          <h1 className="text-5xl md:text-8xl font-display font-bold text-zinc-900 dark:text-white leading-[0.9] tracking-tighter">
+            Proven <span className="text-zinc-400 italic font-light">Systems</span>
+          </h1>
+          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl font-light">
             Detailed breakdowns of how we architected and delivered mission-critical 
             platforms for our clients.
           </p>
@@ -37,12 +40,12 @@ export default function CaseStudies() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
             <div className="space-y-10">
               <div className="space-y-4">
-                <div className="flex items-center gap-3 text-zinc-500">
-                  <span className="text-xs font-bold uppercase tracking-widest">{study.client}</span>
-                  <div className="w-1 h-1 rounded-full bg-zinc-300" />
-                  <span className="text-xs font-bold uppercase tracking-widest">{study.industry}</span>
+                <div className="flex items-center gap-4 text-zinc-500">
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em]">{study.client}</span>
+                  <div className="h-px w-8 bg-zinc-200 dark:bg-zinc-800" />
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em]">{study.industry}</span>
                 </div>
-                <h3 className="text-4xl font-bold text-zinc-900 dark:text-white">{study.title}</h3>
+                <h3 className="text-4xl md:text-5xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">{study.title}</h3>
               </div>
 
               <div className="space-y-6">
@@ -81,14 +84,25 @@ export default function CaseStudies() {
                 </div>
               </div>
 
-              <div className="p-8 bg-zinc-900 dark:bg-zinc-800 text-white rounded-3xl space-y-4">
-                <h4 className="text-xl font-bold flex items-center gap-2">
-                  <CheckCircle2 className="w-6 h-6 text-green-500" />
-                  Outcome
-                </h4>
-                <p className="text-zinc-400 leading-relaxed">
+              <div className="p-10 bg-zinc-950 border border-zinc-800 text-white rounded-xl space-y-8 relative overflow-hidden group shadow-2xl">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="flex items-center justify-between">
+                  <h4 className="text-xl font-display font-bold tracking-tight flex items-center gap-3">
+                    <CheckCircle2 className="w-6 h-6 text-emerald-500" />
+                    System Outcome
+                  </h4>
+                  <div className="flex gap-1">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
+                  </div>
+                </div>
+                <p className="text-zinc-500 leading-relaxed text-sm font-light">
                   {study.outcome}
                 </p>
+                <div className="pt-8 border-t border-zinc-900 flex items-center justify-between">
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-400">Project Validated</span>
+                  <span className="text-[10px] font-mono text-zinc-800 uppercase tracking-widest">CASE_REF_{study.id.toUpperCase()}</span>
+                </div>
               </div>
             </div>
 
@@ -129,15 +143,18 @@ export default function CaseStudies() {
       ))}
 
       {/* Final CTA */}
-      <Section variant="dark" className="text-center">
-        <div className="max-w-3xl mx-auto space-y-8">
-          <h2 className="text-4xl md:text-5xl font-bold">Your System Could Be Next</h2>
-          <p className="text-xl text-zinc-400">
+      <Section variant="dark" className="text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
+        <div className="max-w-4xl mx-auto space-y-12">
+          <h2 className="text-5xl md:text-8xl font-display font-bold tracking-tighter leading-[0.85]">
+            Your System Could <span className="text-zinc-400 italic font-light">Be Next</span>
+          </h2>
+          <p className="text-xl text-zinc-500 max-w-2xl mx-auto font-light leading-relaxed">
             Let's build a system that delivers real business outcomes.
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 px-10 py-5 bg-white text-zinc-900 rounded-2xl font-bold text-xl hover:scale-[1.02] transition-transform"
+            className="inline-flex items-center gap-3 px-12 py-6 bg-white text-zinc-900 rounded-full font-bold text-xl hover:scale-[1.05] transition-transform shadow-2xl"
           >
             Start Your Case Study
             <ArrowRight className="w-6 h-6" />

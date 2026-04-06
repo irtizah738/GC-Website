@@ -66,13 +66,16 @@ export default function Contact() {
   return (
     <div className="pt-20">
       {/* Hero */}
-      <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900">
-        <div className="max-w-3xl space-y-6">
-          <h1 className="text-sm font-bold uppercase tracking-[0.3em] text-zinc-500">Contact</h1>
-          <h2 className="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-white leading-tight">
-            Start a <span className="text-zinc-500 italic">Technical</span> Discussion
-          </h2>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
+      <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-zinc opacity-20 -z-10" />
+        <div className="max-w-4xl space-y-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-200 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400">
+            Inquiry // Discussion
+          </div>
+          <h1 className="text-5xl md:text-8xl font-display font-bold text-zinc-900 dark:text-white leading-[0.9] tracking-tighter">
+            Start a <span className="text-zinc-400 italic font-light">Technical</span> Discussion
+          </h1>
+          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl font-light">
             Ready to scale your engineering? Let's discuss your project and how 
             our team can help you build the future of your organization.
           </p>
@@ -84,8 +87,8 @@ export default function Contact() {
           {/* Contact Info */}
           <div className="space-y-12">
             <div className="space-y-4">
-              <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500">Get in Touch</h3>
-              <p className="text-3xl font-bold text-zinc-900 dark:text-white leading-tight">
+              <h3 className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-zinc-500">Get in Touch</h3>
+              <p className="text-4xl font-display font-bold text-zinc-900 dark:text-white leading-tight tracking-tight">
                 We're here to help you navigate your most complex technical challenges.
               </p>
             </div>
@@ -115,23 +118,33 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="p-8 bg-zinc-900 dark:bg-zinc-800 text-white rounded-3xl space-y-6">
-              <h4 className="text-xl font-bold">What Happens Next?</h4>
-              <ul className="space-y-4">
+            <div className="p-10 bg-zinc-950 border border-zinc-800 text-white rounded-xl space-y-8 relative overflow-hidden group shadow-2xl">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-zinc-700 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="flex items-center justify-between">
+                <h4 className="text-xl font-display font-bold tracking-tight">What Happens Next?</h4>
+                <div className="flex gap-1">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
+                </div>
+              </div>
+              <ul className="space-y-6">
                 {[
                   'Initial technical review of your requirements',
                   '30-minute discovery call with a senior architect',
                   'Detailed proposal and technical roadmap',
                   'Project kickoff and engineering phase'
                 ].map((step, i) => (
-                  <li key={step} className="flex items-center gap-3 text-sm text-zinc-400">
-                    <div className="w-6 h-6 rounded-full bg-zinc-800 dark:bg-zinc-700 flex items-center justify-center text-[10px] font-bold text-zinc-500">
+                  <li key={step} className="flex items-center gap-4 text-sm text-zinc-500 font-light">
+                    <div className="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center text-[10px] font-mono font-bold text-zinc-400 border border-zinc-800">
                       0{i + 1}
                     </div>
                     {step}
                   </li>
                 ))}
               </ul>
+              <div className="pt-4 text-right">
+                <span className="text-[10px] font-mono text-zinc-800 uppercase tracking-widest">PROCESS_V1.0</span>
+              </div>
             </div>
           </div>
 
