@@ -42,7 +42,7 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-2">
               <div className="w-10 h-10 bg-zinc-900 dark:bg-white rounded-lg flex items-center justify-center overflow-hidden">
                 <img 
-                  src="https://res.cloudinary.com/dzeiyvngc/image/upload/v1775505673/WhatsApp_Image_2024-07-05_at_22.02.10_aded31b9_ymcyhp.jpg" 
+                  src="https://res.cloudinary.com/dzeiyvngc/image/upload/v1775507565/WhatsApp_Image_2024-04-27_at_02.22.22_21816fa5_ch75oe.jpg" 
                   alt="Gotham Coders Logo" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
