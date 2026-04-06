@@ -49,8 +49,22 @@ export default function Contact() {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    
+    // Construct mailto link to send queries to help@gothamcoders.com
+    const subject = encodeURIComponent(`New Project Inquiry from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Company: ${formData.company}\n\n` +
+      `Project Details:\n${formData.projectDetails}`
+    );
+    
+    // Simulate API call delay
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    
+    // Open mail client
+    window.location.href = `mailto:help@gothamcoders.com?subject=${subject}&body=${body}`;
+    
     setIsSubmitting(false);
     setIsSuccess(true);
   };
@@ -100,8 +114,8 @@ export default function Contact() {
                 </div>
                 <div className="space-y-1">
                   <h4 className="font-bold text-zinc-900 dark:text-white uppercase tracking-widest text-xs">Email</h4>
-                  <a href="mailto:hello@gothamcoders.com" className="text-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
-                    hello@gothamcoders.com
+                  <a href="mailto:help@gothamcoders.com" className="text-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
+                    help@gothamcoders.com
                   </a>
                 </div>
               </div>
