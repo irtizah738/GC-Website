@@ -1,12 +1,21 @@
-export interface Service {
+export interface System {
   id: string;
   title: string;
   description: string;
-  problem: string;
-  solution: string;
-  outcome: string;
-  capabilities: string[];
-  useCases: string[];
+  whyItsHard: string;
+  howWeSolveIt: string;
+  keyFeatures: string[];
+  architectureThinking: string;
+  icon: string;
+}
+
+export interface Industry {
+  id: string;
+  title: string;
+  challenges: string[];
+  workflows: string[];
+  dataComplexity: string;
+  systemRequirements: string[];
   icon: string;
 }
 
@@ -14,23 +23,20 @@ export interface CaseStudy {
   id: string;
   title: string;
   client: string;
-  description: string;
-  problem: string;
-  architecture: string;
-  techStack: string[];
+  industry: string;
+  problemContext: string;
+  systemComplexity: string;
+  architectureDecisions: string;
+  tradeoffs: string;
   outcome: string;
-  metrics?: { label: string; value: string }[];
+  techStack: string[];
   imageUrl: string;
 }
 
-export interface BlogPost {
+export interface EngineeringPrinciple {
   id: string;
   title: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  date: string;
-  readTime: string;
-  category: string;
-  imageUrl: string;
+  description: string;
+  whyItMatters: string;
+  icon: string;
 }
