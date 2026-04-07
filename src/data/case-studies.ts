@@ -12,7 +12,7 @@ export const caseStudies: CaseStudy[] = [
     tradeoffs: 'We chose eventual consistency for non-critical patient data to ensure high availability, while using distributed locking for critical clinical orders to prevent data corruption.',
     outcome: 'Reduced patient check-in times by 40% and eliminated system downtime during peak clinical hours. The system now handles 50k+ patient records with 99.99% uptime.',
     techStack: ['React', 'Node.js', 'PostgreSQL', 'Kafka', 'Docker', 'Terraform'],
-    imageUrl: 'https://picsum.photos/seed/meditech/1200/800'
+    imageUrl: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200&h=800'
   },
   {
     id: 'finflow-erp',
@@ -25,7 +25,7 @@ export const caseStudies: CaseStudy[] = [
     tradeoffs: 'We prioritized data integrity over write performance for financial transactions, using synchronous database writes with strict validation at the API layer.',
     outcome: 'Successfully launched and scaled to 500+ corporate clients within the first year, processing over $1B in transactions with zero data integrity issues.',
     techStack: ['Next.js', 'Go', 'Kafka', 'MongoDB', 'Redis', 'Kubernetes'],
-    imageUrl: 'https://picsum.photos/seed/finflow/1200/800'
+    imageUrl: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200&h=800'
   },
   {
     id: 'logistix-supply-chain',
@@ -38,6 +38,6 @@ export const caseStudies: CaseStudy[] = [
     tradeoffs: 'We used a hybrid cloud/edge architecture to ensure that warehouse operations could continue even during internet outages, with data syncing back to the cloud when connectivity was restored.',
     outcome: 'Improved inventory accuracy to 99.8% and reduced average shipment delays by 25% through real-time route optimization and automated tracking.',
     techStack: ['React', 'Python', 'PostgreSQL', 'Redis', 'WebSockets', 'React Native'],
-    imageUrl: 'https://picsum.photos/seed/logistix/1200/800'
+    imageUrl: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200&h=800'
   }
 ];

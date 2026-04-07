@@ -89,7 +89,7 @@ export default function About() {
           </div>
           <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-zinc-100 dark:bg-zinc-900">
             <img
-              src="https://picsum.photos/seed/office/1200/1500"
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200&h=1500"
               alt="Gotham Coders Office"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
