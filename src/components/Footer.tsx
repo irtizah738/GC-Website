@@ -10,6 +10,7 @@ const footerLinks = [
       { name: 'Industries', path: '/industries' },
       { name: 'Engineering Approach', path: '/approach' },
       { name: 'Case Studies', path: '/case-studies' },
+      { name: 'Product Demos', path: '/#demos' },
     ],
   },
   {

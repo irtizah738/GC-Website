@@ -6,7 +6,6 @@ import { cn } from '../lib/utils';
 import { useTheme } from '../lib/ThemeContext';
 
 const navLinks = [
-  { name: 'Home', path: '/' },
   { name: 'Systems We Build', path: '/systems' },
   { name: 'Industries', path: '/industries' },
   { name: 'Engineering Approach', path: '/approach' },
@@ -44,9 +43,9 @@ export default function Navbar() {
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-zinc-900 dark:bg-white rounded-lg flex items-center justify-center transition-transform group-hover:scale-105 overflow-hidden">
+        <div className="flex justify-between items-center h-full">
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 bg-zinc-900 dark:bg-white rounded-lg flex items-center justify-center transition-transform group-hover:scale-105 overflow-hidden shrink-0 shadow-sm">
               <img 
                 src="https://res.cloudinary.com/dzeiyvngc/image/upload/v1775507565/WhatsApp_Image_2024-04-27_at_02.22.22_21816fa5_ch75oe.jpg" 
                 alt="Gotham Coders Logo" 
@@ -54,42 +53,61 @@ export default function Navbar() {
                 referrerPolicy="no-referrer"
               />
             </div>
-            <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
+            <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white leading-none">
               Gotham<span className="text-zinc-500 font-normal">Coders</span>
             </span>
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={cn(
-                  'text-sm font-medium transition-colors hover:text-zinc-900 dark:hover:text-white',
-                  location.pathname === link.path
-                    ? 'text-zinc-900 dark:text-white'
-                    : 'text-zinc-500 dark:text-zinc-400'
-                )}
-              >
-                {link.name}
-              </Link>
-            ))}
+            <div className="flex items-center gap-6">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={cn(
+                    'relative text-sm font-medium transition-colors hover:text-zinc-900 dark:hover:text-white py-2 group/link',
+                    location.pathname === link.path
+                      ? 'text-zinc-900 dark:text-white'
+                      : 'text-zinc-500 dark:text-zinc-400'
+                  )}
+                >
+                  {link.name}
+                  <motion.span
+                    className="absolute bottom-0 left-0 w-full h-[1px] bg-zinc-900 dark:bg-white origin-left"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: location.pathname === link.path ? 1 : 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                  />
+                </Link>
+              ))}
+            </div>
             
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors text-zinc-600 dark:text-zinc-400"
-              aria-label="Toggle theme"
-            >
-              {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-            </button>
+            <div className="flex items-center gap-4 pl-4 border-l border-zinc-200 dark:border-zinc-800">
+              <motion.button
+                onClick={toggleTheme}
+                whileHover={{ scale: 1.1, rotate: 15 }}
+                whileTap={{ scale: 0.9 }}
+                className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors text-zinc-600 dark:text-zinc-400 flex items-center justify-center"
+                aria-label="Toggle theme"
+              >
+                {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+              </motion.button>
 
-            <Link
-              to="/contact"
-              className="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
-            >
-              Start a Project
-            </Link>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center"
+              >
+                <Link
+                  to="/contact"
+                  className="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-6 py-2.5 rounded-full text-sm font-semibold hover:shadow-lg dark:hover:shadow-white/10 transition-all flex items-center justify-center"
+                >
+                  Start a Project
+                </Link>
+              </motion.div>
+            </div>
           </div>
 
           {/* Mobile Menu Toggle */}

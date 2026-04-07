@@ -1,0 +1,109 @@
+{
+  "entities": {
+    "Tenant": {
+      "title": "Tenant",
+      "description": "Represents a sandboxed demo session",
+      "type": "object",
+      "properties": {
+        "tenantId": { "type": "string" },
+        "type": { "type": "string", "enum": ["demo"] },
+        "createdAt": { "type": "number" },
+        "expiresAt": { "type": "number" }
+      },
+      "required": ["tenantId", "type", "createdAt", "expiresAt"]
+    },
+    "ERPEvent": {
+      "title": "ERP Event",
+      "description": "Immutable event for GC-ERP system",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string" },
+        "tenantId": { "type": "string" },
+        "aggregateType": { "type": "string" },
+        "aggregateId": { "type": "string" },
+        "eventType": { "type": "string" },
+        "payload": { "type": "object" },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "userId": { "type": "string" },
+            "timestamp": { "type": "number" },
+            "idempotencyKey": { "type": "string" },
+            "source": { "type": "string" }
+          }
+        }
+      },
+      "required": ["eventId", "tenantId", "aggregateType", "aggregateId", "eventType", "payload", "metadata"]
+    },
+    "HIMSEvent": {
+      "title": "HIMS Event",
+      "description": "Immutable event for G-HIMS system",
+      "type": "object",
+      "properties": {
+        "eventId": { "type": "string" },
+        "tenantId": { "type": "string" },
+        "aggregateType": { "type": "string" },
+        "aggregateId": { "type": "string" },
+        "eventType": { "type": "string" },
+        "payload": { "type": "object" },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "userId": { "type": "string" },
+            "timestamp": { "type": "number" },
+            "idempotencyKey": { "type": "string" },
+            "source": { "type": "string" }
+          }
+        }
+      },
+      "required": ["eventId", "tenantId", "aggregateType", "aggregateId", "eventType", "payload", "metadata"]
+    },
+    "InventoryView": {
+      "title": "Inventory View",
+      "description": "Read model for inventory",
+      "type": "object",
+      "properties": {
+        "tenantId": { "type": "string" },
+        "productId": { "type": "string" },
+        "availableQty": { "type": "number" },
+        "reservedQty": { "type": "number" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["tenantId", "productId", "availableQty", "reservedQty", "updatedAt"]
+    },
+    "PatientSummary": {
+      "title": "Patient Summary",
+      "description": "Read model for patient clinical summary",
+      "type": "object",
+      "properties": {
+        "tenantId": { "type": "string" },
+        "patientId": { "type": "string" },
+        "name": { "type": "string" },
+        "age": { "type": "number" },
+        "gender": { "type": "string" },
+        "lastVisitAt": { "type": "number" },
+        "activeMedications": { "type": "array", "items": { "type": "string" } },
+        "outstandingBalance": { "type": "number" }
+      },
+      "required": ["tenantId", "patientId", "name", "age", "gender"]
+    }
+  },
+  "firestore": {
+    "/tenants/{tenantId}": {
+      "schema": "Tenant",
+      "description": "Demo session metadata"
+    },
+    "/events/{eventId}": {
+      "schema": "ERPEvent",
+      "description": "Shared event store for all demo systems"
+    },
+    "/readModels/inventory/{productId}": {
+      "schema": "InventoryView",
+      "description": "ERP Inventory read model"
+    },
+    "/readModels/patientSummary/{patientId}": {
+      "schema": "PatientSummary",
+      "description": "HIMS Patient summary read model"
+    }
+  }
+}
