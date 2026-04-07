@@ -24,8 +24,18 @@ import { SectionReveal } from '../components/animations/SectionReveal';
 import { InteractiveCard } from '../components/animations/InteractiveCard';
 import { cn } from '../lib/utils';
 
-// Initialize Gemini
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+// Initialize Gemini lazily
+let aiInstance: GoogleGenAI | null = null;
+const getAI = () => {
+  if (!aiInstance) {
+    const key = process.env.GEMINI_API_KEY;
+    if (!key || key === 'undefined') {
+      throw new Error('GEMINI_API_KEY is not configured. Please add it to your environment variables.');
+    }
+    aiInstance = new GoogleGenAI({ apiKey: key });
+  }
+  return aiInstance;
+};
 
 type Message = {
   role: 'user' | 'model';
@@ -130,7 +140,7 @@ function ChatSection() {
         parts: [{ text: m.text }]
       }));
 
-      const chat = ai.chats.create({
+      const chat = getAI().chats.create({
         model: model,
         config: {
           systemInstruction: "You are a senior software architect at Gotham Coders. You specialize in mission-critical systems, distributed architectures, and high-performance engineering. Be precise, technical, and professional.",
@@ -309,7 +319,7 @@ function TTSSection() {
     setAudioUrl(null);
 
     try {
-      const response = await ai.models.generateContent({
+      const response = await getAI().models.generateContent({
         model: "gemini-2.5-flash-preview-tts",
         contents: [{ parts: [{ text: text }] }],
         config: {
@@ -445,7 +455,7 @@ function VideoSection() {
       reader.onload = async () => {
         const base64Data = (reader.result as string).split(',')[1];
         
-        let operation = await (ai.models as any).generateVideos({
+        let operation = await (getAI().models as any).generateVideos({
           model: 'veo-3.1-fast-generate-preview',
           prompt: 'Animate this architectural diagram into a flowing data stream visualization, 4k, cinematic lighting, high detail',
           config: {
@@ -464,7 +474,7 @@ function VideoSection() {
         while (!operation.done) {
           setStatus('Processing frames... This may take a few minutes.');
           await new Promise(resolve => setTimeout(resolve, 10000));
-          operation = await (ai.models as any).getOperation(operation.name);
+          operation = await (getAI().models as any).getOperation(operation.name);
         }
 
         if (operation.response?.videos?.[0]?.uri) {

@@ -4,9 +4,10 @@
  */
 
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect, lazy, Suspense } from 'react';
+import React, { useEffect, lazy, Suspense, Component } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { AnimatePresence, motion } from 'motion/react';
+import { AlertCircle } from 'lucide-react';
 import { ThemeProvider } from './lib/ThemeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -18,9 +19,9 @@ import EngineeringApproach from './pages/EngineeringApproach';
 import CaseStudies from './pages/CaseStudies';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import AILab from './pages/AILab';
 
-// Lazy load demo pages
+// Lazy load AI Lab and demo pages
+const AILab = lazy(() => import('./pages/AILab'));
 const GCErpDemo = lazy(() => import('./pages/demo/GCErpDemo'));
 const GHimsDemo = lazy(() => import('./pages/demo/GHimsDemo'));
 
@@ -80,6 +81,58 @@ function AnimatedRoutes() {
   );
 }
 
+interface ErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+}
+
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  state: ErrorBoundaryState;
+  props: ErrorBoundaryProps;
+
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('ErrorBoundary caught an error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen flex items-center justify-center bg-white dark:bg-zinc-950 p-4">
+          <div className="max-w-md w-full space-y-6 text-center">
+            <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto">
+              <AlertCircle className="w-8 h-8 text-red-600 dark:text-red-400" />
+            </div>
+            <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">Something went wrong</h1>
+            <p className="text-zinc-600 dark:text-zinc-400">
+              The application encountered an unexpected error. Please try refreshing the page.
+            </p>
+            <button
+              onClick={() => window.location.reload()}
+              className="px-6 py-2 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-bold hover:scale-105 transition-transform"
+            >
+              Refresh Page
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
 export default function App() {
   return (
     <HelmetProvider>
@@ -88,15 +141,17 @@ export default function App() {
           <link rel="icon" type="image/jpeg" href={LOGO_URL} />
         </Helmet>
         <Router>
-          <ScrollToTop />
-          <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 font-sans selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-zinc-900 transition-colors duration-300 relative">
-            <AnimatedBackground />
-            <Navbar />
-            <main className="relative z-10">
-              <AnimatedRoutes />
-            </main>
-            <Footer />
-          </div>
+          <ErrorBoundary>
+            <ScrollToTop />
+            <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 font-sans selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-zinc-900 transition-colors duration-300 relative">
+              <AnimatedBackground />
+              <Navbar />
+              <main className="relative z-10">
+                <AnimatedRoutes />
+              </main>
+              <Footer />
+            </div>
+          </ErrorBoundary>
         </Router>
       </ThemeProvider>
     </HelmetProvider>
