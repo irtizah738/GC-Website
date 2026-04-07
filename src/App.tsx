@@ -18,6 +18,7 @@ import EngineeringApproach from './pages/EngineeringApproach';
 import CaseStudies from './pages/CaseStudies';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import AILab from './pages/AILab';
 
 // Lazy load demo pages
 const GCErpDemo = lazy(() => import('./pages/demo/GCErpDemo'));
@@ -64,6 +65,7 @@ function AnimatedRoutes() {
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/ai-lab" element={<AILab />} />
             
             {/* Demo Routes */}
             <Route path="/demo/gc-erp" element={<GCErpDemo />} />

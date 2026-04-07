@@ -9,7 +9,7 @@ const navLinks = [
   { name: 'Systems We Build', path: '/systems' },
   { name: 'Industries', path: '/industries' },
   { name: 'Engineering Approach', path: '/approach' },
-  { name: 'Case Studies', path: '/case-studies' },
+  { name: 'AI Lab', path: '/ai-lab' },
   { name: 'About', path: '/about' },
   { name: 'Contact', path: '/contact' },
 ];
