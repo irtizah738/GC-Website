@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Mail, MapPin, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import Section from '../components/Section';
+import { Heading } from '../components/ui/Heading';
+import { Text } from '../components/ui/Text';
 import { cn } from '../lib/utils';
 
 interface FormData {
@@ -89,16 +91,14 @@ export default function Contact() {
       <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-zinc opacity-20 -z-10" />
         <div className="max-w-4xl space-y-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-200 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400">
-            Inquiry // Discussion
-          </div>
-          <h1 className="text-5xl md:text-8xl font-display font-bold text-zinc-900 dark:text-white leading-[0.9] tracking-tighter">
+          <Text variant="caption">Inquiry // Discussion</Text>
+          <Heading level={1}>
             Start a <span className="text-zinc-400 italic font-light">Technical</span> Discussion
-          </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl font-light">
+          </Heading>
+          <Text className="text-xl">
             Ready to scale your engineering? Let's discuss your project and how 
             our team can help you build the future of your organization.
-          </p>
+          </Text>
         </div>
       </Section>
 
@@ -107,10 +107,10 @@ export default function Contact() {
           {/* Contact Info */}
           <div className="space-y-12">
             <div className="space-y-4">
-              <h3 className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-zinc-500">Get in Touch</h3>
-              <p className="text-4xl font-display font-bold text-zinc-900 dark:text-white leading-tight tracking-tight">
+              <Text variant="caption">Get in Touch</Text>
+              <Heading level={2}>
                 We're here to help you navigate your most complex technical challenges.
-              </p>
+              </Heading>
             </div>
 
             <div className="space-y-8">
@@ -119,7 +119,7 @@ export default function Contact() {
                   <Mail className="w-6 h-6 text-zinc-900 dark:text-white" />
                 </div>
                 <div className="space-y-1">
-                  <h4 className="font-bold text-zinc-900 dark:text-white uppercase tracking-widest text-xs">Email</h4>
+                  <Heading level={4} className="text-xs uppercase tracking-widest">Email</Heading>
                   <a href="mailto:help@gothamcoders.com" className="text-lg text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
                     help@gothamcoders.com
                   </a>
@@ -130,10 +130,10 @@ export default function Contact() {
                   <MapPin className="w-6 h-6 text-zinc-900 dark:text-white" />
                 </div>
                 <div className="space-y-1">
-                  <h4 className="font-bold text-zinc-900 dark:text-white uppercase tracking-widest text-xs">Office</h4>
-                  <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                  <Heading level={4} className="text-xs uppercase tracking-widest">Office</Heading>
+                  <Text className="text-lg">
                     Calslaan 47j, 051, Enschede, 7522MJ, Netherlands
-                  </p>
+                  </Text>
                 </div>
               </div>
             </div>
@@ -141,7 +141,7 @@ export default function Contact() {
             <div className="p-10 bg-zinc-950 border border-zinc-800 text-white rounded-xl space-y-8 relative overflow-hidden group shadow-2xl">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-zinc-700 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="flex items-center justify-between">
-                <h4 className="text-xl font-display font-bold tracking-tight">What Happens Next?</h4>
+                <Heading level={3} className="text-white">What Happens Next?</Heading>
                 <div className="flex gap-1">
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
@@ -154,16 +154,16 @@ export default function Contact() {
                   'Detailed proposal and technical roadmap',
                   'Project kickoff and engineering phase'
                 ].map((step, i) => (
-                  <li key={step} className="flex items-center gap-4 text-sm text-zinc-500 font-light">
+                  <li key={step} className="flex items-center gap-4">
                     <div className="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center text-[10px] font-mono font-bold text-zinc-400 border border-zinc-800">
                       0{i + 1}
                     </div>
-                    {step}
+                    <Text variant="small" className="text-zinc-500">{step}</Text>
                   </li>
                 ))}
               </ul>
               <div className="pt-4 text-right">
-                <span className="text-[10px] font-mono text-zinc-800 uppercase tracking-widest">PROCESS_V1.0</span>
+                <Text variant="caption" className="text-zinc-800">PROCESS_V1.0</Text>
               </div>
             </div>
           </div>
@@ -182,10 +182,10 @@ export default function Contact() {
                     <CheckCircle2 className="w-10 h-10 text-emerald-600" />
                   </div>
                   <div className="space-y-4">
-                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Inquiry Prepared</h3>
-                    <p className="text-zinc-500 dark:text-zinc-400 max-w-xs mx-auto">
+                    <Heading level={3}>Inquiry Prepared</Heading>
+                    <Text variant="small" className="max-w-xs mx-auto">
                       We've prepared your technical inquiry. If your mail client didn't open automatically, please use the button below.
-                    </p>
+                    </Text>
                   </div>
                   <div className="flex flex-col gap-4">
                     <a
@@ -222,9 +222,9 @@ export default function Contact() {
                   className="space-y-6"
                 >
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-xs font-bold uppercase tracking-widest text-zinc-500">
+                    <Text variant="caption" as="label" htmlFor="name">
                       Full Name
-                    </label>
+                    </Text>
                     <input
                       type="text"
                       id="name"
@@ -238,16 +238,16 @@ export default function Contact() {
                       )}
                     />
                     {errors.name && (
-                      <p className="text-xs text-red-500 flex items-center gap-1">
+                      <Text variant="small" className="text-red-500 flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> {errors.name}
-                      </p>
+                      </Text>
                     )}
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-xs font-bold uppercase tracking-widest text-zinc-500">
+                    <Text variant="caption" as="label" htmlFor="email">
                       Email Address
-                    </label>
+                    </Text>
                     <input
                       type="email"
                       id="email"
@@ -261,16 +261,16 @@ export default function Contact() {
                       )}
                     />
                     {errors.email && (
-                      <p className="text-xs text-red-500 flex items-center gap-1">
+                      <Text variant="small" className="text-red-500 flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> {errors.email}
-                      </p>
+                      </Text>
                     )}
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="company" className="text-xs font-bold uppercase tracking-widest text-zinc-500">
+                    <Text variant="caption" as="label" htmlFor="company">
                       Company Name
-                    </label>
+                    </Text>
                     <input
                       type="text"
                       id="company"
@@ -284,16 +284,16 @@ export default function Contact() {
                       )}
                     />
                     {errors.company && (
-                      <p className="text-xs text-red-500 flex items-center gap-1">
+                      <Text variant="small" className="text-red-500 flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> {errors.company}
-                      </p>
+                      </Text>
                     )}
                   </div>
 
                   <div className="space-y-2">
-                    <label htmlFor="projectDetails" className="text-xs font-bold uppercase tracking-widest text-zinc-500">
+                    <Text variant="caption" as="label" htmlFor="projectDetails">
                       Project Details
-                    </label>
+                    </Text>
                     <textarea
                       id="projectDetails"
                       name="projectDetails"
@@ -307,9 +307,9 @@ export default function Contact() {
                       )}
                     />
                     {errors.projectDetails && (
-                      <p className="text-xs text-red-500 flex items-center gap-1">
+                      <Text variant="small" className="text-red-500 flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> {errors.projectDetails}
-                      </p>
+                      </Text>
                     )}
                   </div>
 

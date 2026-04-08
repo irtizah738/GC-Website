@@ -95,14 +95,14 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 <Link
                   to="/contact"
-                  className="w-full sm:w-auto px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl font-bold text-lg hover:scale-[1.02] transition-transform flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl font-mono font-bold text-xs uppercase tracking-widest hover:scale-[1.02] transition-transform flex items-center justify-center gap-2"
                 >
                   Discuss Your System
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   to="/systems"
-                  className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-xl font-bold text-lg hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-center"
+                  className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-xl font-mono font-bold text-xs uppercase tracking-widest hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-center"
                 >
                   Systems We Build
                 </Link>
@@ -295,9 +295,9 @@ export default function Home() {
               </p>
               <Link
                 to="/demo/gc-erp"
-                className="inline-flex items-center gap-3 px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-bold text-sm hover:scale-[1.05] transition-transform"
+                className="inline-flex items-center gap-3 px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-mono font-bold text-[10px] uppercase tracking-widest hover:scale-[1.05] transition-transform"
               >
-                Launch ERP Demo <ArrowRight className="w-4 h-4" />
+                Launch ERP Demo <ArrowRight className="w-3 h-3" />
               </Link>
             </InteractiveCard>
           </SectionReveal>
@@ -317,9 +317,9 @@ export default function Home() {
               </p>
               <Link
                 to="/demo/g-hims"
-                className="inline-flex items-center gap-3 px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-bold text-sm hover:scale-[1.05] transition-transform"
+                className="inline-flex items-center gap-3 px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-mono font-bold text-[10px] uppercase tracking-widest hover:scale-[1.05] transition-transform"
               >
-                Launch HIMS Demo <ArrowRight className="w-4 h-4" />
+                Launch HIMS Demo <ArrowRight className="w-3 h-3" />
               </Link>
             </InteractiveCard>
           </SectionReveal>
@@ -381,7 +381,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link
               to="/contact"
-              className="w-full sm:w-auto px-12 py-6 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-bold text-xl hover:scale-[1.05] transition-transform flex items-center justify-center gap-3 shadow-2xl"
+              className="w-full sm:w-auto px-12 py-6 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-mono font-bold text-sm uppercase tracking-[0.2em] hover:scale-[1.05] transition-transform flex items-center justify-center gap-3 shadow-2xl"
             >
               Discuss Your System
               <ArrowRight className="w-6 h-6" />

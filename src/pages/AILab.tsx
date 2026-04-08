@@ -16,6 +16,8 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import Section from '../components/Section';
+import { Heading } from '../components/ui/Heading';
+import { Text } from '../components/ui/Text';
 import { SectionReveal } from '../components/animations/SectionReveal';
 import { InteractiveCard } from '../components/animations/InteractiveCard';
 
@@ -31,16 +33,14 @@ export default function AILab() {
       <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-zinc opacity-20 -z-10" />
         <div className="max-w-4xl space-y-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-200 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400">
-            Research & Development // System Intelligence
-          </div>
-          <h1 className="text-5xl md:text-8xl font-display font-bold text-zinc-900 dark:text-white leading-[0.9] tracking-tighter">
+          <Text variant="caption">Research & Development // System Intelligence</Text>
+          <Heading level={1}>
             AI That Works <span className="text-zinc-400 italic font-light">Inside</span> Your Systems — Not Outside Them
-          </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl font-light">
+          </Heading>
+          <Text className="text-xl">
             From ERP to HMIS, we integrate intelligence directly into workflows, 
             reducing manual effort, errors, and decision latency.
-          </p>
+          </Text>
         </div>
       </Section>
 
@@ -49,12 +49,12 @@ export default function AILab() {
         <SectionReveal className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="space-y-8">
             <div className="space-y-4">
-              <h2 className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-400">Core Philosophy</h2>
-              <h3 className="text-4xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">What AI Actually Does</h3>
-              <p className="text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed font-light">
+              <Text variant="caption">Core Philosophy</Text>
+              <Heading level={2}>What AI Actually Does</Heading>
+              <Text className="text-lg">
                 We use AI where it matters. It is not used to replace humans blindly. 
                 It is used to <span className="text-zinc-900 dark:text-white font-medium">augment decisions and enforce system consistency</span>.
-              </p>
+              </Text>
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -66,8 +66,8 @@ export default function AILab() {
               ].map((item) => (
                 <div key={item.title} className="space-y-2">
                   <item.icon className="w-5 h-5 text-zinc-400" />
-                  <h4 className="font-bold text-sm text-zinc-900 dark:text-white uppercase tracking-widest">{item.title}</h4>
-                  <p className="text-xs text-zinc-500 leading-relaxed">{item.desc}</p>
+                  <Heading level={4} className="text-sm uppercase tracking-widest">{item.title}</Heading>
+                  <Text variant="small">{item.desc}</Text>
                 </div>
               ))}
             </div>
@@ -96,9 +96,9 @@ export default function AILab() {
           <div className="max-w-3xl space-y-4">
             <div className="flex items-center gap-3 text-zinc-500">
               <Database className="w-5 h-5" />
-              <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em]">Domain // ERP Systems</span>
+              <Text variant="caption">Domain // ERP Systems</Text>
             </div>
-            <h3 className="text-4xl md:text-5xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">Intelligence in the Supply Chain</h3>
+            <Heading level={2}>Intelligence in the Supply Chain</Heading>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -123,19 +123,19 @@ export default function AILab() {
               }
             ].map((item) => (
               <InteractiveCard key={item.title} className="p-8 space-y-6">
-                <h4 className="text-xl font-bold text-zinc-900 dark:text-white">{item.title}</h4>
+                <Heading level={4}>{item.title}</Heading>
                 <div className="space-y-4">
                   <div className="space-y-1">
-                    <span className="text-[10px] font-mono uppercase text-zinc-400">Input</span>
-                    <p className="text-sm text-zinc-600 dark:text-zinc-400">{item.input}</p>
+                    <Text variant="caption" className="text-zinc-400">Input</Text>
+                    <Text variant="small">{item.input}</Text>
                   </div>
                   <div className="space-y-1">
-                    <span className="text-[10px] font-mono uppercase text-zinc-400">Output</span>
-                    <p className="text-sm text-zinc-600 dark:text-zinc-400">{item.output}</p>
+                    <Text variant="caption" className="text-zinc-400">Output</Text>
+                    <Text variant="small">{item.output}</Text>
                   </div>
                   <div className="pt-4 border-t border-zinc-100 dark:border-zinc-800">
-                    <span className="text-[10px] font-mono uppercase text-emerald-500 font-bold">Action</span>
-                    <p className="text-sm text-zinc-900 dark:text-white font-medium mt-1">{item.action}</p>
+                    <Text variant="caption" className="text-emerald-500 font-bold">Action</Text>
+                    <Text className="text-zinc-900 dark:text-white font-medium mt-1">{item.action}</Text>
                   </div>
                 </div>
               </InteractiveCard>
@@ -150,12 +150,12 @@ export default function AILab() {
           <div className="max-w-3xl space-y-4">
             <div className="flex items-center gap-3 text-zinc-500">
               <Stethoscope className="w-5 h-5" />
-              <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em]">Domain // Healthcare (G-HIMS)</span>
+              <Text variant="caption">Domain // Healthcare (G-HIMS)</Text>
             </div>
-            <h3 className="text-4xl md:text-5xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">Clinical Decision Support</h3>
-            <p className="text-lg text-zinc-600 dark:text-zinc-400 font-light">
+            <Heading level={2}>Clinical Decision Support</Heading>
+            <Text className="text-lg">
               All healthcare AI systems are built with <span className="text-zinc-900 dark:text-white font-medium">auditability, explainability, and safety</span> as core requirements.
-            </p>
+            </Text>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -167,8 +167,8 @@ export default function AILab() {
             ].map((item) => (
               <div key={item.title} className="p-6 bg-zinc-50 dark:bg-zinc-900 rounded-2xl border border-zinc-100 dark:border-zinc-800 space-y-4">
                 <item.icon className="w-6 h-6 text-zinc-900 dark:text-white" />
-                <h4 className="font-bold text-sm text-zinc-900 dark:text-white uppercase tracking-widest leading-tight">{item.title}</h4>
-                <p className="text-xs text-zinc-500 leading-relaxed">{item.desc}</p>
+                <Heading level={4} className="text-sm uppercase tracking-widest leading-tight">{item.title}</Heading>
+                <Text variant="small">{item.desc}</Text>
               </div>
             ))}
           </div>
@@ -180,22 +180,22 @@ export default function AILab() {
         <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
         <SectionReveal className="space-y-16">
           <div className="max-w-3xl space-y-4">
-            <h2 className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">The Power of Integration</h2>
-            <h3 className="text-4xl md:text-5xl font-display font-bold text-white tracking-tight">Automation Layer</h3>
-            <p className="text-lg text-zinc-400 font-light leading-relaxed">
+            <Text variant="caption">The Power of Integration</Text>
+            <Heading level={2} className="text-white">Automation Layer</Heading>
+            <Text className="text-lg text-zinc-400">
               AI becomes powerful when combined with automation. We build automation 
               on top of <span className="text-white font-medium">event-driven systems</span>.
-            </p>
+            </Text>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="p-10 bg-zinc-900 border border-zinc-800 rounded-3xl space-y-8">
               <div className="space-y-2">
-                <span className="text-[10px] font-mono uppercase text-zinc-500">ERP Example</span>
+                <Text variant="caption" className="text-zinc-500">ERP Example</Text>
                 <div className="flex items-center gap-3">
                   <div className="px-3 py-1 bg-zinc-800 border border-zinc-700 rounded text-xs font-mono text-emerald-400">inventory_low</div>
                   <ArrowRight className="w-4 h-4 text-zinc-600" />
-                  <span className="text-sm text-zinc-300">Automation Triggered</span>
+                  <Text variant="small" className="text-zinc-300">Automation Triggered</Text>
                 </div>
               </div>
               <ul className="space-y-4">
@@ -204,9 +204,9 @@ export default function AILab() {
                   'Notify procurement team',
                   'Update inventory projections'
                 ].map((step) => (
-                  <li key={step} className="flex items-center gap-3 text-zinc-400">
+                  <li key={step} className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                    <span className="text-sm">{step}</span>
+                    <Text variant="small" className="text-zinc-400">{step}</Text>
                   </li>
                 ))}
               </ul>
@@ -214,11 +214,11 @@ export default function AILab() {
 
             <div className="p-10 bg-zinc-900 border border-zinc-800 rounded-3xl space-y-8">
               <div className="space-y-2">
-                <span className="text-[10px] font-mono uppercase text-zinc-500">Healthcare Example</span>
+                <Text variant="caption" className="text-zinc-500">Healthcare Example</Text>
                 <div className="flex items-center gap-3">
                   <div className="px-3 py-1 bg-zinc-800 border border-zinc-700 rounded text-xs font-mono text-red-400">critical_vitals_detected</div>
                   <ArrowRight className="w-4 h-4 text-zinc-600" />
-                  <span className="text-sm text-zinc-300">Automation Triggered</span>
+                  <Text variant="small" className="text-zinc-300">Automation Triggered</Text>
                 </div>
               </div>
               <ul className="space-y-4">
@@ -227,9 +227,9 @@ export default function AILab() {
                   'Flag patient in system',
                   'Escalate priority'
                 ].map((step) => (
-                  <li key={step} className="flex items-center gap-3 text-zinc-400">
+                  <li key={step} className="flex items-center gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                    <span className="text-sm">{step}</span>
+                    <Text variant="small" className="text-zinc-400">{step}</Text>
                   </li>
                 ))}
               </ul>
@@ -242,10 +242,10 @@ export default function AILab() {
       <Section className="border-b border-zinc-100 dark:border-zinc-900">
         <SectionReveal className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="space-y-8">
-            <h3 className="text-4xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">Efficiency Gains</h3>
-            <p className="text-lg text-zinc-600 dark:text-zinc-400 font-light leading-relaxed">
+            <Heading level={2}>Efficiency Gains</Heading>
+            <Text className="text-lg">
               AI + automation leads to measurable improvements in system throughput and operational accuracy.
-            </p>
+            </Text>
             <div className="space-y-4">
               {[
                 '30–50% reduction in manual tasks',
@@ -255,23 +255,23 @@ export default function AILab() {
               ].map((gain) => (
                 <div key={gain} className="flex items-center gap-3 text-zinc-900 dark:text-white font-medium">
                   <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                  {gain}
+                  <Text as="span" className="text-zinc-900 dark:text-white font-medium">{gain}</Text>
                 </div>
               ))}
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="p-8 bg-zinc-50 dark:bg-zinc-900 rounded-2xl border border-zinc-100 dark:border-zinc-800 text-center space-y-2">
-              <span className="text-4xl font-display font-bold text-zinc-900 dark:text-white">30%</span>
-              <p className="text-[10px] font-mono uppercase text-zinc-500">Reduction in Stockouts</p>
+              <Heading level={2}>30%</Heading>
+              <Text variant="caption">Reduction in Stockouts</Text>
             </div>
             <div className="p-8 bg-zinc-50 dark:bg-zinc-900 rounded-2xl border border-zinc-100 dark:border-zinc-800 text-center space-y-2">
-              <span className="text-4xl font-display font-bold text-zinc-900 dark:text-white">20%</span>
-              <p className="text-[10px] font-mono uppercase text-zinc-500">Cut in Wait Times</p>
+              <Heading level={2}>20%</Heading>
+              <Text variant="caption">Cut in Wait Times</Text>
             </div>
             <div className="col-span-2 p-8 bg-zinc-900 dark:bg-white rounded-2xl text-center space-y-2">
-              <span className="text-4xl font-display font-bold text-white dark:text-zinc-900">50%</span>
-              <p className="text-[10px] font-mono uppercase text-zinc-400 dark:text-zinc-500">Manual Task Automation</p>
+              <Heading level={2} className="text-white dark:text-zinc-900">50%</Heading>
+              <Text variant="caption" className="text-zinc-400 dark:text-zinc-500">Manual Task Automation</Text>
             </div>
           </div>
         </SectionReveal>
@@ -281,8 +281,8 @@ export default function AILab() {
       <Section variant="muted" className="text-center">
         <SectionReveal className="max-w-4xl mx-auto space-y-12">
           <div className="space-y-4">
-            <h2 className="text-xs font-bold uppercase tracking-[0.3em] text-zinc-400">The System View</h2>
-            <h3 className="text-4xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">How It Works</h3>
+            <Text variant="caption">The System View</Text>
+            <Heading level={2}>How It Works</Heading>
           </div>
           
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 p-8 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-3xl">
@@ -298,7 +298,7 @@ export default function AILab() {
                   <div className="w-12 h-12 bg-zinc-50 dark:bg-zinc-900 rounded-xl flex items-center justify-center border border-zinc-100 dark:border-zinc-800">
                     <step.icon className="w-6 h-6 text-zinc-900 dark:text-white" />
                   </div>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-500">{step.label}</span>
+                  <Text variant="caption">{step.label}</Text>
                 </div>
                 {i < arr.length - 1 && (
                   <ArrowRight className="w-4 h-4 text-zinc-300 rotate-90 md:rotate-0" />
@@ -307,11 +307,11 @@ export default function AILab() {
             ))}
           </div>
 
-          <p className="text-zinc-500 font-light leading-relaxed max-w-2xl mx-auto">
+          <Text className="max-w-2xl mx-auto">
             AI is not separate — it is embedded inside the system workflow. 
             Systems generate events, AI processes context, decisions are generated, 
             and actions are executed automatically.
-          </p>
+          </Text>
         </SectionReveal>
       </Section>
 
@@ -319,21 +319,21 @@ export default function AILab() {
       <Section className="border-b border-zinc-100 dark:border-zinc-900">
         <SectionReveal className="max-w-4xl mx-auto">
           <div className="p-12 bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-[3rem] text-center space-y-6">
-            <h3 className="text-2xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">Final Insight</h3>
+            <Heading level={3}>Final Insight</Heading>
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
               <div className="space-y-2">
-                <span className="text-[10px] font-mono uppercase text-zinc-400">Most Companies</span>
-                <p className="text-lg text-zinc-500 font-light italic">Bolt AI on top</p>
+                <Text variant="caption">Most Companies</Text>
+                <Text className="text-lg text-zinc-500 font-light italic">Bolt AI on top</Text>
               </div>
               <div className="hidden md:block w-px h-12 bg-zinc-200 dark:bg-zinc-800" />
               <div className="space-y-2">
-                <span className="text-[10px] font-mono uppercase text-emerald-500 font-bold">Gotham Coders</span>
-                <p className="text-lg text-zinc-900 dark:text-white font-medium">Embed AI into system architecture</p>
+                <Text variant="caption" className="text-emerald-500 font-bold">Gotham Coders</Text>
+                <Text className="text-lg text-zinc-900 dark:text-white font-medium">Embed AI into system architecture</Text>
               </div>
             </div>
-            <p className="text-zinc-500 font-light max-w-xl mx-auto pt-4">
+            <Text variant="small" className="max-w-xl mx-auto pt-4">
               That’s a completely different level of capability. We don't just add features; we architect intelligence.
-            </p>
+            </Text>
           </div>
         </SectionReveal>
       </Section>
@@ -342,9 +342,9 @@ export default function AILab() {
       <Section variant="dark" className="text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
         <div className="max-w-4xl mx-auto space-y-12">
-          <h2 className="text-5xl md:text-8xl font-display font-bold tracking-tighter leading-[0.85]">
+          <Heading level={1}>
             Build systems that <span className="text-zinc-400 italic font-light">think, adapt,</span> and improve.
-          </h2>
+          </Heading>
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

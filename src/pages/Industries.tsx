@@ -1,6 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, CheckCircle2, Stethoscope, Activity, Trophy, Factory, Microscope } from 'lucide-react';
 import Section from '../components/Section';
+import { Heading } from '../components/ui/Heading';
+import { Text } from '../components/ui/Text';
 import { industries } from '../data/industries';
 import { Link } from 'react-router-dom';
 
@@ -24,16 +26,14 @@ export default function Industries() {
       <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-zinc opacity-20 -z-10" />
         <div className="max-w-4xl space-y-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-200 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400">
-            Domain Expertise // Verticals
-          </div>
-          <h1 className="text-5xl md:text-8xl font-display font-bold text-zinc-900 dark:text-white leading-[0.9] tracking-tighter">
+          <Text variant="caption">Domain Expertise // Verticals</Text>
+          <Heading level={1}>
             Deep Domain <span className="text-zinc-400 italic font-light">Expertise</span>
-          </h1>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl font-light">
+          </Heading>
+          <Text className="text-xl">
             We understand the unique constraints and data complexities of high-stakes industries. 
             Our systems are built to handle the most demanding workflows.
-          </p>
+          </Text>
         </div>
       </Section>
 
@@ -54,30 +54,30 @@ export default function Industries() {
                     <div className="w-10 h-10 bg-zinc-900 dark:bg-white rounded-lg flex items-center justify-center shadow-lg">
                       <Icon className="w-6 h-6 text-white dark:text-zinc-900" />
                     </div>
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em]">0{index + 1} // {industry.title}</span>
+                    <Text variant="caption">0{index + 1} // {industry.title}</Text>
                   </div>
-                  <h3 className="text-4xl md:text-5xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">{industry.title}</h3>
+                  <Heading level={2}>{industry.title}</Heading>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-4">
-                    <h4 className="text-xs font-bold uppercase tracking-widest text-zinc-900 dark:text-white">Industry Challenges</h4>
+                    <Text variant="caption">Industry Challenges</Text>
                     <ul className="space-y-3">
                       {industry.challenges.map((challenge) => (
-                        <li key={challenge} className="flex items-start gap-3 text-zinc-600 dark:text-zinc-400">
+                        <li key={challenge} className="flex items-start gap-3">
                           <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5 shrink-0" />
-                          <span className="text-sm">{challenge}</span>
+                          <Text variant="small">{challenge}</Text>
                         </li>
                       ))}
                     </ul>
                   </div>
                   <div className="space-y-4">
-                    <h4 className="text-xs font-bold uppercase tracking-widest text-zinc-900 dark:text-white">Typical Workflows</h4>
+                    <Text variant="caption">Typical Workflows</Text>
                     <ul className="space-y-3">
                       {industry.workflows.map((workflow) => (
-                        <li key={workflow} className="flex items-start gap-3 text-zinc-600 dark:text-zinc-400">
+                        <li key={workflow} className="flex items-start gap-3">
                           <div className="w-1.5 h-1.5 rounded-full bg-zinc-400 mt-1.5 shrink-0" />
-                          <span className="text-sm">{workflow}</span>
+                          <Text variant="small">{workflow}</Text>
                         </li>
                       ))}
                     </ul>
@@ -90,23 +90,23 @@ export default function Industries() {
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-zinc-700 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-sm font-mono font-bold uppercase tracking-widest text-zinc-500">Data Complexity</h4>
+                      <Text variant="caption">Data Complexity</Text>
                       <div className="flex gap-1">
                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                         <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
                       </div>
                     </div>
-                    <p className="text-zinc-500 leading-relaxed text-sm font-light">
+                    <Text variant="small">
                       {industry.dataComplexity}
-                    </p>
+                    </Text>
                   </div>
                   <div className="space-y-6 pt-8 border-t border-zinc-900">
-                    <h4 className="text-sm font-mono font-bold uppercase tracking-widest text-zinc-500">System Requirements</h4>
+                    <Text variant="caption">System Requirements</Text>
                     <ul className="grid grid-cols-1 gap-4">
                       {industry.systemRequirements.map((req) => (
-                        <li key={req} className="flex items-center gap-3 text-zinc-400">
+                        <li key={req} className="flex items-center gap-3">
                           <CheckCircle2 className="w-4 h-4 text-zinc-600 shrink-0" />
-                          <span className="text-xs font-medium tracking-tight">{req}</span>
+                          <Text variant="small" className="font-medium tracking-tight">{req}</Text>
                         </li>
                       ))}
                     </ul>
@@ -133,12 +133,12 @@ export default function Industries() {
       <Section variant="dark" className="text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
         <div className="max-w-4xl mx-auto space-y-12">
-          <h2 className="text-5xl md:text-8xl font-display font-bold tracking-tighter leading-[0.85]">
+          <Heading level={1}>
             Deep Domain <span className="text-zinc-400 italic font-light">Knowledge</span> Matters
-          </h2>
-          <p className="text-xl text-zinc-500 max-w-2xl mx-auto font-light leading-relaxed">
+          </Heading>
+          <Text className="text-xl max-w-2xl mx-auto">
             Let's build a system that truly understands your industry.
-          </p>
+          </Text>
           <Link
             to="/contact"
             className="inline-flex items-center gap-3 px-12 py-6 bg-white text-zinc-900 rounded-full font-bold text-xl hover:scale-[1.05] transition-transform shadow-2xl"

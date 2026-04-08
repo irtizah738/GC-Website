@@ -54,7 +54,7 @@ export default function Navbar() {
               />
             </div>
             <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white leading-none">
-              Gotham<span className="text-zinc-500 font-normal">Coders</span>
+              Gotham<span className="text-zinc-500 font-mono font-normal uppercase text-sm ml-1 tracking-tighter">Coders</span>
             </span>
           </Link>
 
@@ -66,7 +66,7 @@ export default function Navbar() {
                   key={link.path}
                   to={link.path}
                   className={cn(
-                    'relative text-sm font-medium transition-colors hover:text-zinc-900 dark:hover:text-white py-2 group/link',
+                    'relative text-[10px] font-mono font-bold uppercase tracking-[0.2em] transition-colors hover:text-zinc-900 dark:hover:text-white py-2 group/link',
                     location.pathname === link.path
                       ? 'text-zinc-900 dark:text-white'
                       : 'text-zinc-500 dark:text-zinc-400'
@@ -102,7 +102,7 @@ export default function Navbar() {
               >
                 <Link
                   to="/contact"
-                  className="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-6 py-2.5 rounded-full text-sm font-semibold hover:shadow-lg dark:hover:shadow-white/10 transition-all flex items-center justify-center"
+                  className="bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-6 py-2.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-widest hover:shadow-lg dark:hover:shadow-white/10 transition-all flex items-center justify-center"
                 >
                   Start a Project
                 </Link>
