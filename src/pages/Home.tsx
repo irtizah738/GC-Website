@@ -166,7 +166,7 @@ export default function Home() {
                 </motion.div>
                 <div className="pl-4">
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6 }}>- <span className="text-yellow-600">Healthcare</span> (HMIS)</motion.div>
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.7 }}>- <span className="text-yellow-600">Finance</span> (ERP)</motion.div>
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.7 }}>- <span className="text-yellow-600">Supply Chain</span> (ERP)</motion.div>
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.8 }}>- <span className="text-yellow-600">Research</span> (Data-Heavy)</motion.div>
                 </div>
                 <br />
@@ -366,62 +366,6 @@ export default function Home() {
             Our Full Engineering Approach <ArrowRight className="w-4 h-4" />
           </Link>
         </SectionReveal>
-      </Section>
-
-      {/* Featured Case Studies */}
-      <Section className="relative">
-        <div className="absolute inset-0 bg-grid-zinc opacity-5 -z-10" />
-        <SectionReveal className="flex flex-col md:flex-row justify-between items-end gap-8 mb-20">
-          <div className="space-y-4">
-            <h2 className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-500">Case Studies</h2>
-            <h3 className="text-4xl md:text-7xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">Proven <span className="italic font-light">Systems</span></h3>
-          </div>
-          <Link
-            to="/case-studies"
-            className="text-zinc-900 dark:text-white font-bold flex items-center gap-2 group border-b-2 border-zinc-900 dark:border-white pb-1"
-          >
-            All Projects <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </SectionReveal>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {caseStudies.slice(0, 2).map((study, idx) => (
-            <SectionReveal key={study.id} delay={idx * 0.2}>
-              <Link
-                to={`/case-studies#${study.id}`}
-                className="group block space-y-8"
-              >
-                <div className="relative aspect-[16/11] overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm">
-                  <img
-                    src={study.imageUrl}
-                    alt={study.title}
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-zinc-900/10 group-hover:bg-transparent transition-colors duration-500" />
-                  <div className="absolute bottom-6 left-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                    <div className="bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md p-4 rounded-xl border border-white/20 shadow-2xl">
-                      <p className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-500 mb-1">Impact Analysis</p>
-                      <p className="text-sm font-medium text-zinc-900 dark:text-white line-clamp-1">{study.outcome}</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-zinc-400">{study.client}</span>
-                    <div className="h-px w-8 bg-zinc-200 dark:bg-zinc-800" />
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-zinc-400">{study.industry}</span>
-                  </div>
-                  <h4 className="text-3xl font-display font-bold text-zinc-900 dark:text-white group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors tracking-tight">
-                    {study.title}
-                  </h4>
-                  <p className="text-zinc-500 dark:text-zinc-400 line-clamp-2 text-base font-light leading-relaxed">
-                    {study.problemContext}
-                  </p>
-                </div>
-              </Link>
-            </SectionReveal>
-          ))}
-        </div>
       </Section>
 
       {/* Final CTA */}

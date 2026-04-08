@@ -15,15 +15,15 @@ export const caseStudies: CaseStudy[] = [
     imageUrl: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200&h=800'
   },
   {
-    id: 'finflow-erp',
-    title: 'Building an Audit-Safe ERP for Financial Automation',
-    client: 'FinFlow Inc.',
+    id: 'supplyflow-erp',
+    title: 'Building an Audit-Safe ERP for Inventory Automation',
+    client: 'SupplyFlow Inc.',
     industry: 'Manufacturing & Supply Chain',
-    problemContext: 'FinFlow needed a platform that could handle complex financial workflows, integrate with multiple ERPs, and scale to thousands of tenants while being fully audit-safe.',
-    systemComplexity: 'The system required multi-tenant data isolation, real-time inventory synchronization across global warehouses, and an immutable audit log for every financial transaction.',
+    problemContext: 'SupplyFlow needed a platform that could handle complex inventory workflows, integrate with multiple ERPs, and scale to thousands of tenants while being fully audit-safe.',
+    systemComplexity: 'The system required multi-tenant data isolation, real-time inventory synchronization across global warehouses, and an immutable audit log for every inventory transaction.',
     architectureDecisions: 'We implemented a multi-tenant database strategy with row-level security and a central event bus for reliable message processing. Every state change is recorded in a ledger-style audit log.',
-    tradeoffs: 'We prioritized data integrity over write performance for financial transactions, using synchronous database writes with strict validation at the API layer.',
-    outcome: 'Successfully launched and scaled to 500+ corporate clients within the first year, processing over $1B in transactions with zero data integrity issues.',
+    tradeoffs: 'We prioritized data integrity over write performance for inventory transactions, using synchronous database writes with strict validation at the API layer.',
+    outcome: 'Successfully launched and scaled to 500+ corporate clients within the first year, processing over 10M inventory events with zero data integrity issues.',
     techStack: ['Next.js', 'Go', 'Kafka', 'MongoDB', 'Redis', 'Kubernetes'],
     imageUrl: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200&h=800'
   },

@@ -5,14 +5,14 @@ export const systems: System[] = [
     id: 'erp-systems',
     title: 'ERP Systems',
     description: 'Custom-built Enterprise Resource Planning systems designed for complex manufacturing and supply chain workflows.',
-    whyItsHard: 'ERP systems are notoriously difficult because they must synchronize thousands of moving parts—inventory, finance, procurement, and production—in real-time while maintaining strict audit trails and data integrity across multi-tenant environments.',
+    whyItsHard: 'ERP systems are notoriously difficult because they must synchronize thousands of moving parts—inventory, supply chain, procurement, and production—in real-time while maintaining strict audit trails and data integrity across multi-tenant environments.',
     howWeSolveIt: 'We use event-driven architectures to ensure that every state change is recorded and propagated reliably. Our systems are built with "audit-safe" as a first-class citizen, ensuring that every transaction is traceable and immutable.',
     keyFeatures: [
       'Real-time inventory synchronization',
       'Automated procurement workflows',
       'Multi-tenant data isolation',
       'Immutable audit logging',
-      'Complex financial reporting engines'
+      'Complex operational reporting engines'
     ],
     architectureThinking: 'We favor a modular monolith or microservices approach depending on the scale, but always with a central event bus (like Kafka or RabbitMQ) to decouple business domains and ensure eventual consistency where needed.',
     icon: 'Database'

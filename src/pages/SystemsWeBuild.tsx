@@ -3,6 +3,10 @@ import { ArrowRight, CheckCircle2, Database, Stethoscope, Cloud, Cpu } from 'luc
 import Section from '../components/Section';
 import { systems } from '../data/systems';
 import { Link } from 'react-router-dom';
+import { InventoryFlow } from '../components/animations/erp/InventoryFlow';
+import { ProductionPipeline } from '../components/animations/erp/ProductionPipeline';
+import { PatientLifecycle } from '../components/animations/hims/PatientLifecycle';
+import { ClinicalSignals } from '../components/animations/hims/ClinicalSignals';
 
 const iconMap: Record<string, any> = {
   Database,
@@ -119,6 +123,33 @@ export default function SystemsWeBuild() {
                     <span className="text-[10px] font-mono text-zinc-800 uppercase tracking-widest">SYS_REF_{system.id.toUpperCase()}</span>
                   </div>
                 </div>
+
+                {/* Domain Specific Animations */}
+                {system.id === 'erp-systems' && (
+                  <div className="p-8 bg-zinc-50 dark:bg-zinc-900/30 border border-zinc-100 dark:border-zinc-800 rounded-xl space-y-8">
+                    <div className="space-y-2">
+                      <h5 className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-400">Inventory Flow Simulation</h5>
+                      <InventoryFlow />
+                    </div>
+                    <div className="space-y-2">
+                      <h5 className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-400">Production Pipeline</h5>
+                      <ProductionPipeline />
+                    </div>
+                  </div>
+                )}
+
+                {system.id === 'hmis-healthcare' && (
+                  <div className="p-8 bg-zinc-50 dark:bg-zinc-900/30 border border-zinc-100 dark:border-zinc-800 rounded-xl space-y-8">
+                    <div className="space-y-2">
+                      <h5 className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-400">Patient Lifecycle Progression</h5>
+                      <PatientLifecycle />
+                    </div>
+                    <div className="space-y-2">
+                      <h5 className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-400">Clinical Workflow Signals</h5>
+                      <ClinicalSignals />
+                    </div>
+                  </div>
+                )}
                 
                 <Link
                   to="/contact"

@@ -1,18 +1,17 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 
-export function SectionReveal({
-  children,
-  delay = 0,
-  direction = 'up',
-  className = '',
-}: {
+export const SectionReveal: React.FC<{
   children: React.ReactNode;
   delay?: number;
   direction?: 'up' | 'down' | 'left' | 'right';
   className?: string;
-  key?: React.Key;
-}) {
+}> = ({
+  children,
+  delay = 0,
+  direction = 'up',
+  className = '',
+}) => {
   const reduceMotion = useReducedMotion();
 
   const variants = {

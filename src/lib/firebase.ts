@@ -3,7 +3,23 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 // Import the Firebase configuration
-import firebaseConfig from '../../firebase-applet-config.json';
+let firebaseConfig = {
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: "",
+  firestoreDatabaseId: "(default)"
+};
+
+try {
+  // @ts-ignore - This file might not exist yet
+  const config = await import('../../firebase-applet-config.json');
+  firebaseConfig = { ...firebaseConfig, ...config.default };
+} catch (e) {
+  console.warn("firebase-applet-config.json not found. Firebase features will be disabled until configured.");
+}
 
 // Initialize Firebase SDK
 const app = initializeApp(firebaseConfig);

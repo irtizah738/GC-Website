@@ -66,7 +66,7 @@ export default function About() {
               We believe that the best software is built on a foundation of clear architecture, 
               robust security, and a deep understanding of the business problem. Our team 
               consists of senior engineers and architects who have built systems for 
-              global financial institutions, healthcare providers, and high-growth startups.
+              global enterprises, healthcare providers, and high-growth startups.
             </p>
             <div className="space-y-6">
               <h3 className="text-[10px] font-mono font-bold uppercase tracking-[0.3em] text-zinc-500">Our Philosophy</h3>

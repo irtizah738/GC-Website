@@ -90,8 +90,8 @@ export const industries: Industry[] = [
     ],
     dataComplexity: 'Moderate to High. Large volumes of transactional data, IoT sensor data from production lines.',
     systemRequirements: [
-      'Real-time inventory synchronization',
-      'Audit-safe financial transactions',
+      'Real-time data processing',
+      'Audit-safe operational transactions',
       'Integration with ERP and CRM systems',
       'Offline-capable warehouse tools'
     ],

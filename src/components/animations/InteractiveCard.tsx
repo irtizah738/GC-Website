@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'motion/react';
 
-export function InteractiveCard({
-  children,
-  className = '',
-}: {
+export const InteractiveCard: React.FC<{
   children: React.ReactNode;
   className?: string;
-}) {
+}> = ({
+  children,
+  className = '',
+}) => {
   return (
     <motion.div
       whileHover={{
