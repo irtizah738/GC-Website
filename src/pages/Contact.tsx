@@ -49,32 +49,30 @@ export default function Contact() {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    setErrors({});
     
-    try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to send message');
-      }
-
-      setIsSuccess(true);
-    } catch (err) {
-      console.error('Submission error:', err);
-      setErrors({ 
-        projectDetails: err instanceof Error ? err.message : 'An unexpected error occurred. Please try again later.' 
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Construct mailto link to send queries to help@gothamcoders.com
+    const subject = encodeURIComponent(`System Inquiry: ${formData.company} - ${formData.name}`);
+    const body = encodeURIComponent(
+      `Project Inquiry from Gotham Coders AI Lab\n\n` +
+      `------------------------------------------\n` +
+      `Name: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Company: ${formData.company}\n` +
+      `------------------------------------------\n\n` +
+      `Project Details:\n${formData.projectDetails}\n\n` +
+      `Sent via Gotham Coders Contact Portal`
+    );
+    
+    const mailtoUrl = `mailto:help@gothamcoders.com?subject=${subject}&body=${body}`;
+    
+    // Simulate processing
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    
+    // Open mail client
+    window.location.href = mailtoUrl;
+    
+    setIsSubmitting(false);
+    setIsSuccess(true);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -184,17 +182,35 @@ export default function Contact() {
                     <CheckCircle2 className="w-10 h-10 text-emerald-600" />
                   </div>
                   <div className="space-y-4">
-                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Message Sent</h3>
+                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Inquiry Prepared</h3>
                     <p className="text-zinc-500 dark:text-zinc-400 max-w-xs mx-auto">
-                      Your technical inquiry has been delivered directly to our engineering team. We'll get back to you within 24 hours.
+                      We've prepared your technical inquiry. If your mail client didn't open automatically, please use the button below.
                     </p>
                   </div>
-                  <button
-                    onClick={() => setIsSuccess(false)}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl font-bold transition-transform hover:scale-[1.02]"
-                  >
-                    Send Another Message
-                  </button>
+                  <div className="flex flex-col gap-4">
+                    <a
+                      href={`mailto:help@gothamcoders.com?subject=${encodeURIComponent(`System Inquiry: ${formData.company} - ${formData.name}`)}&body=${encodeURIComponent(
+                        `Project Inquiry from Gotham Coders AI Lab\n\n` +
+                        `------------------------------------------\n` +
+                        `Name: ${formData.name}\n` +
+                        `Email: ${formData.email}\n` +
+                        `Company: ${formData.company}\n` +
+                        `------------------------------------------\n\n` +
+                        `Project Details:\n${formData.projectDetails}\n\n` +
+                        `Sent via Gotham Coders Contact Portal`
+                      )}`}
+                      className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl font-bold transition-transform hover:scale-[1.02]"
+                    >
+                      Open Mail Client
+                      <Send className="w-4 h-4" />
+                    </a>
+                    <button
+                      onClick={() => setIsSuccess(false)}
+                      className="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                    >
+                      Back to Form
+                    </button>
+                  </div>
                 </motion.div>
               ) : (
                 <motion.form
