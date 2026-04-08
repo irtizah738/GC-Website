@@ -51,19 +51,25 @@ export default function Contact() {
     setIsSubmitting(true);
     
     // Construct mailto link to send queries to help@gothamcoders.com
-    const subject = encodeURIComponent(`New Project Inquiry from ${formData.name}`);
+    const subject = encodeURIComponent(`System Inquiry: ${formData.company} - ${formData.name}`);
     const body = encodeURIComponent(
+      `Project Inquiry from Gotham Coders AI Lab\n\n` +
+      `------------------------------------------\n` +
       `Name: ${formData.name}\n` +
       `Email: ${formData.email}\n` +
-      `Company: ${formData.company}\n\n` +
-      `Project Details:\n${formData.projectDetails}`
+      `Company: ${formData.company}\n` +
+      `------------------------------------------\n\n` +
+      `Project Details:\n${formData.projectDetails}\n\n` +
+      `Sent via Gotham Coders Contact Portal`
     );
     
-    // Simulate API call delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const mailtoUrl = `mailto:help@gothamcoders.com?subject=${subject}&body=${body}`;
+    
+    // Simulate processing
+    await new Promise((resolve) => setTimeout(resolve, 800));
     
     // Open mail client
-    window.location.href = `mailto:help@gothamcoders.com?subject=${subject}&body=${body}`;
+    window.location.href = mailtoUrl;
     
     setIsSubmitting(false);
     setIsSuccess(true);
@@ -170,23 +176,41 @@ export default function Contact() {
                   key="success"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-center space-y-6 py-12"
+                  className="text-center space-y-8 py-12"
                 >
-                  <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-10 h-10 text-green-600" />
+                  <div className="w-20 h-20 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto">
+                    <CheckCircle2 className="w-10 h-10 text-emerald-600" />
                   </div>
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Message Received</h3>
-                    <p className="text-zinc-500 dark:text-zinc-400">
-                      Our engineering team will review your project details and get back to you within 24 hours.
+                  <div className="space-y-4">
+                    <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Inquiry Prepared</h3>
+                    <p className="text-zinc-500 dark:text-zinc-400 max-w-xs mx-auto">
+                      We've prepared your technical inquiry. If your mail client didn't open automatically, please use the button below.
                     </p>
                   </div>
-                  <button
-                    onClick={() => setIsSuccess(false)}
-                    className="text-sm font-bold uppercase tracking-widest text-zinc-900 dark:text-white hover:underline"
-                  >
-                    Send Another Message
-                  </button>
+                  <div className="flex flex-col gap-4">
+                    <a
+                      href={`mailto:help@gothamcoders.com?subject=${encodeURIComponent(`System Inquiry: ${formData.company} - ${formData.name}`)}&body=${encodeURIComponent(
+                        `Project Inquiry from Gotham Coders AI Lab\n\n` +
+                        `------------------------------------------\n` +
+                        `Name: ${formData.name}\n` +
+                        `Email: ${formData.email}\n` +
+                        `Company: ${formData.company}\n` +
+                        `------------------------------------------\n\n` +
+                        `Project Details:\n${formData.projectDetails}\n\n` +
+                        `Sent via Gotham Coders Contact Portal`
+                      )}`}
+                      className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl font-bold transition-transform hover:scale-[1.02]"
+                    >
+                      Open Mail Client
+                      <Send className="w-4 h-4" />
+                    </a>
+                    <button
+                      onClick={() => setIsSuccess(false)}
+                      className="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                    >
+                      Back to Form
+                    </button>
+                  </div>
                 </motion.div>
               ) : (
                 <motion.form
