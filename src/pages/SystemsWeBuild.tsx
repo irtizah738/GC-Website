@@ -68,21 +68,25 @@ export default function SystemsWeBuild() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-4 p-6 bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-2xl">
-                    <Heading level={4} className="flex items-center gap-2 uppercase tracking-widest text-xs">
-                      <span className="w-2 h-2 rounded-full bg-red-500" />
+                  <div className="space-y-4 p-6 bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-2xl group/card hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors relative overflow-hidden">
+                    <div className="absolute top-0 right-0 p-2 opacity-5 group-hover/card:opacity-10 transition-opacity">
+                      <Icon className="w-12 h-12" />
+                    </div>
+                    <Heading level={4} className="flex items-center gap-2 font-mono font-bold uppercase tracking-widest text-[10px] text-zinc-500 dark:text-zinc-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
                       Why This is Hard
                     </Heading>
-                    <Text variant="small">
+                    <Text variant="small" className="leading-relaxed">
                       {system.whyItsHard}
                     </Text>
                   </div>
-                  <div className="space-y-4 p-6 bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-2xl">
-                    <Heading level={4} className="flex items-center gap-2 uppercase tracking-widest text-xs">
-                      <span className="w-2 h-2 rounded-full bg-green-500" />
+                  <div className="space-y-4 p-6 bg-zinc-900 text-white border border-zinc-800 rounded-2xl group/card hover:border-zinc-700 transition-colors relative overflow-hidden">
+                    <div className="absolute inset-0 bg-grid-zinc opacity-5 group-hover/card:opacity-10 transition-opacity" />
+                    <Heading level={4} className="flex items-center gap-2 font-mono font-bold uppercase tracking-widest text-[10px] text-emerald-500 relative z-10">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse" />
                       How We Solve It
                     </Heading>
-                    <Text variant="small">
+                    <Text variant="small" className="leading-relaxed text-zinc-300 relative z-10">
                       {system.howWeSolveIt}
                     </Text>
                   </div>
