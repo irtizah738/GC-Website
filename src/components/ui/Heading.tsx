@@ -22,7 +22,7 @@ export function Heading({
   const Tag = `h${level}` as any;
 
   return (
-    <Tag className={cn(styles[level], className)}>
+    <Tag className={cn(styles[level], 'transition-colors duration-300', className)}>
       {children}
     </Tag>
   );

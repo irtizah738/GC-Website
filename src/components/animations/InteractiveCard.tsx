@@ -17,10 +17,10 @@ export const InteractiveCard: React.FC<{
       }}
       transition={{ 
         type: 'spring', 
-        stiffness: 400, 
-        damping: 25,
+        stiffness: 300, 
+        damping: 30,
       }}
-      className={`rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950/50 backdrop-blur-sm p-6 transition-colors hover:border-zinc-300 dark:hover:border-zinc-700 ${className}`}
+      className={`rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950/50 backdrop-blur-sm p-6 smooth-transition hover:border-zinc-300 dark:hover:border-zinc-700 ${className}`}
     >
       {children}
     </motion.div>

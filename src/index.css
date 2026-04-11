@@ -32,6 +32,31 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply transition-colors duration-500 ease-in-out;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-zinc-950;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-800 rounded-full border-2 border-zinc-950 hover:bg-zinc-700 transition-colors;
+  }
+}
+
 @layer utilities {
   .bg-grid-zinc {
     background-size: 40px 40px;
@@ -44,5 +69,8 @@
   }
   .skip-link {
     @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-zinc-900 focus:rounded-lg focus:font-bold focus:shadow-2xl;
+  }
+  .smooth-transition {
+    @apply transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)];
   }
 }

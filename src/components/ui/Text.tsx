@@ -25,7 +25,7 @@ export function Text({
   const Component = Tag as any;
 
   return (
-    <Component className={cn(styles[variant], className)} {...props}>
+    <Component className={cn(styles[variant], 'transition-colors duration-300', className)} {...props}>
       {children}
     </Component>
   );
