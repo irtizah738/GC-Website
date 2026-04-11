@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { SEO } from '../../components/SEO';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Package, 
@@ -93,6 +94,11 @@ export default function GCErpDemo() {
   if (!tenantId) {
     return (
       <div className="min-h-screen flex items-center justify-center pt-20">
+        <SEO 
+          title="GC-ERP Demo | Gotham Coders"
+          description="Interactive demo of our event-driven ERP system. Experience real-time inventory tracking and audit-safe transactions."
+          pathname="/demo/gc-erp"
+        />
         <div className="max-w-md w-full p-8 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-2xl text-center space-y-8">
           <div className="w-20 h-20 bg-zinc-100 dark:bg-zinc-800 rounded-2xl flex items-center justify-center mx-auto">
             <Boxes className="w-10 h-10 text-zinc-900 dark:text-white" />

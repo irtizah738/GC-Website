@@ -17,9 +17,9 @@ export function Text({
   ...props
 }: TextProps) {
   const styles = {
-    body: 'text-base text-zinc-600 dark:text-zinc-400 leading-relaxed',
-    small: 'text-sm text-zinc-500 dark:text-zinc-500 leading-normal',
-    caption: 'text-xs text-zinc-500 dark:text-zinc-500 uppercase tracking-widest font-medium',
+    body: 'text-base text-zinc-400 leading-relaxed',
+    small: 'text-sm text-zinc-500 leading-normal',
+    caption: 'text-xs text-zinc-500 uppercase tracking-widest font-medium',
   };
 
   const Component = Tag as any;

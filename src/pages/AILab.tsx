@@ -1,3 +1,4 @@
+import { SEO } from '../components/SEO';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
@@ -24,10 +25,11 @@ import { InteractiveCard } from '../components/animations/InteractiveCard';
 export default function AILab() {
   return (
     <div className="pt-20 min-h-screen bg-white dark:bg-zinc-950">
-      <Helmet>
-        <title>AI Lab | Gotham Coders</title>
-        <meta name="description" content="AI as a system-level capability that enhances workflows, reduces errors, and automates decision-making in complex domains." />
-      </Helmet>
+      <SEO 
+        title="AI Lab | Gotham Coders"
+        description="AI as a system-level capability that enhances workflows, reduces errors, and automates decision-making in complex domains."
+        pathname="/ai-lab"
+      />
 
       {/* Hero */}
       <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900 relative overflow-hidden">

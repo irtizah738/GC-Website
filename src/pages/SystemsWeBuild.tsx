@@ -1,3 +1,4 @@
+import { SEO } from '../components/SEO';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, CheckCircle2, Database, Stethoscope, Cloud, Cpu } from 'lucide-react';
 import Section from '../components/Section';
@@ -20,10 +21,11 @@ const iconMap: Record<string, any> = {
 export default function SystemsWeBuild() {
   return (
     <div className="pt-20">
-      <Helmet>
-        <title>Systems We Build | Gotham Coders</title>
-        <meta name="description" content="We build mission-critical ERP, HMIS, SaaS, and research-driven software systems for complex industries." />
-      </Helmet>
+      <SEO 
+        title="Systems We Build | Gotham Coders"
+        description="Custom ERP systems, HMIS healthcare platforms, SaaS applications, and research systems. Built with event-driven architecture for scale and resilience."
+        pathname="/systems"
+      />
 
       {/* Hero */}
       <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900 relative overflow-hidden">

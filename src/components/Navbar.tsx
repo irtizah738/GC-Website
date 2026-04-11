@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { useTheme } from '../lib/ThemeContext';
 
 const navLinks = [
   { name: 'Systems We Build', path: '/systems' },
@@ -18,7 +17,6 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,10 +33,11 @@ export default function Navbar() {
 
   return (
     <nav
+      aria-label="Main navigation"
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b',
         scrolled
-          ? 'bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md py-3 border-zinc-200 dark:border-zinc-800'
+          ? 'bg-zinc-950/80 backdrop-blur-md py-3 border-zinc-800'
           : 'bg-transparent py-5 border-transparent'
       )}
     >
@@ -51,6 +50,7 @@ export default function Navbar() {
                 alt="Gotham Coders Logo" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
+                decoding="async"
               />
             </div>
             <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white leading-none">
@@ -85,16 +85,6 @@ export default function Navbar() {
             </div>
             
             <div className="flex items-center gap-4 pl-4 border-l border-zinc-200 dark:border-zinc-800">
-              <motion.button
-                onClick={toggleTheme}
-                whileHover={{ scale: 1.1, rotate: 15 }}
-                whileTap={{ scale: 0.9 }}
-                className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors text-zinc-600 dark:text-zinc-400 flex items-center justify-center"
-                aria-label="Toggle theme"
-              >
-                {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-              </motion.button>
-
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -113,15 +103,9 @@ export default function Navbar() {
           {/* Mobile Menu Toggle */}
           <div className="flex items-center gap-2 md:hidden">
             <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors text-zinc-600 dark:text-zinc-400"
-              aria-label="Toggle theme"
-            >
-              {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-            </button>
-            <button
               className="p-2 text-zinc-600 dark:text-zinc-400"
               onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
             >
               {isOpen ? <X /> : <Menu />}
             </button>
@@ -146,8 +130,8 @@ export default function Navbar() {
                   className={cn(
                     'block px-3 py-4 text-base font-medium rounded-md',
                     location.pathname === link.path
-                      ? 'bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-900'
+                      ? 'bg-zinc-900 text-white'
+                      : 'text-zinc-400 hover:bg-zinc-900'
                   )}
                 >
                   {link.name}

@@ -1,3 +1,4 @@
+import { SEO } from '../components/SEO';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, CheckCircle2, Stethoscope, Activity, Trophy, Factory, Microscope } from 'lucide-react';
 import Section from '../components/Section';
@@ -17,10 +18,11 @@ const iconMap: Record<string, any> = {
 export default function Industries() {
   return (
     <div className="pt-20">
-      <Helmet>
-        <title>Industries | Gotham Coders</title>
-        <meta name="description" content="We build mission-critical systems for healthcare, tertiary care, sports, manufacturing, and medical devices." />
-      </Helmet>
+      <SEO 
+        title="Industries We Serve | Gotham Coders"
+        description="Healthcare, manufacturing, supply chain, and research industries. Deep domain expertise in mission-critical system development."
+        pathname="/industries"
+      />
 
       {/* Hero */}
       <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900 relative overflow-hidden">

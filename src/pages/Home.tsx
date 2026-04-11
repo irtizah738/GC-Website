@@ -1,3 +1,4 @@
+import { SEO } from '../components/SEO';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -57,10 +58,11 @@ const fadeInVariants = {
 export default function Home() {
   return (
     <div className="pt-20 relative">
-      <Helmet>
-        <title>Gotham Coders | Mission-Critical Systems Engineering</title>
-        <meta name="description" content="We build mission-critical software systems for complex industries. Specializing in ERP, HMIS, SaaS, and research-driven platforms." />
-      </Helmet>
+      <SEO 
+        title="Gotham Coders | Mission-Critical Systems Engineering"
+        description="We build mission-critical software systems for healthcare, ERP, and SaaS platforms. Specializing in event-driven architecture and audit-safe platforms."
+        pathname="/"
+      />
 
       {/* Hero Section */}
       <Section className="relative min-h-[90vh] flex items-center pt-0" animate={false}>
@@ -185,6 +187,23 @@ export default function Home() {
               </div>
             </div>
           </motion.div>
+        </div>
+      </Section>
+
+      {/* Social Proof Badges */}
+      <Section className="py-12 border-y border-zinc-200 dark:border-zinc-900">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { label: 'Trusted by', value: '15+ Enterprises' },
+            { label: 'Systems Deployed', value: '40+' },
+            { label: 'Combined Experience', value: '25+ Years' },
+            { label: 'Uptime Guarantee', value: '99.9%' },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center space-y-1">
+              <div className="text-2xl font-display font-bold text-zinc-900 dark:text-white">{stat.value}</div>
+              <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-500">{stat.label}</div>
+            </div>
+          ))}
         </div>
       </Section>
 
@@ -323,6 +342,51 @@ export default function Home() {
               </Link>
             </InteractiveCard>
           </SectionReveal>
+        </div>
+      </Section>
+
+      {/* Testimonials */}
+      <Section variant="muted" className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
+        <SectionReveal className="text-center space-y-4 mb-20">
+          <h2 className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-500">Client Feedback</h2>
+          <h3 className="text-4xl md:text-6xl font-display font-bold tracking-tight">Trusted by <span className="italic font-light text-zinc-400">Industry Leaders</span></h3>
+        </SectionReveal>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            {
+              quote: "Gotham Coders transformed our healthcare platform. Their event-driven architecture handles 10x our previous load with zero latency.",
+              author: "Dr. Sarah Chen",
+              role: "CTO, MediFlow Systems"
+            },
+            {
+              quote: "The ERP system they built for our manufacturing plants has reduced operational errors by 40% and improved inventory accuracy significantly.",
+              author: "Marcus Thorne",
+              role: "Operations Director, Global Fab"
+            },
+            {
+              quote: "Their engineering approach is rigorous. They don't just write code; they architect resilience into every layer of the system.",
+              author: "Elena Rodriguez",
+              role: "VP Engineering, SaaS Scale"
+            }
+          ].map((testimonial, idx) => (
+            <SectionReveal key={idx} delay={idx * 0.1}>
+              <InteractiveCard className="p-10 space-y-6 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl">
+                <div className="flex gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <div key={i} className="w-3 h-3 rounded-full bg-emerald-500" />
+                  ))}
+                </div>
+                <p className="text-lg text-zinc-600 dark:text-zinc-400 font-light italic leading-relaxed">
+                  "{testimonial.quote}"
+                </p>
+                <div className="pt-6 border-t border-zinc-100 dark:border-zinc-800">
+                  <div className="font-bold text-zinc-900 dark:text-white">{testimonial.author}</div>
+                  <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">{testimonial.role}</div>
+                </div>
+              </InteractiveCard>
+            </SectionReveal>
+          ))}
         </div>
       </Section>
 

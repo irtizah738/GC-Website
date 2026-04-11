@@ -12,15 +12,17 @@ import { ThemeProvider } from './lib/ThemeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { AnimatedBackground } from './components/animations/AnimatedBackground';
-import Home from './pages/Home';
-import SystemsWeBuild from './pages/SystemsWeBuild';
-import Industries from './pages/Industries';
-import EngineeringApproach from './pages/EngineeringApproach';
-import CaseStudies from './pages/CaseStudies';
-import About from './pages/About';
-import Contact from './pages/Contact';
+import { Loading } from './components/ui/Loading';
 
-// Lazy load AI Lab and demo pages
+// Lazy load all pages
+const Home = lazy(() => import('./pages/Home'));
+const SystemsWeBuild = lazy(() => import('./pages/SystemsWeBuild'));
+const Industries = lazy(() => import('./pages/Industries'));
+const EngineeringApproach = lazy(() => import('./pages/EngineeringApproach'));
+const CaseStudies = lazy(() => import('./pages/CaseStudies'));
+const About = lazy(() => import('./pages/About'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Blog = lazy(() => import('./pages/Blog'));
 const AILab = lazy(() => import('./pages/AILab'));
 const GCErpDemo = lazy(() => import('./pages/demo/GCErpDemo'));
 const GHimsDemo = lazy(() => import('./pages/demo/GHimsDemo'));
@@ -43,7 +45,7 @@ function ScrollToTop() {
   return null;
 }
 
-const LOGO_URL = "https://res.cloudinary.com/dzeiyvngc/image/upload/v1775507001/123_kfb1me.jpg";
+const LOGO_URL = "https://res.cloudinary.com/dzeiyvngc/image/upload/v1775507565/WhatsApp_Image_2024-04-27_at_02.22.22_21816fa5_ch75oe.jpg";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -57,7 +59,7 @@ function AnimatedRoutes() {
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
       >
-        <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-zinc-900 dark:border-white border-t-transparent rounded-full animate-spin" /></div>}>
+        <Suspense fallback={<Loading />}>
           <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/systems" element={<SystemsWeBuild />} />
@@ -66,6 +68,7 @@ function AnimatedRoutes() {
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/blog" element={<Blog />} />
             <Route path="/ai-lab" element={<AILab />} />
             
             {/* Demo Routes */}
@@ -143,10 +146,13 @@ export default function App() {
         <Router>
           <ErrorBoundary>
             <ScrollToTop />
-            <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50 font-sans selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-zinc-900 transition-colors duration-300 relative">
+            <div className="min-h-screen bg-zinc-950 text-zinc-50 font-sans selection:bg-white selection:text-zinc-900 transition-colors duration-300 relative">
+              <a href="#main-content" className="skip-link">
+                Skip to main content
+              </a>
               <AnimatedBackground />
               <Navbar />
-              <main className="relative z-10">
+              <main id="main-content" className="relative z-10">
                 <AnimatedRoutes />
               </main>
               <Footer />

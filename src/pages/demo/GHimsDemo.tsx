@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { SEO } from '../../components/SEO';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Users, 
@@ -82,6 +83,11 @@ export default function GHimsDemo() {
   if (!tenantId) {
     return (
       <div className="min-h-screen flex items-center justify-center pt-20">
+        <SEO 
+          title="G-HIMS Demo | Gotham Coders"
+          description="Interactive demo of our clinical workflow engine. Manage patients, encounters, and prescriptions in real-time."
+          pathname="/demo/g-hims"
+        />
         <div className="max-w-md w-full p-8 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-2xl text-center space-y-8">
           <div className="w-20 h-20 bg-zinc-100 dark:bg-zinc-800 rounded-2xl flex items-center justify-center mx-auto">
             <Heart className="w-10 h-10 text-red-500" />

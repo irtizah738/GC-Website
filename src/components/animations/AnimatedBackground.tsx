@@ -10,7 +10,7 @@ export function AnimatedBackground() {
       {[...Array(6)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-[400px] h-[400px] rounded-full blur-[120px] opacity-10 dark:opacity-20"
+          className="absolute w-[400px] h-[400px] rounded-full blur-[120px] opacity-20"
           style={{
             background: i % 2 === 0 
               ? 'radial-gradient(circle, rgba(99,102,241,0.4), transparent)' 

@@ -1,6 +1,9 @@
+import { SEO } from '../components/SEO';
 import { motion } from 'motion/react';
 import { ArrowRight, CheckCircle2, Cpu, Database, Globe, ShieldCheck, Zap } from 'lucide-react';
 import Section from '../components/Section';
+import { SectionReveal } from '../components/animations/SectionReveal';
+import { InteractiveCard } from '../components/animations/InteractiveCard';
 import { Heading } from '../components/ui/Heading';
 import { Text } from '../components/ui/Text';
 import { Link } from 'react-router-dom';
@@ -37,6 +40,12 @@ const team = [
 export default function About() {
   return (
     <div className="pt-20">
+      <SEO 
+        title="About Us | Gotham Coders"
+        description="Learn about Gotham Coders' mission to build resilient, scalable, and secure software architecture for modern enterprises."
+        pathname="/about"
+      />
+
       {/* Hero */}
       <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-zinc opacity-20 -z-10" />
@@ -93,6 +102,8 @@ export default function About() {
               alt="Gotham Coders Office"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-zinc-900/10" />
           </div>
@@ -126,31 +137,69 @@ export default function About() {
         </div>
       </Section>
 
-      {/* Team */}
-      <Section>
-        <div className="text-center space-y-4 mb-20">
-          <Text variant="caption">Leadership</Text>
-          <Heading level={2}>Expert Engineering Team</Heading>
-        </div>
-        <div className="flex flex-wrap justify-center gap-12">
-          {team.map((member) => (
-            <div key={member.name} className="space-y-6 group w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-2rem)] max-w-sm text-center">
-              <div className="relative aspect-square rounded-xl overflow-hidden bg-zinc-100 dark:bg-zinc-900 shadow-xl">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-              <div className="space-y-2">
-                <Heading level={3}>{member.name}</Heading>
-                <Text variant="caption">{member.role}</Text>
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* Team Section */}
+      <Section className="border-b border-zinc-100 dark:border-zinc-900">
+        <SectionReveal className="space-y-16">
+          <div className="text-center space-y-4">
+            <Text variant="caption">Our Leadership</Text>
+            <Heading level={2}>The Engineering Mindset</Heading>
+            <Text className="text-lg max-w-2xl mx-auto">
+              Our team is composed of systems architects and engineers who thrive on complexity.
+            </Text>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Irtiza Hussain",
+                role: "Founder & Lead Architect",
+                image: "https://res.cloudinary.com/dzeiyvngc/image/upload/v1749992405/IMG-20230106-WA0013_lixkqr.jpg",
+                bio: "Specialist in event-driven systems and healthcare informatics. Dedicated to building audit-safe, high-integrity platforms.",
+                linkedin: "https://www.linkedin.com/in/irtiza-hussain/"
+              },
+              {
+                name: "Areeba Batool",
+                role: "Head of Engineering",
+                image: "https://res.cloudinary.com/dzeiyvngc/image/upload/v1775505240/areeba_lkhbqh.png",
+                bio: "Expert in distributed databases and offline-first synchronization patterns for industrial ERP systems.",
+                linkedin: "#"
+              },
+              {
+                name: "Ufaq Waqas",
+                role: "MBBS, Pharm D",
+                image: "https://res.cloudinary.com/dzeiyvngc/image/upload/v1750199539/download_lckqja.png",
+                bio: "Ensuring mission-critical systems meet the highest standards of HIPAA, GDPR, and ISO compliance.",
+                linkedin: "#"
+              }
+            ].map((member) => (
+              <InteractiveCard key={member.name} className="p-8 space-y-6">
+                <div className="relative aspect-square rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 shadow-xl">
+                  <img 
+                    src={member.image} 
+                    alt={`Portrait of ${member.name}, ${member.role}`}
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Heading level={4}>{member.name}</Heading>
+                  <Text variant="caption" className="text-emerald-500">{member.role}</Text>
+                </div>
+                <Text variant="small">{member.bio}</Text>
+                <a 
+                  href={member.linkedin} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                >
+                  LinkedIn Profile <ArrowRight className="w-3 h-3" />
+                </a>
+              </InteractiveCard>
+            ))}
+          </div>
+        </SectionReveal>
       </Section>
 
       {/* Final CTA */}

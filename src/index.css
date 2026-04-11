@@ -36,15 +36,13 @@
   .bg-grid-zinc {
     background-size: 40px 40px;
     background-image: 
-      linear-gradient(to right, var(--color-zinc-200) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--color-zinc-200) 1px, transparent 1px);
-  }
-  .dark .bg-grid-zinc {
-    background-image: 
       linear-gradient(to right, var(--color-zinc-800) 1px, transparent 1px),
       linear-gradient(to bottom, var(--color-zinc-800) 1px, transparent 1px);
   }
   .bg-grid-fade {
     mask-image: radial-gradient(circle at center, black, transparent 80%);
+  }
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-zinc-900 focus:rounded-lg focus:font-bold focus:shadow-2xl;
   }
 }

@@ -21,9 +21,9 @@ export default function Section({
   animate = true,
 }: SectionProps) {
   const variants = {
-    default: 'bg-white dark:bg-zinc-950',
-    muted: 'bg-zinc-50 dark:bg-zinc-900/50',
-    dark: 'bg-zinc-900 dark:bg-black text-white',
+    default: 'bg-zinc-950',
+    muted: 'bg-zinc-900/50',
+    dark: 'bg-black text-white',
   };
 
   const content = (

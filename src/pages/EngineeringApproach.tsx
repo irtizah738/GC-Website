@@ -1,3 +1,4 @@
+import { SEO } from '../components/SEO';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Zap, WifiOff, ShieldCheck, Users, Lock } from 'lucide-react';
 import Section from '../components/Section';
@@ -17,10 +18,11 @@ const iconMap: Record<string, any> = {
 export default function EngineeringApproach() {
   return (
     <div className="pt-20">
-      <Helmet>
-        <title>Engineering Approach | Gotham Coders</title>
-        <meta name="description" content="Our engineering approach focuses on event-driven architecture, offline-first design, data integrity, and security-first validation." />
-      </Helmet>
+      <SEO 
+        title="Engineering Approach | Gotham Coders"
+        description="Our rigorous engineering methodology: Event-driven architecture, offline-first systems, and audit-safe platforms."
+        pathname="/approach"
+      />
 
       {/* Hero */}
       <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900 relative overflow-hidden">

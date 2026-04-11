@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { SEO } from '../components/SEO';
 import { motion, AnimatePresence } from 'motion/react';
-import { Mail, MapPin, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2, AlertCircle, Loader2, Clock } from 'lucide-react';
 import Section from '../components/Section';
+import { SectionReveal } from '../components/animations/SectionReveal';
 import { Heading } from '../components/ui/Heading';
 import { Text } from '../components/ui/Text';
 import { cn } from '../lib/utils';
@@ -87,6 +89,12 @@ export default function Contact() {
 
   return (
     <div className="pt-20">
+      <SEO 
+        title="Contact Us | Gotham Coders"
+        description="Start a technical discussion with Gotham Coders. Let's discuss your project and how we can help you build mission-critical systems."
+        pathname="/contact"
+      />
+
       {/* Hero */}
       <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-zinc opacity-20 -z-10" />
@@ -111,6 +119,10 @@ export default function Contact() {
               <Heading level={2}>
                 We're here to help you navigate your most complex technical challenges.
               </Heading>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-900/30 text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+                <Clock className="w-3 h-3" />
+                Response time: Within 24 hours
+              </div>
             </div>
 
             <div className="space-y-8">
@@ -316,6 +328,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
+                    aria-label={isSubmitting ? "Processing message" : "Send message"}
                     className="w-full py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl font-bold text-lg hover:scale-[1.02] transition-transform flex items-center justify-center gap-2 disabled:opacity-70 disabled:scale-100"
                   >
                     {isSubmitting ? (
@@ -333,6 +346,41 @@ export default function Contact() {
                 </motion.form>
               )}
             </AnimatePresence>
+          </div>
+        </div>
+      </Section>
+      {/* FAQ Section */}
+      <Section variant="muted" className="border-t border-zinc-100 dark:border-zinc-900">
+        <div className="space-y-16">
+          <div className="max-w-3xl space-y-4">
+            <Text variant="caption">Common Questions</Text>
+            <Heading level={2}>Frequently Asked Questions</Heading>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              {
+                q: "What industries do you specialize in?",
+                a: "We have deep expertise in Healthcare (HMIS), Manufacturing (ERP), and high-scale SaaS platforms. We thrive in domains with high data complexity and strict compliance requirements."
+              },
+              {
+                q: "How do you handle data security?",
+                a: "Security is architected into every layer. We implement end-to-end encryption, strict audit logging, and follow industry standards like HIPAA and GDPR where applicable."
+              },
+              {
+                q: "Do you offer ongoing support?",
+                a: "Yes. We provide comprehensive maintenance and support packages to ensure your mission-critical systems remain performant and secure long after deployment."
+              },
+              {
+                q: "What is your typical project timeline?",
+                a: "Timelines vary based on complexity, but most mission-critical systems take 3-6 months for an initial production-ready release, followed by iterative enhancements."
+              }
+            ].map((faq) => (
+              <div key={faq.q} className="p-8 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl space-y-4">
+                <Heading level={4} className="text-lg">{faq.q}</Heading>
+                <Text variant="small">{faq.a}</Text>
+              </div>
+            ))}
           </div>
         </div>
       </Section>

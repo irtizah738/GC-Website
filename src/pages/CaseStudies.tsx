@@ -1,3 +1,4 @@
+import { SEO } from '../components/SEO';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
 import Section from '../components/Section';
@@ -9,10 +10,11 @@ import { Link } from 'react-router-dom';
 export default function CaseStudies() {
   return (
     <div className="pt-20">
-      <Helmet>
-        <title>Case Studies | Gotham Coders</title>
-        <meta name="description" content="Explore our portfolio of mission-critical systems, including ERP, HMIS, and custom enterprise platforms." />
-      </Helmet>
+      <SEO 
+        title="Case Studies | Gotham Coders"
+        description="Explore our portfolio of mission-critical systems, including ERP, HMIS, and custom enterprise platforms."
+        pathname="/case-studies"
+      />
 
       {/* Hero */}
       <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900 relative overflow-hidden">
@@ -110,9 +112,11 @@ export default function CaseStudies() {
               <div className="aspect-[16/10] overflow-hidden rounded-3xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
                 <img
                   src={study.imageUrl}
-                  alt={study.title}
+                  alt={`Interface preview of the ${study.title} system`}
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               
