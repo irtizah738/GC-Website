@@ -1,6 +1,6 @@
 import { SEO } from '../components/SEO';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, CheckCircle2, Database, Stethoscope, Cloud, Cpu } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Database, Stethoscope, Cloud, Cpu, Globe } from 'lucide-react';
 import Section from '../components/Section';
 import { Heading } from '../components/ui/Heading';
 import { Text } from '../components/ui/Text';
@@ -44,7 +44,7 @@ export default function SystemsWeBuild() {
 
       {/* Systems List */}
       {systems.map((system, index) => {
-        const Icon = iconMap[system.icon];
+        const Icon = iconMap[system.icon] || Stethoscope;
         return (
           <Section
             key={system.id}
@@ -157,13 +157,26 @@ export default function SystemsWeBuild() {
                   </div>
                 )}
                 
-                <Link
-                  to="/contact"
-                  className="w-full py-4 bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white rounded-2xl font-bold text-center hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2"
-                >
-                  Discuss Your {system.title}
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link
+                    to="/contact"
+                    className="flex-1 py-4 bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white rounded-2xl font-bold text-center hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2"
+                  >
+                    Discuss Your {system.title}
+                    <ArrowRight className="w-5 h-5" />
+                  </Link>
+                  {system.externalLink && (
+                    <a
+                      href={system.externalLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 py-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-2xl font-bold text-center hover:bg-emerald-500/20 transition-colors flex items-center justify-center gap-2"
+                    >
+                      Explore HMIS
+                      <Globe className="w-5 h-5" />
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </Section>

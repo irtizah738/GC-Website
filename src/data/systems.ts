@@ -31,7 +31,8 @@ export const systems: System[] = [
       'Automated medical billing'
     ],
     architectureThinking: 'Our HMIS architecture prioritizes data integrity and regulatory compliance. We use a "security-first" approach where every API request is validated against a strict schema and user role before any processing occurs.',
-    icon: 'Stethoscope'
+    icon: 'Stethoscope',
+    externalLink: 'https://g-hims-gateway.vercel.app'
   },
   {
     id: 'saas-platforms',

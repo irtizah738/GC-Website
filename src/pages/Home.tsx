@@ -222,7 +222,7 @@ export default function Home() {
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {systems.map((system, idx) => {
-            const Icon = iconMap[system.icon];
+            const Icon = iconMap[system.icon] || Activity;
             return (
               <SectionReveal key={system.id} delay={idx * 0.1}>
                 <InteractiveCard className="group relative h-full block p-8 overflow-hidden">
@@ -239,12 +239,25 @@ export default function Home() {
                   <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed mb-8 font-light relative z-10">
                     {system.description}
                   </p>
-                  <Link 
-                    to={`/systems#${system.id}`}
-                    className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-900 dark:text-white group-hover:translate-x-1 transition-transform relative z-10"
-                  >
-                    System Specs <ArrowRight className="w-3 h-3" />
-                  </Link>
+                  <div className="flex items-center gap-4 relative z-10">
+                    <Link 
+                      to={`/systems#${system.id}`}
+                      className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-900 dark:text-white group-hover:translate-x-1 transition-transform"
+                    >
+                      System Specs <ArrowRight className="w-3 h-3" />
+                    </Link>
+                    {system.externalLink && (
+                      <a 
+                        href={system.externalLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400 hover:opacity-70 transition-opacity"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Visit <Globe className="w-3 h-3" />
+                      </a>
+                    )}
+                  </div>
                 </InteractiveCard>
               </SectionReveal>
             );

@@ -7,6 +7,7 @@ export interface System {
   keyFeatures: string[];
   architectureThinking: string;
   icon: string;
+  externalLink?: string;
 }
 
 export interface Industry {
