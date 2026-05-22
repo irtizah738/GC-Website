@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 
 interface Node {
@@ -8,17 +9,41 @@ interface Node {
 
 export function NodeNetwork() {
   const reduceMotion = useReducedMotion();
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  // Generate a stable list of nodes once
+  const [nodes] = useState<Node[]>(() => 
+    Array.from({ length: 12 }).map((_, i) => ({
+      x: 10 + Math.random() * 80, // keep nodes slightly inside viewport boundaries
+      y: 10 + Math.random() * 80,
+      id: i,
+    }))
+  );
+
+  useEffect(() => {
+    if (reduceMotion) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) - 0.5,
+        y: (e.clientY / window.innerHeight) - 0.5,
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [reduceMotion]);
 
   if (reduceMotion) return null;
 
-  const nodes: Node[] = Array.from({ length: 12 }).map((_, i) => ({
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    id: i,
-  }));
-
   return (
-    <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden opacity-30 dark:opacity-20">
+    <div 
+      className="absolute inset-0 pointer-events-none -z-10 overflow-hidden opacity-30 dark:opacity-20"
+      style={{
+        transform: `translate3d(${mousePosition.x * -35}px, ${mousePosition.y * -35}px, 0)`,
+        transition: 'transform 1.4s cubic-bezier(0.16, 1, 0.3, 1)',
+      }}
+    >
       {nodes.map((node) => (
         <motion.div
           key={node.id}
