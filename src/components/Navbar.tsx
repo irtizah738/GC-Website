@@ -56,13 +56,16 @@ export default function Navbar() {
               <img 
                 src="https://res.cloudinary.com/dzeiyvngc/image/upload/v1775507565/WhatsApp_Image_2024-04-27_at_02.22.22_21816fa5_ch75oe.jpg" 
                 alt="Gotham Coders Logo" 
+                width="40"
+                height="40"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
                 decoding="async"
+                fetchPriority="high"
               />
             </div>
             <span className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white leading-none">
-              Gotham<span className="text-zinc-500 font-mono font-normal uppercase text-sm ml-1 tracking-tighter">Coders</span>
+              Gotham<span className="text-zinc-600 dark:text-zinc-400 font-mono font-normal uppercase text-sm ml-1 tracking-tighter">Coders</span>
             </span>
           </Link>
 

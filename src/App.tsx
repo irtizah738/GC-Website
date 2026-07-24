@@ -13,9 +13,9 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { AnimatedBackground } from './components/animations/AnimatedBackground';
 import { Loading } from './components/ui/Loading';
+import Home from './pages/Home';
 
-// Lazy load all pages
-const Home = lazy(() => import('./pages/Home'));
+// Lazy load secondary pages to reduce initial bundle size
 const SystemsWeBuild = lazy(() => import('./pages/SystemsWeBuild'));
 const Industries = lazy(() => import('./pages/Industries'));
 const EngineeringApproach = lazy(() => import('./pages/EngineeringApproach'));

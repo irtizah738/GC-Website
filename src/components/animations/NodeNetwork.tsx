@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 
 interface Node {
@@ -10,6 +10,8 @@ interface Node {
 export function NodeNetwork() {
   const reduceMotion = useReducedMotion();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const dimsRef = useRef({ w: typeof window !== 'undefined' ? window.innerWidth : 1200, h: typeof window !== 'undefined' ? window.innerHeight : 800 });
+  const rafRef = useRef<number | null>(null);
 
   // Generate a stable list of nodes once
   const [nodes] = useState<Node[]>(() => 
@@ -23,15 +25,34 @@ export function NodeNetwork() {
   useEffect(() => {
     if (reduceMotion) return;
 
+    const updateDims = () => {
+      dimsRef.current = { w: window.innerWidth, h: window.innerHeight };
+    };
+    updateDims();
+    window.addEventListener('resize', updateDims, { passive: true });
+
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) - 0.5,
-        y: (e.clientY / window.innerHeight) - 0.5,
+      if (rafRef.current) return;
+      const clientX = e.clientX;
+      const clientY = e.clientY;
+
+      rafRef.current = requestAnimationFrame(() => {
+        const w = dimsRef.current.w || 1;
+        const h = dimsRef.current.h || 1;
+        setMousePosition({
+          x: (clientX / w) - 0.5,
+          y: (clientY / h) - 0.5,
+        });
+        rafRef.current = null;
       });
     };
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('resize', updateDims);
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, [reduceMotion]);
 
   if (reduceMotion) return null;

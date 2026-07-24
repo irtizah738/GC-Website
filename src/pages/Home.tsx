@@ -217,8 +217,8 @@ export default function Home() {
           variants={containerVariants}
           className="text-center space-y-4 mb-20"
         >
-          <motion.h2 variants={itemVariants} className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-500">Systems We Build</motion.h2>
-          <motion.h3 variants={itemVariants} className="text-4xl md:text-6xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">Engineering for <span className="italic font-light">High-Complexity</span></motion.h3>
+          <motion.p variants={itemVariants} className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-600 dark:text-zinc-400">Systems We Build</motion.p>
+          <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">Engineering for <span className="italic font-light">High-Complexity</span></motion.h2>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {systems.map((system, idx) => {
@@ -235,8 +235,8 @@ export default function Home() {
                   <div className="w-12 h-12 bg-zinc-900 dark:bg-zinc-100 rounded-lg flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-lg relative z-10">
                     <Icon className="w-6 h-6 text-white dark:text-zinc-900" />
                   </div>
-                  <h4 className="text-xl font-display font-bold text-zinc-900 dark:text-white mb-3 tracking-tight relative z-10">{system.title}</h4>
-                  <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed mb-8 font-light relative z-10">
+                  <h3 className="text-xl font-display font-bold text-zinc-900 dark:text-white mb-3 tracking-tight relative z-10">{system.title}</h3>
+                  <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-8 font-light relative z-10">
                     {system.description}
                   </p>
                   <div className="flex items-center gap-4 relative z-10">
@@ -269,9 +269,9 @@ export default function Home() {
       <Section>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
           <SectionReveal direction="right" className="lg:col-span-1 space-y-6 lg:sticky lg:top-32">
-            <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-zinc-500">Industries</h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white leading-tight">Deep Domain Understanding</h3>
-            <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed">
+            <p className="text-sm font-bold uppercase tracking-[0.3em] text-zinc-600 dark:text-zinc-400">Industries</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white leading-tight">Deep Domain Understanding</h2>
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
               We understand the unique constraints and data complexities of high-stakes industries.
             </p>
             <Link
@@ -285,11 +285,11 @@ export default function Home() {
             {industries.map((industry, idx) => (
               <SectionReveal key={industry.id} delay={idx * 0.1} direction="up">
                 <InteractiveCard className="p-8 space-y-4">
-                  <h4 className="text-xl font-bold text-zinc-900 dark:text-white">{industry.title}</h4>
+                  <h3 className="text-xl font-bold text-zinc-900 dark:text-white">{industry.title}</h3>
                   <ul className="space-y-2">
                     {industry.challenges.slice(0, 2).map((challenge) => (
-                      <li key={challenge} className="flex items-start gap-2 text-xs text-zinc-500 dark:text-zinc-400">
-                        <div className="w-1 h-1 rounded-full bg-zinc-300 mt-1.5 shrink-0" />
+                      <li key={challenge} className="flex items-start gap-2 text-xs text-zinc-600 dark:text-zinc-400">
+                        <div className="w-1 h-1 rounded-full bg-zinc-400 mt-1.5 shrink-0" />
                         {challenge}
                       </li>
                     ))}
@@ -306,8 +306,8 @@ export default function Home() {
         <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
         <SectionReveal className="flex flex-col md:flex-row justify-between items-end gap-8 mb-20">
           <div className="space-y-4">
-            <h2 className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-500">Live Proof of Capability</h2>
-            <h3 className="text-4xl md:text-7xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">Interactive <span className="italic font-light">Demos</span></h3>
+            <p className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-600 dark:text-zinc-400">Live Proof of Capability</p>
+            <h2 className="text-4xl md:text-7xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">Interactive <span className="italic font-light">Demos</span></h2>
           </div>
         </SectionReveal>
 
@@ -318,10 +318,10 @@ export default function Home() {
                 <div className="w-14 h-14 bg-zinc-900 dark:bg-zinc-100 rounded-xl flex items-center justify-center shadow-lg">
                   <Database className="w-7 h-7 text-white dark:text-zinc-900" />
                 </div>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-400">GC-ERP // Manufacturing</span>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400">GC-ERP // Manufacturing</span>
               </div>
-              <h4 className="text-3xl font-display font-bold text-zinc-900 dark:text-white mb-4">Manufacturing ERP</h4>
-              <p className="text-zinc-500 dark:text-zinc-400 mb-8 font-light leading-relaxed">
+              <h3 className="text-3xl font-display font-bold text-zinc-900 dark:text-white mb-4">Manufacturing ERP</h3>
+              <p className="text-zinc-600 dark:text-zinc-400 mb-8 font-light leading-relaxed">
                 Experience our event-driven inventory management system. Track stock movements, 
                 allocate resources, and watch the real-time audit trail evolve.
               </p>
@@ -340,10 +340,10 @@ export default function Home() {
                 <div className="w-14 h-14 bg-red-500 rounded-xl flex items-center justify-center shadow-lg">
                   <Stethoscope className="w-7 h-7 text-white" />
                 </div>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-400">G-HIMS // Healthcare</span>
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400">G-HIMS // Healthcare</span>
               </div>
-              <h4 className="text-3xl font-display font-bold text-zinc-900 dark:text-white mb-4">Clinical Workflow</h4>
-              <p className="text-zinc-500 dark:text-zinc-400 mb-8 font-light leading-relaxed">
+              <h3 className="text-3xl font-display font-bold text-zinc-900 dark:text-white mb-4">Clinical Workflow</h3>
+              <p className="text-zinc-600 dark:text-zinc-400 mb-8 font-light leading-relaxed">
                 Explore our healthcare information system. Manage patient encounters, 
                 record diagnoses, and handle prescriptions with clinical integrity.
               </p>
@@ -362,8 +362,8 @@ export default function Home() {
       <Section variant="muted" className="relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
         <SectionReveal className="text-center space-y-4 mb-20">
-          <h2 className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-500">Client Feedback</h2>
-          <h3 className="text-4xl md:text-6xl font-display font-bold tracking-tight">Trusted by <span className="italic font-light text-zinc-400">Industry Leaders</span></h3>
+          <p className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-600 dark:text-zinc-400">Client Feedback</p>
+          <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight">Trusted by <span className="italic font-light text-zinc-500 dark:text-zinc-400">Industry Leaders</span></h2>
         </SectionReveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
@@ -390,12 +390,12 @@ export default function Home() {
                     <div key={i} className="w-3 h-3 rounded-full bg-emerald-500" />
                   ))}
                 </div>
-                <p className="text-lg text-zinc-600 dark:text-zinc-400 font-light italic leading-relaxed">
+                <p className="text-lg text-zinc-700 dark:text-zinc-300 font-light italic leading-relaxed">
                   "{testimonial.quote}"
                 </p>
                 <div className="pt-6 border-t border-zinc-100 dark:border-zinc-800">
                   <div className="font-bold text-zinc-900 dark:text-white">{testimonial.author}</div>
-                  <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest">{testimonial.role}</div>
+                  <div className="text-xs font-mono text-zinc-600 dark:text-zinc-400 uppercase tracking-widest">{testimonial.role}</div>
                 </div>
               </InteractiveCard>
             </SectionReveal>
@@ -407,8 +407,8 @@ export default function Home() {
       <Section variant="dark" className="relative">
         <div className="absolute inset-0 bg-grid-zinc opacity-5 -z-10" />
         <SectionReveal className="text-center space-y-4 mb-20">
-          <h2 className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-500">Engineering Approach</h2>
-          <h3 className="text-4xl md:text-6xl font-display font-bold tracking-tight">Built for <span className="italic font-light text-zinc-400">Resilience</span></h3>
+          <p className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-400">Engineering Approach</p>
+          <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight text-white">Built for <span className="italic font-light text-zinc-400">Resilience</span></h2>
         </SectionReveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {principles.slice(0, 3).map((principle, idx) => {
@@ -421,14 +421,14 @@ export default function Home() {
                     <Icon className="w-7 h-7 text-zinc-400 group-hover:text-white transition-colors" />
                   </div>
                   <div className="space-y-4">
-                    <h4 className="text-2xl font-display font-bold tracking-tight">{principle.title}</h4>
-                    <p className="text-zinc-500 text-sm leading-relaxed font-light">
+                    <h3 className="text-2xl font-display font-bold tracking-tight text-white">{principle.title}</h3>
+                    <p className="text-zinc-400 text-sm leading-relaxed font-light">
                       {principle.description}
                     </p>
                   </div>
                   <div className="pt-4 flex items-center gap-4">
                     <div className="h-px flex-1 bg-zinc-800" />
-                    <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-widest">0{idx + 1}</span>
+                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">0{idx + 1}</span>
                   </div>
                 </InteractiveCard>
               </SectionReveal>

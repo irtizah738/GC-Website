@@ -13,10 +13,10 @@ export function Heading({
   className,
 }: HeadingProps) {
   const styles = {
-    1: 'text-6xl md:text-7xl font-bold font-heading tracking-tighter',
-    2: 'text-4xl md:text-5xl font-semibold font-heading tracking-tight',
-    3: 'text-2xl md:text-3xl font-semibold tracking-tight',
-    4: 'text-xl font-medium tracking-tight',
+    1: 'text-6xl md:text-7xl font-bold font-heading tracking-tighter text-zinc-900 dark:text-white',
+    2: 'text-4xl md:text-5xl font-semibold font-heading tracking-tight text-zinc-900 dark:text-white',
+    3: 'text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900 dark:text-white',
+    4: 'text-xl font-medium tracking-tight text-zinc-900 dark:text-white',
   };
 
   const Tag = `h${level}` as any;

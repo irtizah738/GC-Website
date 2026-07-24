@@ -46,6 +46,8 @@ export default function Footer() {
                 <img 
                   src="https://res.cloudinary.com/dzeiyvngc/image/upload/v1775507565/WhatsApp_Image_2024-04-27_at_02.22.22_21816fa5_ch75oe.jpg" 
                   alt="Gotham Coders Logo" 
+                  width="40"
+                  height="40"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                   loading="lazy"
@@ -53,10 +55,10 @@ export default function Footer() {
                 />
               </div>
               <span className="text-xl font-bold tracking-tight text-white">
-                Gotham<span className="text-zinc-500 font-normal">Coders</span>
+                Gotham<span className="text-zinc-400 font-normal">Coders</span>
               </span>
             </Link>
-            <p className="text-zinc-400 max-w-sm leading-relaxed">
+            <p className="text-zinc-300 max-w-sm leading-relaxed text-sm">
               Premium software development firm specializing in mission-critical systems, 
               healthcare solutions, and scalable backend architectures for global enterprises.
             </p>
@@ -73,15 +75,15 @@ export default function Footer() {
           {/* Links Columns */}
           {footerLinks.map((group) => (
             <div key={group.title} className="space-y-6">
-              <h4 className="text-sm font-bold uppercase tracking-widest text-white">
+              <h3 className="text-sm font-bold uppercase tracking-widest text-white">
                 {group.title}
-              </h4>
+              </h3>
               <ul className="space-y-4">
                 {group.links.map((link) => (
                   <li key={link.name}>
                     <Link
                       to={link.path}
-                      className="text-zinc-400 hover:text-white transition-colors text-[10px] font-mono font-bold uppercase tracking-wider"
+                      className="text-zinc-300 hover:text-white transition-colors text-[10px] font-mono font-bold uppercase tracking-wider"
                     >
                       {link.name}
                     </Link>
@@ -93,9 +95,9 @@ export default function Footer() {
 
           {/* Contact Column */}
           <div className="space-y-6">
-            <h4 className="text-sm font-bold uppercase tracking-widest text-white">
+            <h3 className="text-sm font-bold uppercase tracking-widest text-white">
               Contact
-            </h4>
+            </h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-sm text-zinc-400">
                 <MapPin className="w-5 h-5 shrink-0 text-zinc-400" />
