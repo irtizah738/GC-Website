@@ -6,7 +6,7 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import React, { useEffect, lazy, Suspense, Component } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, motion, MotionConfig } from 'motion/react';
 import { AlertCircle } from 'lucide-react';
 import { ThemeProvider } from './lib/ThemeContext';
 import Navbar from './components/Navbar';
@@ -22,6 +22,8 @@ const EngineeringApproach = lazy(() => import('./pages/EngineeringApproach'));
 const CaseStudies = lazy(() => import('./pages/CaseStudies'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
+const BlogArticle = lazy(() => import('./pages/BlogArticle'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 const Blog = lazy(() => import('./pages/Blog'));
 const AILab = lazy(() => import('./pages/AILab'));
 const GCErpDemo = lazy(() => import('./pages/demo/GCErpDemo'));
@@ -33,11 +35,21 @@ function ScrollToTop() {
 
   useEffect(() => {
     if (hash) {
-      const element = document.getElementById(hash.slice(1));
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-        return;
-      }
+      const targetId = decodeURIComponent(hash.slice(1));
+      const scrollToTarget = () => {
+        const element = document.getElementById(targetId);
+        if (!element) return false;
+        element.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+        return true;
+      };
+      if (scrollToTarget()) return;
+      // Lazy routes and exit animations can mount their target after this effect.
+      const observer = new MutationObserver(() => {
+        if (scrollToTarget()) observer.disconnect();
+      });
+      observer.observe(document.getElementById('main-content') || document.body, { childList: true, subtree: true });
+      const timeout = window.setTimeout(() => observer.disconnect(), 5000);
+      return () => { observer.disconnect(); window.clearTimeout(timeout); };
     }
     window.scrollTo(0, 0);
   }, [pathname, hash]);
@@ -71,6 +83,7 @@ function AnimatedRoutes() {
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/blog/:slug" element={<BlogArticle />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/ai-lab" element={<AILab />} />
             
@@ -78,8 +91,8 @@ function AnimatedRoutes() {
             <Route path="/demo/gc-erp" element={<GCErpDemo />} />
             <Route path="/demo/g-hims" element={<GHimsDemo />} />
             
-            {/* Fallback to Home */}
-            <Route path="*" element={<Home />} />
+            {/* Unknown routes must not silently show the homepage */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </motion.div>
@@ -143,6 +156,7 @@ export default function App() {
   return (
     <HelmetProvider>
       <ThemeProvider>
+      <MotionConfig reducedMotion="user">
         <Helmet>
           <link rel="icon" type="image/jpeg" href={LOGO_URL} />
         </Helmet>
@@ -162,6 +176,7 @@ export default function App() {
             </div>
           </ErrorBoundary>
         </Router>
+      </MotionConfig>
       </ThemeProvider>
     </HelmetProvider>
   );

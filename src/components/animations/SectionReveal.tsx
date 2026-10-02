@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion, useReducedMotion, type Variants } from 'motion/react';
 
 export const SectionReveal: React.FC<{
   children: React.ReactNode;
@@ -14,7 +14,7 @@ export const SectionReveal: React.FC<{
 }) => {
   const reduceMotion = useReducedMotion();
 
-  const variants = {
+  const variants: Variants = {
     hidden: { 
       opacity: 0, 
       y: direction === 'up' ? 20 : direction === 'down' ? -20 : 0,

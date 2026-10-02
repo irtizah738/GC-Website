@@ -31,6 +31,7 @@ export default function Contact() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
 
   const validate = (): boolean => {
@@ -54,29 +55,25 @@ export default function Contact() {
 
     setIsSubmitting(true);
     
-    // Construct mailto link to send queries to help@gothamcoders.com
-    const subject = encodeURIComponent(`System Inquiry: ${formData.company} - ${formData.name}`);
-    const body = encodeURIComponent(
-      `Project Inquiry from Gotham Coders AI Lab\n\n` +
-      `------------------------------------------\n` +
-      `Name: ${formData.name}\n` +
-      `Email: ${formData.email}\n` +
-      `Company: ${formData.company}\n` +
-      `------------------------------------------\n\n` +
-      `Project Details:\n${formData.projectDetails}\n\n` +
-      `Sent via Gotham Coders Contact Portal`
-    );
-    
-    const mailtoUrl = `mailto:help@gothamcoders.com?subject=${subject}&body=${body}`;
-    
-    // Simulate processing
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    
-    // Open mail client
-    window.location.href = mailtoUrl;
-    
-    setIsSubmitting(false);
-    setIsSuccess(true);
+    setSubmitError('');
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+        signal: AbortSignal.timeout(15000),
+      });
+      const result = await response.json();
+      if (!response.ok || result.success !== true) {
+        throw new Error(result.error || 'Message delivery failed. Please email us directly.');
+      }
+      setIsSuccess(true);
+    } catch (error) {
+      setSubmitError(error instanceof Error && error.name !== 'TimeoutError'
+        ? error.message : 'We could not confirm delivery. Your details are still here; please try again or email us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -194,28 +191,12 @@ export default function Contact() {
                     <CheckCircle2 className="w-10 h-10 text-emerald-600" />
                   </div>
                   <div className="space-y-4">
-                    <Heading level={3}>Inquiry Prepared</Heading>
+                    <Heading level={3}>Inquiry Sent</Heading>
                     <Text variant="small" className="max-w-xs mx-auto">
-                      We've prepared your technical inquiry. If your mail client didn't open automatically, please use the button below.
+                      Your inquiry has been accepted for delivery. Our team will review your requirements and respond by email.
                     </Text>
                   </div>
                   <div className="flex flex-col gap-4">
-                    <a
-                      href={`mailto:help@gothamcoders.com?subject=${encodeURIComponent(`System Inquiry: ${formData.company} - ${formData.name}`)}&body=${encodeURIComponent(
-                        `Project Inquiry from Gotham Coders AI Lab\n\n` +
-                        `------------------------------------------\n` +
-                        `Name: ${formData.name}\n` +
-                        `Email: ${formData.email}\n` +
-                        `Company: ${formData.company}\n` +
-                        `------------------------------------------\n\n` +
-                        `Project Details:\n${formData.projectDetails}\n\n` +
-                        `Sent via Gotham Coders Contact Portal`
-                      )}`}
-                      className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl font-bold transition-transform hover:scale-[1.02]"
-                    >
-                      Open Mail Client
-                      <Send className="w-4 h-4" />
-                    </a>
                     <button
                       onClick={() => setIsSuccess(false)}
                       className="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
@@ -241,6 +222,10 @@ export default function Contact() {
                       type="text"
                       id="name"
                       name="name"
+                      required
+                      maxLength={120}
+                      aria-invalid={Boolean(errors.name)}
+                      aria-describedby={errors.name ? "name-error" : undefined}
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="John Doe"
@@ -250,7 +235,7 @@ export default function Contact() {
                       )}
                     />
                     {errors.name && (
-                      <Text variant="small" className="text-red-500 flex items-center gap-1">
+                      <Text id="name-error" variant="small" className="text-red-500 flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> {errors.name}
                       </Text>
                     )}
@@ -264,6 +249,10 @@ export default function Contact() {
                       type="email"
                       id="email"
                       name="email"
+                      required
+                      maxLength={254}
+                      aria-invalid={Boolean(errors.email)}
+                      aria-describedby={errors.email ? "email-error" : undefined}
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="john@company.com"
@@ -273,7 +262,7 @@ export default function Contact() {
                       )}
                     />
                     {errors.email && (
-                      <Text variant="small" className="text-red-500 flex items-center gap-1">
+                      <Text id="email-error" variant="small" className="text-red-500 flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> {errors.email}
                       </Text>
                     )}
@@ -287,6 +276,10 @@ export default function Contact() {
                       type="text"
                       id="company"
                       name="company"
+                      required
+                      maxLength={160}
+                      aria-invalid={Boolean(errors.company)}
+                      aria-describedby={errors.company ? "company-error" : undefined}
                       value={formData.company}
                       onChange={handleChange}
                       placeholder="Company Inc."
@@ -296,7 +289,7 @@ export default function Contact() {
                       )}
                     />
                     {errors.company && (
-                      <Text variant="small" className="text-red-500 flex items-center gap-1">
+                      <Text id="company-error" variant="small" className="text-red-500 flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> {errors.company}
                       </Text>
                     )}
@@ -309,6 +302,10 @@ export default function Contact() {
                     <textarea
                       id="projectDetails"
                       name="projectDetails"
+                      required
+                      maxLength={5000}
+                      aria-invalid={Boolean(errors.projectDetails)}
+                      aria-describedby={errors.projectDetails ? "projectDetails-error" : undefined}
                       value={formData.projectDetails}
                       onChange={handleChange}
                       placeholder="Tell us about your project, technical challenges, and goals..."
@@ -319,12 +316,13 @@ export default function Contact() {
                       )}
                     />
                     {errors.projectDetails && (
-                      <Text variant="small" className="text-red-500 flex items-center gap-1">
+                      <Text id="projectDetails-error" variant="small" className="text-red-500 flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" /> {errors.projectDetails}
                       </Text>
                     )}
                   </div>
 
+                  {submitError && <p role="alert" className="text-sm text-red-400">{submitError} <a className="underline" href="mailto:help@gothamcoders.com">Email us directly</a></p>}
                   <button
                     type="submit"
                     disabled={isSubmitting}

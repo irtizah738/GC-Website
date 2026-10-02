@@ -2,30 +2,15 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
-// Import the Firebase configuration
-let firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-  firestoreDatabaseId: "(default)"
+// Optional integration: the marketing site and local demos do not require Firebase.
+const env = (import.meta as ImportMeta & { env: Record<string, string | undefined> }).env;
+const config = {
+  apiKey: env.VITE_FIREBASE_API_KEY,
+  authDomain: env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: env.VITE_FIREBASE_PROJECT_ID,
+  appId: env.VITE_FIREBASE_APP_ID,
 };
-
-try {
-  // @ts-ignore - This file might not exist yet
-  const config = await import('../../firebase-applet-config.json');
-  firebaseConfig = { ...firebaseConfig, ...config.default };
-} catch (e) {
-  console.warn("firebase-applet-config.json not found. Firebase features will be disabled until configured.");
-}
-
-// Initialize Firebase SDK
-const app = initializeApp(firebaseConfig);
-
-// Use the firestoreDatabaseId from the config if it exists
-export const db = getFirestore(app, (firebaseConfig as any).firestoreDatabaseId || '(default)');
-export const auth = getAuth(app);
-
+const app = Object.values(config).every(Boolean) ? initializeApp(config) : null;
+export const db = app ? getFirestore(app, env.VITE_FIRESTORE_DATABASE_ID || '(default)') : null;
+export const auth = app ? getAuth(app) : null;
 export default app;

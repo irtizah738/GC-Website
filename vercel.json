@@ -28,6 +28,19 @@
           "value": "public, max-age=172800, must-revalidate"
         }
       ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
     }
   ],
   "rewrites": [
@@ -39,5 +52,8 @@
       "source": "/((?!api/|assets/|static/|favicon-16x16.png|favicon-32x32.png|apple-touch-icon.png|site.webmanifest|robots.txt|sitemap.xml|og-image.jpg|.*\\.[a-zA-Z0-9]+$).*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist"
 }

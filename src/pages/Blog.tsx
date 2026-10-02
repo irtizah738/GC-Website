@@ -7,28 +7,28 @@ import { Link } from 'react-router-dom';
 import { SectionReveal } from '../components/animations/SectionReveal';
 import { InteractiveCard } from '../components/animations/InteractiveCard';
 
-const posts = [
+export const posts = [
   {
     title: 'Event-Driven Architecture: A Practical Guide',
     excerpt: 'How to build resilient systems that scale by decoupling components through asynchronous message patterns.',
-    date: 'April 10, 2024',
-    readTime: '12 min read',
+    date: 'Engineering Notes',
+    readTime: '2 min read',
     category: 'Architecture',
     slug: 'event-driven-architecture-guide'
   },
   {
-    title: 'Building HIPAA-Compliant Healthcare Systems',
+    title: 'Healthcare Systems: Security by Design',
     excerpt: 'A deep dive into the technical and administrative safeguards required for modern health information systems.',
-    date: 'March 28, 2024',
-    readTime: '15 min read',
+    date: 'Engineering Notes',
+    readTime: '2 min read',
     category: 'Healthcare',
     slug: 'hipaa-compliant-systems'
   },
   {
     title: 'ERP System Design: Lessons from the Trenches',
     excerpt: 'Common pitfalls in enterprise resource planning development and how to avoid them through better data modeling.',
-    date: 'March 15, 2024',
-    readTime: '10 min read',
+    date: 'Engineering Notes',
+    readTime: '2 min read',
     category: 'Enterprise',
     slug: 'erp-system-design-lessons'
   }
@@ -108,22 +108,14 @@ export default function Blog() {
             <BookOpen className="w-8 h-8 text-white dark:text-zinc-900" />
           </div>
           <div className="space-y-4">
-            <Heading level={2}>Stay Updated</Heading>
+            <Heading level={2}>Talk Engineering</Heading>
             <Text className="text-lg">
-              Get our latest technical articles and engineering guides delivered to your inbox.
+              Have a question about architecture or a topic you would like us to cover? Start a discussion with our engineering team.
             </Text>
           </div>
-          <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
-            <input 
-              type="email" 
-              placeholder="engineer@company.com"
-              className="flex-1 px-6 py-4 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-xl outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-white transition-all"
-            />
-            <button className="px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl font-bold hover:scale-[1.02] transition-transform">
-              Subscribe
-            </button>
-          </form>
-          <Text variant="caption">No spam. Only high-signal technical content.</Text>
+          <Link to="/contact" className="inline-flex px-8 py-4 bg-white text-zinc-900 rounded-xl font-bold">
+            Discuss an Engineering Topic
+          </Link>
         </div>
       </Section>
     </div>

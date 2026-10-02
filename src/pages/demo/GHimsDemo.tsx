@@ -30,7 +30,6 @@ export default function GHimsDemo() {
   const startDemo = () => {
     setIsSeeding(true);
     const newTenantId = `demo-hims-${Math.random().toString(36).substring(7)}`;
-    setTenantId(newTenantId);
     
     // Seed initial data
     const p1Id = 'pat-1';
@@ -53,26 +52,28 @@ export default function GHimsDemo() {
       createEvent(newTenantId, p1Id, 'diagnosis', 'diagnosis_recorded', { diagnosis: 'Hypertension' }),
     ];
 
-    setTimeout(() => {
+    {
       setPatients(initialPatients);
       setEvents(initialEvents);
+      setTenantId(newTenantId);
       setIsSeeding(false);
-    }, 1500);
+    }
   };
 
   const handleAddDiagnosis = (patientId: string) => {
     const diagnosis = 'Type 2 Diabetes';
     const event = createEvent(tenantId!, patientId, 'diagnosis', 'diagnosis_recorded', { diagnosis });
     
-    setEvents([event, ...events]);
+    setEvents(previous => [event, ...previous]);
     // In real app, read model would update via Cloud Function
   };
 
   const handlePrescribe = (patientId: string) => {
     const med = 'Metformin 500mg';
+    if (patients.some(patient => patient.patientId === patientId && patient.activeMedications.includes(med))) return;
     const event = createEvent(tenantId!, patientId, 'medication', 'medication_prescribed', { medication: med });
     
-    setEvents([event, ...events]);
+    setEvents(previous => [event, ...previous]);
     setPatients(prev => prev.map(p => 
       p.patientId === patientId 
         ? { ...p, activeMedications: [...p.activeMedications, med] }
@@ -85,7 +86,7 @@ export default function GHimsDemo() {
       <div className="min-h-screen flex items-center justify-center pt-20">
         <SEO 
           title="G-HIMS Demo | Gotham Coders"
-          description="Interactive demo of our clinical workflow engine. Manage patients, encounters, and prescriptions in real-time."
+          description="Interactive demo of our clinical workflow engine. Explore sample patient workflows in a browser-only simulation. Data resets when you leave."
           pathname="/demo/g-hims"
         />
         <div className="max-w-md w-full p-8 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-2xl text-center space-y-8">
@@ -96,7 +97,7 @@ export default function GHimsDemo() {
             <h1 className="text-3xl font-display font-bold text-zinc-900 dark:text-white">G-HIMS Demo</h1>
             <p className="text-zinc-500 dark:text-zinc-400">
               Explore our clinical workflow engine. 
-              Manage patients, encounters, and prescriptions in real-time.
+              Explore sample patient workflows in a browser-only simulation. Data resets when you leave.
             </p>
           </div>
           <button
@@ -117,7 +118,7 @@ export default function GHimsDemo() {
         <div className="flex flex-col lg:flex-row gap-8">
           
           {/* Main Clinical Workspace */}
-          <div className="flex-1 space-y-8">
+          <div className="flex-1 min-w-0 space-y-8">
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-3xl font-display font-bold text-zinc-900 dark:text-white">Patient Management</h2>
@@ -236,7 +237,7 @@ export default function GHimsDemo() {
                   <History className="w-5 h-5 text-zinc-400" />
                   <h3 className="font-bold tracking-tight">Clinical Audit</h3>
                 </div>
-                <div className="px-2 py-0.5 rounded bg-zinc-800 text-[8px] font-mono text-zinc-500">REALTIME</div>
+                <div className="px-2 py-0.5 rounded bg-zinc-800 text-[8px] font-mono text-zinc-500">DEMO</div>
               </div>
               
               <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
