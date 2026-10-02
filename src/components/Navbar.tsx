@@ -51,13 +51,13 @@ export default function Navbar() {
       className={cn(
         'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-200',
         scrolled
-          ? 'border-zinc-800 bg-zinc-950/92 backdrop-blur-xl'
-          : 'border-transparent bg-zinc-950/70 backdrop-blur-md',
+          ? 'border-[#223049] bg-[#0f1523]/95 shadow-[0_14px_40px_-30px_rgba(79,70,229,0.9)] backdrop-blur-xl'
+          : 'border-[#1e293b]/60 bg-[#0f1523]/82 backdrop-blur-md',
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2.5" aria-label="Gotham Coders home">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-white text-[10px] font-bold tracking-tight text-zinc-950">
+          <span className="grid h-8 w-8 place-items-center rounded-lg border border-indigo-400/30 bg-indigo-600 text-[10px] font-bold tracking-tight text-white shadow-[0_8px_24px_-12px_rgba(79,70,229,0.9)]">
             GC
           </span>
           <span className="text-sm font-semibold tracking-tight text-white">
@@ -73,7 +73,7 @@ export default function Navbar() {
               aria-current={isActive(link.path) ? 'page' : undefined}
               className={cn(
                 'text-sm font-medium transition-colors',
-                isActive(link.path) ? 'text-white' : 'text-zinc-400 hover:text-white',
+                isActive(link.path) ? 'text-indigo-300' : 'text-zinc-400 hover:text-white',
               )}
             >
               {link.name}
@@ -84,13 +84,13 @@ export default function Navbar() {
         <div className="hidden items-center gap-2 lg:flex">
           <Link
             to="/products"
-            className="rounded-lg px-3.5 py-2 text-sm font-semibold text-zinc-300 transition hover:bg-zinc-900 hover:text-white"
+            className="rounded-lg border border-transparent px-3.5 py-2 text-sm font-semibold text-zinc-300 transition hover:border-[#223049] hover:bg-[#131b2e] hover:text-white"
           >
             View demo
           </Link>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-1.5 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-200"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-indigo-500 bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_24px_-14px_rgba(79,70,229,0.9)] transition hover:bg-indigo-700"
           >
             Talk to us
             <ArrowRight className="h-3.5 w-3.5" />
@@ -116,7 +116,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.18 }}
-            className="overflow-hidden border-t border-zinc-800 bg-zinc-950 lg:hidden"
+            className="overflow-hidden border-t border-[#223049] bg-[#0f1523] lg:hidden"
           >
             <div className="mx-auto max-w-7xl space-y-1 px-4 py-4 sm:px-6">
               {navLinks.map((link) => (
@@ -126,8 +126,8 @@ export default function Navbar() {
                   className={cn(
                     'block rounded-lg px-3 py-3 text-base font-medium',
                     isActive(link.path)
-                      ? 'bg-zinc-900 text-white'
-                      : 'text-zinc-400 hover:bg-zinc-900 hover:text-white',
+                      ? 'bg-indigo-600/15 text-indigo-300 ring-1 ring-inset ring-indigo-500/30'
+                      : 'text-zinc-400 hover:bg-[#131b2e] hover:text-white',
                   )}
                 >
                   {link.name}
@@ -142,7 +142,7 @@ export default function Navbar() {
                 </Link>
                 <Link
                   to="/contact"
-                  className="rounded-lg bg-white px-4 py-3 text-center text-sm font-semibold text-zinc-950"
+                  className="rounded-lg border border-indigo-500 bg-indigo-600 px-4 py-3 text-center text-sm font-semibold text-white"
                 >
                   Talk to us
                 </Link>

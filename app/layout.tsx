@@ -75,7 +75,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#000000',
+  themeColor: '#0a0e17',
   colorScheme: 'dark',
 };
 
@@ -117,7 +117,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
-        <div className="relative min-h-screen bg-zinc-950 font-sans text-zinc-50 selection:bg-white selection:text-zinc-900">
+        <div className="gc-site relative min-h-screen bg-zinc-950 font-sans text-zinc-50">
           <a href="#main-content" className="skip-link">
             Skip to main content
           </a>

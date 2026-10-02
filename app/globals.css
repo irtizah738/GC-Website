@@ -5,6 +5,31 @@
   --font-heading: var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
 
+  /* GC-ERP-derived enterprise palette */
+  --color-zinc-950: #0a0e17;
+  --color-zinc-900: #131b2e;
+  --color-zinc-800: #223049;
+  --color-zinc-700: #334155;
+  --color-zinc-600: #475569;
+  --color-zinc-500: #64748b;
+  --color-zinc-400: #94a3b8;
+  --color-zinc-300: #cbd5e1;
+  --color-zinc-200: #e2e8f0;
+  --color-zinc-100: #f1f5f9;
+  --color-zinc-50: #f8fafc;
+
+  --color-gc-canvas: #0a0e17;
+  --color-gc-header: #0f1523;
+  --color-gc-card: #131b2e;
+  --color-gc-elevated: #18223a;
+  --color-gc-well: #0b101c;
+  --color-gc-border: #223049;
+  --color-gc-border-highlight: #2e4063;
+  --color-gc-primary: #4f46e5;
+  --color-gc-primary-hover: #4338ca;
+  --color-gc-cyan: #0891b2;
+  --color-gc-emerald: #059669;
+
   --text-xs: 12px;
   --text-xs--line-height: 16px;
   --text-sm: 14px;
@@ -36,23 +61,49 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: #09090b;
+    background: #0a0e17;
   }
 
   body {
     @apply bg-zinc-950 text-zinc-50;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+  }
+
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: rgba(79, 70, 229, 0.32);
+    color: #ffffff;
   }
 
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 6px;
+    height: 6px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-zinc-950;
+    background: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply rounded-full border-2 border-zinc-950 bg-zinc-800 transition-colors hover:bg-zinc-700;
+    background: #334155;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #475569;
   }
 }
 
@@ -60,8 +111,8 @@
   .bg-grid-zinc {
     background-size: 40px 40px;
     background-image:
-      linear-gradient(to right, var(--color-zinc-800) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--color-zinc-800) 1px, transparent 1px);
+      linear-gradient(to right, rgba(46, 64, 99, 0.38) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(46, 64, 99, 0.38) 1px, transparent 1px);
   }
 
   .bg-grid-fade {
@@ -69,16 +120,67 @@
   }
 
   .skip-link {
-    @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:font-bold focus:text-zinc-900 focus:shadow-2xl;
+    @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:px-4 focus:py-2 focus:font-bold focus:text-white focus:shadow-2xl;
+    background: #4f46e5;
   }
 
   .smooth-transition {
     @apply transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)];
   }
+
+  .gc-panel {
+    background: linear-gradient(180deg, rgba(19, 27, 46, 0.96), rgba(11, 16, 28, 0.96));
+    border: 1px solid #223049;
+    box-shadow: 0 28px 80px -42px rgba(79, 70, 229, 0.44);
+  }
+
+  .gc-panel-elevated {
+    background: linear-gradient(180deg, rgba(24, 34, 58, 0.96), rgba(19, 27, 46, 0.96));
+    border: 1px solid #2e4063;
+    box-shadow: 0 24px 60px -38px rgba(15, 23, 42, 0.95);
+  }
+
+  .gc-accent-line {
+    background: linear-gradient(90deg, #4f46e5 0%, #0891b2 58%, transparent 100%);
+  }
+}
+
+.gc-site {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 18% -8%, rgba(79, 70, 229, 0.13), transparent 30rem),
+    radial-gradient(circle at 84% 6%, rgba(8, 145, 178, 0.08), transparent 26rem),
+    #0a0e17;
+}
+
+/* Retire pure black marketing surfaces in favor of the GC-ERP well surface. */
+.gc-site .bg-black {
+  background-color: #0b101c !important;
+}
+
+/* Existing white marketing CTAs become GC-ERP primary actions without touching white content cards. */
+.gc-site a.bg-white,
+.gc-site button.bg-white {
+  background-color: #4f46e5 !important;
+  border-color: #4338ca !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 28px -14px rgba(79, 70, 229, 0.85);
+}
+
+.gc-site a.bg-white:hover,
+.gc-site button.bg-white:hover {
+  background-color: #4338ca !important;
+  border-color: #3730a3 !important;
+}
+
+.gc-site a.border-zinc-700:hover,
+.gc-site button.border-zinc-700:hover {
+  border-color: #4f46e5 !important;
+  background-color: #18223a !important;
 }
 
 :focus-visible {
-  outline: 2px solid #a5b4fc;
+  outline: 2px solid #818cf8;
   outline-offset: 4px;
 }
 
@@ -99,4 +201,38 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+
+/* Shared enterprise interaction polish */
+.gc-site [class*="rounded-2xl"][class*="border-zinc-800"][class*="bg-zinc-900"],
+.gc-site [class*="rounded-3xl"][class*="border-zinc-800"][class*="bg-zinc-900"] {
+  box-shadow: 0 22px 54px -42px rgba(15, 23, 42, 0.95);
+}
+
+.gc-site [class*="rounded-2xl"][class*="border-zinc-800"][class*="bg-zinc-900"]:hover,
+.gc-site [class*="rounded-3xl"][class*="border-zinc-800"][class*="bg-zinc-900"]:hover {
+  border-color: #2e4063;
+}
+
+.gc-site input,
+.gc-site textarea,
+.gc-site select {
+  caret-color: #818cf8;
+}
+
+.gc-site input:focus,
+.gc-site textarea:focus,
+.gc-site select:focus {
+  border-color: #4f46e5 !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.14);
+}
+
+.gc-site a,
+.gc-site button {
+  text-underline-offset: 3px;
+}
+
+.gc-site section {
+  isolation: isolate;
 }
