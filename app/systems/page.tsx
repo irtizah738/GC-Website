@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import SystemsWeBuild from '@/src/pages/SystemsWeBuild';
+import SystemsWeBuild from '@/src/views/SystemsWeBuild';
 
 export const metadata: Metadata = {
   title: 'Enterprise Products & Systems',
