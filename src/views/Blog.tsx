@@ -33,7 +33,7 @@ export default function Blog() {
   return (
     <div className="pt-16">
 
-      <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
+      <Section className="border-b border-zinc-800 py-12 md:py-16" animate={false}>
         <div className="max-w-4xl">
           <p className="text-sm font-semibold text-zinc-500">Engineering notes</p>
           <h1 className="mt-5 text-5xl font-semibold tracking-[-0.045em] text-white md:text-7xl">
@@ -51,7 +51,7 @@ export default function Blog() {
             <Link
               key={post.slug}
               to={`/blog/${post.slug}`}
-              className="group flex min-h-80 flex-col rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 transition hover:border-zinc-700 hover:bg-zinc-900"
+              className="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 transition hover:border-zinc-700 hover:bg-zinc-900"
             >
               <div className="flex items-center justify-between gap-3">
                 <span className="rounded-full border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[10px] font-semibold text-zinc-500">
@@ -63,7 +63,7 @@ export default function Blog() {
                 </span>
               </div>
 
-              <FileText className="mt-10 h-5 w-5 text-zinc-600" />
+              <FileText className="mt-6 h-5 w-5 text-zinc-600" />
               <h2 className="mt-5 text-xl font-semibold tracking-tight text-white">{post.title}</h2>
               <p className="mt-3 flex-1 text-sm leading-6 text-zinc-500">{post.excerpt}</p>
               <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-zinc-300">

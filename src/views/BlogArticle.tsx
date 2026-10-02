@@ -27,7 +27,7 @@ export default function BlogArticle({ slug }: { slug: string }) {
   return (
     <article className="pt-16">
 
-      <Section className="border-b border-zinc-800 pb-16 pt-16 md:pt-24" animate={false}>
+      <Section className="border-b border-zinc-800 py-12 md:py-16" animate={false}>
         <div className="mx-auto max-w-3xl">
           <Link to="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500 hover:text-white">
             <ArrowLeft className="h-4 w-4" />

@@ -36,7 +36,7 @@ const products = [
 export default function Products() {
   return (
     <div className="pt-16">
-      <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
+      <Section className="border-b border-zinc-800 py-12 md:py-16" animate={false}>
         <div className="max-w-4xl">
           <p className="text-sm font-semibold text-zinc-500">Products by Gotham Coders</p>
           <h1 className="mt-5 text-5xl font-semibold tracking-[-0.045em] text-white md:text-7xl">

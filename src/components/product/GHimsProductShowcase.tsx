@@ -101,7 +101,7 @@ export default function GHimsProductShowcase() {
         <span className="hidden rounded bg-white/10 px-2 py-0.5 font-bold text-slate-200 sm:inline">Queue & Conflicts 0</span>
       </div>
 
-      <div className="grid min-h-[560px] lg:grid-cols-[205px_1fr]">
+      <div className="grid lg:grid-cols-[205px_1fr]">
         <aside className="hidden overflow-hidden border-r border-slate-200 bg-white p-2.5 lg:block">
           <div className="mb-3 rounded-xl border border-slate-200 bg-slate-50 p-2.5">
             <p className="text-[8px] font-black text-slate-800">Clinical Workspace</p>

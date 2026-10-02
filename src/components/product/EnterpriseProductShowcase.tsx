@@ -115,7 +115,7 @@ export default function EnterpriseProductShowcase() {
         </div>
       </div>
 
-      <div className="grid min-h-[560px] lg:grid-cols-[190px_1fr]">
+      <div className="grid lg:grid-cols-[190px_1fr]">
         <aside className="hidden border-r border-[#1e293b] bg-[#0f1523] p-2.5 lg:block">
           <SidebarGroup title="Core Operations">
             {primary.map(({ id, label, icon: Icon, badge }) => (

@@ -42,7 +42,7 @@ export default function About() {
   return (
     <div className="pt-16">
 
-      <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
+      <Section className="border-b border-zinc-800 py-12 md:py-16" animate={false}>
         <div className="max-w-4xl">
           <p className="text-sm font-semibold text-zinc-500">Company</p>
           <h1 className="mt-5 text-5xl font-semibold tracking-[-0.045em] text-white md:text-7xl">
@@ -140,6 +140,7 @@ export default function About() {
                   src={member.image}
                   alt={member.name}
                   fill
+                  referrerPolicy="no-referrer"
                   sizes="(min-width: 768px) 33vw, 100vw"
                   className="object-cover grayscale"
                 />

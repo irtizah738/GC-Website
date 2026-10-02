@@ -56,7 +56,7 @@ function ResourceLink({
 export default function CaseStudies() {
   return (
     <div className="pt-16">
-      <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
+      <Section className="border-b border-zinc-800 py-12 md:py-16" animate={false}>
         <div className="max-w-5xl">
           <p className="text-sm font-semibold text-zinc-500">Research • Case Studies • Evidence</p>
           <h1 className="mt-5 text-5xl font-semibold tracking-[-0.045em] text-white md:text-7xl">
@@ -115,16 +115,16 @@ export default function CaseStudies() {
                   </span>
                 </div>
 
-                <p className="mt-7 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">{paper.eyebrow}</p>
-                <h3 className="mt-3 text-2xl font-semibold tracking-[-0.025em] text-white">{paper.title}</h3>
+                <p className="mt-6 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">{paper.eyebrow}</p>
+                <h3 className="mt-2 text-2xl font-semibold tracking-[-0.025em] text-white">{paper.title}</h3>
                 <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-zinc-500">
                   <span>{paper.type}</span>
                   <span>{paper.status}</span>
                   <span>{paper.meta}</span>
                 </div>
-                <p className="mt-5 text-sm leading-7 text-zinc-400">{paper.summary}</p>
+                <p className="mt-4 text-sm leading-7 text-zinc-400">{paper.summary}</p>
 
-                <div className="mt-6 space-y-3">
+                <div className="mt-5 space-y-2.5">
                   {paper.findings.map((finding) => (
                     <div key={finding} className="flex gap-3">
                       <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-400" />
@@ -133,7 +133,7 @@ export default function CaseStudies() {
                   ))}
                 </div>
 
-                <div className="mt-7 flex flex-wrap gap-2">
+                <div className="mt-6 flex flex-wrap gap-2">
                   {paper.tags.map((tag) => (
                     <span key={tag} className="rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-[10px] font-medium text-zinc-500">
                       {tag}
@@ -141,7 +141,7 @@ export default function CaseStudies() {
                   ))}
                 </div>
 
-                <div className="mt-auto pt-7">
+                <div className="mt-auto pt-6">
                   <Link
                     to="/contact"
                     className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-zinc-300"
@@ -187,13 +187,13 @@ export default function CaseStudies() {
                         {String(index + 1).padStart(2, '0')}
                       </span>
                     </div>
-                    <p className="mt-7 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">
+                    <p className="mt-6 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">
                       {study.product} • {study.category}
                     </p>
-                    <h3 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-white">{study.title}</h3>
-                    <p className="mt-5 text-sm leading-7 text-zinc-400">{study.summary}</p>
+                    <h3 className="mt-2.5 text-3xl font-semibold tracking-[-0.03em] text-white">{study.title}</h3>
+                    <p className="mt-4 text-sm leading-7 text-zinc-400">{study.summary}</p>
 
-                    <div className="mt-6 flex flex-wrap gap-2">
+                    <div className="mt-5 flex flex-wrap gap-2">
                       {study.tags.map((tag) => (
                         <span key={tag} className="rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-[10px] font-medium text-zinc-500">
                           {tag}
@@ -202,7 +202,7 @@ export default function CaseStudies() {
                     </div>
                   </div>
 
-                  <div className="grid gap-px bg-zinc-800 sm:grid-cols-3">
+                  <div className="grid gap-px bg-zinc-800 sm:grid-cols-3 sm:grid-rows-[1fr_auto]">
                     {[
                       ['Problem', study.problem],
                       ['Architecture decision', study.decision],
@@ -210,11 +210,11 @@ export default function CaseStudies() {
                     ].map(([label, copy]) => (
                       <div key={label} className="bg-zinc-950 p-6">
                         <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-600">{label}</p>
-                        <p className="mt-4 text-sm leading-7 text-zinc-300">{copy}</p>
+                        <p className="mt-3 text-sm leading-7 text-zinc-300">{copy}</p>
                       </div>
                     ))}
 
-                    <div className="bg-zinc-950 p-6 sm:col-span-3">
+                    <div className="bg-zinc-950 px-6 py-4 sm:col-span-3">
                       <ResourceLink
                         href={study.href}
                         className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-zinc-300"
@@ -239,11 +239,11 @@ export default function CaseStudies() {
         <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr]">
           <div className="lg:sticky lg:top-24 lg:self-start">
             <FileCheck2 className="h-6 w-6 text-zinc-600" />
-            <p className="mt-6 text-sm font-semibold text-zinc-500">Technical evidence library</p>
-            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+            <p className="mt-5 text-sm font-semibold text-zinc-500">Technical evidence library</p>
+            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
               Architecture, qualification, security, workflows, and test evidence.
             </h2>
-            <p className="mt-5 text-base leading-7 text-zinc-400">
+            <p className="mt-4 text-base leading-7 text-zinc-400">
               These documents are linked directly to the source repositories so the public description can be checked
               against the engineering evidence.
             </p>
@@ -258,7 +258,7 @@ export default function CaseStudies() {
                   href={resource.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex min-h-64 flex-col rounded-2xl border border-zinc-800 bg-zinc-950 p-5 transition hover:border-zinc-700 hover:bg-zinc-900"
+                  className="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-950 p-5 transition hover:border-zinc-700 hover:bg-zinc-900"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="grid h-9 w-9 place-items-center rounded-xl border border-zinc-800 bg-zinc-900">
@@ -266,12 +266,12 @@ export default function CaseStudies() {
                     </div>
                     <ExternalLink className="h-4 w-4 text-zinc-700 transition group-hover:text-zinc-400" />
                   </div>
-                  <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-600">
+                  <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-600">
                     {resource.product} • {resource.type}
                   </p>
                   <h3 className="mt-2 text-lg font-semibold tracking-tight text-white">{resource.title}</h3>
-                  <p className="mt-3 flex-1 text-sm leading-6 text-zinc-500">{resource.summary}</p>
-                  <div className="mt-5 flex flex-wrap gap-1.5">
+                  <p className="mt-2.5 flex-1 text-sm leading-6 text-zinc-500">{resource.summary}</p>
+                  <div className="mt-4 flex flex-wrap gap-1.5">
                     {resource.tags.map((tag) => (
                       <span key={tag} className="rounded-full border border-zinc-800 px-2.5 py-1 text-[9px] font-medium text-zinc-600">
                         {tag}
@@ -304,10 +304,10 @@ export default function CaseStudies() {
             <Link
               key={note.href}
               to={note.href}
-              className="group flex min-h-64 flex-col rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 transition hover:border-zinc-700 hover:bg-zinc-900"
+              className="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 transition hover:border-zinc-700 hover:bg-zinc-900"
             >
               <GitBranch className="h-5 w-5 text-zinc-600" />
-              <p className="mt-8 text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-600">{note.category}</p>
+              <p className="mt-5 text-[10px] font-semibold uppercase tracking-[0.14em] text-zinc-600">{note.category}</p>
               <h3 className="mt-2 text-xl font-semibold tracking-tight text-white">{note.title}</h3>
               <p className="mt-3 flex-1 text-sm leading-6 text-zinc-500">{note.summary}</p>
               <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-zinc-300">

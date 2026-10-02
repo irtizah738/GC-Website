@@ -43,7 +43,7 @@ const architecture = [
 export default function GHimsProduct() {
   return (
     <div className="pt-16">
-      <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
+      <Section className="border-b border-zinc-800 py-12 md:py-16" animate={false}>
         <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-900/60 bg-emerald-950/20 px-3 py-1.5 text-xs font-semibold text-emerald-300">

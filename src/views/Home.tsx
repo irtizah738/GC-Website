@@ -74,7 +74,7 @@ export default function Home() {
   return (
     <div className="pt-16">
 
-      <Section className="relative border-b border-zinc-800/80 pb-16 pt-20 md:pb-24 md:pt-28" animate={false}>
+      <Section className="relative border-b border-zinc-800/80 py-12 md:py-16" animate={false}>
         <div className="mx-auto max-w-4xl text-center">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/70 px-3 py-1.5 text-xs font-medium text-zinc-300">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -265,7 +265,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section className="pb-28 pt-24 text-center md:pb-36 md:pt-32">
+      <Section className="py-16 text-center md:py-24">
         <Building2 className="mx-auto h-6 w-6 text-zinc-600" />
         <h2 className="mx-auto mt-6 max-w-3xl text-4xl font-semibold tracking-[-0.035em] text-white md:text-6xl">
           Need software that matches the reality of your operation?
