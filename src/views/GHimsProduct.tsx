@@ -8,7 +8,6 @@ import {
   Building2,
   Check,
   CircleAlert,
-  ClipboardList,
   CloudOff,
   FlaskConical,
   HeartPulse,
