@@ -5,7 +5,6 @@ import {
   Bed,
   Boxes,
   BriefcaseBusiness,
-  Building2,
   Check,
   CircleAlert,
   CloudOff,
@@ -18,6 +17,7 @@ import {
   UsersRound,
 } from 'lucide-react';
 import Section from '../components/Section';
+import GHimsProductShowcase from '../components/product/GHimsProductShowcase';
 
 const modules = [
   { icon: HeartPulse, title: 'Patient 360', copy: 'Longitudinal patient view built on governed clinical projections.' },
@@ -76,22 +76,7 @@ export default function GHimsProduct() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-900/40 p-6">
-            <div className="flex items-center justify-between border-b border-zinc-800 pb-5">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">Repository-backed capability map</p>
-                <p className="mt-2 text-xl font-semibold text-white">Hospital operating domains</p>
-              </div>
-              <Building2 className="h-5 w-5 text-zinc-500" />
-            </div>
-            <div className="mt-5 grid gap-2 sm:grid-cols-2">
-              {['Patient 360', 'Clinical', 'Inpatient', 'Operating Room', 'Diagnostics', 'Pharmacy', 'Billing', 'Finance', 'SCM', 'HCM', 'Admin', 'Audit'].map((item) => (
-                <div key={item} className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3 text-sm font-medium text-zinc-300">
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
+          <GHimsProductShowcase />
         </div>
       </Section>
 
