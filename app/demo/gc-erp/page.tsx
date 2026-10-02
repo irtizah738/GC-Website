@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import GCErpDemo from '@/src/pages/demo/GCErpDemo';
+import GCErpDemo from '@/src/views/demo/GCErpDemo';
 
 export const metadata: Metadata = {
   title: 'GC-ERP Interactive Demo',
