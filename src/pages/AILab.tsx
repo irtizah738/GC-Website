@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from '../components/AppLink';
 import {
   ArrowRight,
   BrainCircuit,
@@ -8,7 +8,6 @@ import {
   Sparkles,
   Workflow,
 } from 'lucide-react';
-import { SEO } from '../components/SEO';
 import Section from '../components/Section';
 
 const capabilities = [
@@ -45,11 +44,6 @@ const boundaries = [
 export default function AILab() {
   return (
     <div className="pt-16">
-      <SEO
-        title="AI Lab | Gotham Coders"
-        description="How Gotham Coders approaches AI inside governed ERP, healthcare, and enterprise workflows."
-        pathname="/ai-lab"
-      />
 
       <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
         <div className="max-w-4xl">
