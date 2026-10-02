@@ -2,40 +2,16 @@ import Link from '../components/AppLink';
 import {
   ArrowRight,
   Boxes,
-  Check,
   CloudCog,
-  Database,
-  Factory,
   GitBranch,
   Globe2,
-  Landmark,
   Network,
-  PackageCheck,
   ShieldCheck,
-  ShoppingCart,
   Stethoscope,
-  UsersRound,
 } from 'lucide-react';
 import Section from '../components/Section';
-import EnterpriseProductShowcase from '../components/product/EnterpriseProductShowcase';
-
-const erpModules = [
-  { icon: Landmark, title: 'Finance', copy: 'General ledger, receivables, payables, cash visibility and operational posting.' },
-  { icon: ShoppingCart, title: 'Procurement', copy: 'Requisitions, approvals, purchase orders, receipts and supplier control.' },
-  { icon: PackageCheck, title: 'Inventory', copy: 'Stock, locations, reservations, transfers, reorder signals and valuation.' },
-  { icon: Factory, title: 'Manufacturing', copy: 'Work orders, material requirements, production progress and operational costing.' },
-  { icon: UsersRound, title: 'People & access', copy: 'Role-aware workspaces, authority boundaries and accountable actions.' },
-  { icon: Database, title: 'Reporting & audit', copy: 'Operational read models, reconciliations and traceable event history.' },
-];
-
-const himsModules = [
-  'Patient registration and longitudinal records',
-  'OPD and inpatient clinical workflows',
-  'Diagnostics, pharmacy and inventory',
-  'Billing and revenue integrity',
-  'Offline-capable operational workflows',
-  'Role, credential and tenant boundaries',
-];
+import GCErpSystemsHighlight from '../components/product/GCErpSystemsHighlight';
+import GHimsSystemsHighlight from '../components/product/GHimsSystemsHighlight';
 
 const platformCapabilities = [
   'Multi-tenant SaaS foundations',
@@ -86,7 +62,7 @@ export default function SystemsWeBuild() {
       </Section>
 
       <Section id="erp-systems" className="border-b border-zinc-800">
-        <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+        <div className="grid gap-10 lg:grid-cols-[0.62fr_1.38fr] lg:items-start">
           <div className="lg:sticky lg:top-24">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900">
               <Boxes className="h-5 w-5 text-zinc-300" />
@@ -96,15 +72,22 @@ export default function SystemsWeBuild() {
               One operating system for the movement of money, material and work.
             </h2>
             <p className="mt-5 text-base leading-7 text-zinc-400">
-              GC-ERP is designed around connected transactions: demand drives inventory decisions, shortages drive supply, receipts change stock, and operational consequences flow into finance and audit.
+              The module views on this page are derived directly from the GC-ERP codebase. Dashboard, SCM, Inventory, Finance, CRM, Procurement, and GC Enterprise Cockpit &amp; Core use the product&apos;s real terminology, information hierarchy, navigation patterns, and UI language.
             </p>
+
+            <div className="mt-6 rounded-2xl border border-indigo-900/50 bg-indigo-950/20 p-4">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-indigo-400">Highlighted modules</p>
+              <p className="mt-2 text-sm leading-6 text-zinc-300">
+                Dashboard • SCM • Inventory • Finance • CRM • Procurement • GC Enterprise Cockpit &amp; Core
+              </p>
+            </div>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <Link
-                to="/demo/gc-erp"
+                to="/products/gc-erp"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
               >
-                Explore interactive demo
+                Explore GC-ERP
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
@@ -117,24 +100,23 @@ export default function SystemsWeBuild() {
           </div>
 
           <div>
-            <EnterpriseProductShowcase />
-
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {erpModules.map(({ icon: Icon, title, copy }) => (
-                <div key={title} className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5">
-                  <Icon className="h-4 w-4 text-zinc-500" />
-                  <h3 className="mt-4 text-sm font-semibold text-white">{title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-zinc-500">{copy}</p>
-                </div>
-              ))}
+            <div className="mb-4 flex items-center justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">From the product code</p>
+                <p className="mt-1 text-sm text-zinc-400">Switch modules to inspect the actual GC-ERP visual and operational language.</p>
+              </div>
+              <span className="hidden rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1 text-[10px] font-semibold text-zinc-500 sm:inline">
+                Source-derived UI
+              </span>
             </div>
+            <GCErpSystemsHighlight />
           </div>
         </div>
       </Section>
 
       <Section id="hmis-healthcare" className="border-b border-zinc-800 bg-black">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
-          <div>
+        <div className="grid gap-10 lg:grid-cols-[0.62fr_1.38fr] lg:items-start">
+          <div className="lg:sticky lg:top-24">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900">
               <Stethoscope className="h-5 w-5 text-zinc-300" />
             </div>
@@ -143,26 +125,22 @@ export default function SystemsWeBuild() {
               Hospital operations where clinical, financial and operational events remain connected.
             </h2>
             <p className="mt-5 max-w-xl text-base leading-7 text-zinc-400">
-              G-HIMS is built for environments where partial workflows, weak connectivity, shared devices and strict accountability are part of everyday hospital operations.
+              The highlighted module views are derived directly from the G-HIMS codebase. Patient 360, Finance, HCM, and SCM preserve the same control-center language, governed projection patterns, module labels, and clinical/operational hierarchy used inside the product.
             </p>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              {himsModules.map((item) => (
-                <div key={item} className="flex gap-3 rounded-xl border border-zinc-800 bg-zinc-950 p-4">
-                  <div className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-emerald-500/10 text-emerald-400">
-                    <Check className="h-3 w-3" />
-                  </div>
-                  <span className="text-sm leading-6 text-zinc-300">{item}</span>
-                </div>
-              ))}
+            <div className="mt-6 rounded-2xl border border-blue-900/50 bg-blue-950/20 p-4">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-blue-400">Highlighted modules</p>
+              <p className="mt-2 text-sm leading-6 text-zinc-300">
+                Patient 360 • Finance • HCM • SCM
+              </p>
             </div>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <Link
-                to="/demo/g-hims"
+                to="/products/g-hims"
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
               >
-                Explore HIMS demo
+                Explore G-HIMS
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a
@@ -177,32 +155,17 @@ export default function SystemsWeBuild() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-zinc-800 bg-zinc-900/40 p-6 md:p-8">
-            <div className="flex items-center justify-between border-b border-zinc-800 pb-5">
+          <div>
+            <div className="mb-4 flex items-center justify-between gap-4">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">Clinical operations</p>
-                <p className="mt-2 text-xl font-semibold text-white">Patient journey</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">From the product code</p>
+                <p className="mt-1 text-sm text-zinc-400">Switch modules to inspect the actual G-HIMS control surfaces.</p>
               </div>
-              <span className="rounded-full bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-400">Connected</span>
+              <span className="hidden rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1 text-[10px] font-semibold text-zinc-500 sm:inline">
+                Source-derived UI
+              </span>
             </div>
-
-            <div className="mt-6 space-y-3">
-              {[
-                ['01', 'Registration', 'Identity and encounter context established'],
-                ['02', 'Consultation', 'Clinical documentation and orders recorded'],
-                ['03', 'Diagnostics / Pharmacy', 'Orders move into fulfillment workflows'],
-                ['04', 'Billing', 'Financial consequences remain tied to care activity'],
-                ['05', 'Patient 360', 'Derived view reflects the longitudinal event history'],
-              ].map(([step, title, copy]) => (
-                <div key={step} className="grid grid-cols-[34px_1fr] gap-4 rounded-xl border border-zinc-800 bg-zinc-950 p-4">
-                  <div className="grid h-8 w-8 place-items-center rounded-lg bg-zinc-800 text-[10px] font-semibold text-zinc-400">{step}</div>
-                  <div>
-                    <p className="text-sm font-semibold text-white">{title}</p>
-                    <p className="mt-1 text-xs leading-5 text-zinc-500">{copy}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <GHimsSystemsHighlight />
           </div>
         </div>
       </Section>
