@@ -34,12 +34,12 @@ const groups = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-zinc-800 bg-black">
+    <footer className="border-t border-[#223049] bg-[#0b101c]">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_.7fr_.7fr_.7fr]">
           <div>
             <Link to="/" className="flex items-center gap-2.5">
-              <span className="grid h-8 w-8 place-items-center rounded-lg bg-white text-[10px] font-bold text-zinc-950">GC</span>
+              <span className="grid h-8 w-8 place-items-center rounded-lg border border-indigo-400/30 bg-indigo-600 text-[10px] font-bold text-white">GC</span>
               <span className="text-sm font-semibold text-white">Gotham Coders</span>
             </Link>
             <p className="mt-5 max-w-md text-sm leading-6 text-zinc-500">
@@ -70,7 +70,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col gap-5 border-t border-zinc-900 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-5 border-t border-[#1e293b] pt-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-600">
             <span>© {new Date().getFullYear()} Gotham Coders</span>
             <a href="mailto:help@gothamcoders.com" className="inline-flex items-center gap-1.5 hover:text-zinc-300">
@@ -85,7 +85,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Gotham Coders on GitHub"
-              className="rounded-lg border border-zinc-800 p-2 text-zinc-500 hover:text-white"
+              className="rounded-lg border border-[#223049] bg-[#131b2e] p-2 text-zinc-500 transition hover:border-indigo-500/50 hover:text-white"
             >
               <Github className="h-4 w-4" />
             </a>
