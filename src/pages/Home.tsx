@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from '../components/AppLink';
 import {
   ArrowRight,
   Boxes,
@@ -11,7 +11,6 @@ import {
   ShieldCheck,
   Stethoscope,
 } from 'lucide-react';
-import { SEO } from '../components/SEO';
 import Section from '../components/Section';
 import EnterpriseProductShowcase from '../components/product/EnterpriseProductShowcase';
 
@@ -74,11 +73,6 @@ const principles = [
 export default function Home() {
   return (
     <div className="pt-16">
-      <SEO
-        title="Gotham Coders | Enterprise Systems for Complex Operations"
-        description="Gotham Coders builds ERP, healthcare and enterprise platforms for complex operational environments."
-        pathname="/"
-      />
 
       <Section className="relative border-b border-zinc-800/80 pb-16 pt-20 md:pb-24 md:pt-28" animate={false}>
         <div className="mx-auto max-w-4xl text-center">
