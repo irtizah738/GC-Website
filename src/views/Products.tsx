@@ -24,12 +24,12 @@ const products = [
     icon: Boxes,
     name: 'GC-ERP',
     category: 'Enterprise Operations Platform',
-    status: 'Product development',
+    status: 'Working engineering build',
     description:
-      'A connected ERP product for organizations that need procurement, inventory, manufacturing, finance, and audit to behave as one operational system.',
+      'A manufacturing-first enterprise operations platform connecting sales, procurement, inventory, production, quality, logistics, finance, workforce, and audit.',
     href: '/products/gc-erp',
     demo: '/demo/gc-erp',
-    capabilities: ['Procurement', 'Inventory', 'Manufacturing', 'Finance'],
+    capabilities: ['Manufacturing & MES', 'Inventory & WMS', 'Finance', 'Traceability'],
   },
 ];
 
