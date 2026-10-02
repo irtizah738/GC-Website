@@ -43,7 +43,7 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', closeOnEscape);
   }, [isOpen]);
 
-  const isActive = (path: string) => pathname === path;
+  const isActive = (path: string) => pathname === path || (path !== '/' && pathname.startsWith(`${path}/`));
 
   return (
     <nav
