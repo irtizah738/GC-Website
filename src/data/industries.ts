@@ -5,120 +5,96 @@ export const industries: Industry[] = [
     id: 'healthcare-hospitals',
     title: 'Healthcare & Hospitals',
     challenges: [
-      'Fragmented patient data across clinics',
-      'High administrative burden on clinicians',
-      'Strict HIPAA/GDPR data security requirements',
-      'Interoperability with legacy medical devices'
+      'Clinical, operational, and financial workflows cross many departments',
+      'Patient safety depends on reliable identity, orders, and status transitions',
+      'Shared devices and intermittent connectivity complicate daily operations',
+      'Sensitive data requires strong tenant, role, and credential boundaries'
     ],
     workflows: [
-      'Patient registration and triage',
-      'Clinical documentation and EHR',
-      'Pharmacy and lab order management',
-      'Medical billing and claims processing'
+      'Registration, triage, consultation, and longitudinal records',
+      'Diagnostics, pharmacy, inventory, and fulfillment',
+      'Admissions, transfers, discharge, and inpatient coordination',
+      'Billing, revenue integrity, reconciliation, and audit'
     ],
-    dataComplexity: 'High. Involves sensitive PII, medical images (DICOM), and real-time telemetry from medical devices.',
+    dataComplexity: 'Very high. Patient identity, clinical records, orders, results, medication, operational events, and financial consequences must remain attributable and connected.',
     systemRequirements: [
-      '99.99% high availability',
-      'HIPAA-compliant data encryption',
-      'HL7/FHIR interoperability',
-      'Sub-second latency for clinical tools'
+      'High availability and recoverable workflows',
+      'Strict authorization and auditability',
+      'Interoperability-ready data boundaries',
+      'Offline-capable operational surfaces where needed'
     ],
     icon: 'Stethoscope'
-  },
-  {
-    id: 'tertiary-care',
-    title: 'Tertiary Care',
-    challenges: [
-      'Highly specialized clinical workflows',
-      'Need for real-time surgical data integration',
-      'Complex patient monitoring requirements',
-      'Coordination across multi-disciplinary teams'
-    ],
-    workflows: [
-      'Pre-operative and post-operative care',
-      'Intensive care unit (ICU) monitoring',
-      'Specialized surgical planning',
-      'Long-term chronic care management'
-    ],
-    dataComplexity: 'Extreme. High-frequency sensor data, high-resolution imaging, and multi-modal patient records.',
-    systemRequirements: [
-      'Real-time data processing',
-      'Integration with surgical equipment',
-      'Offline-first mobile clinical tools',
-      'Advanced data visualization'
-    ],
-    icon: 'Activity'
-  },
-  {
-    id: 'sports-performance',
-    title: 'Sports & Performance Systems',
-    challenges: [
-      'Processing massive amounts of athlete sensor data',
-      'Real-time performance analytics during events',
-      'Managing athlete health and injury records',
-      'Scalability for high-concurrency fan engagement'
-    ],
-    workflows: [
-      'Athlete performance tracking',
-      'Injury prevention and rehab monitoring',
-      'Real-time game analytics',
-      'Scouting and talent management'
-    ],
-    dataComplexity: 'High. Time-series data from wearables, video analytics, and biometric records.',
-    systemRequirements: [
-      'Low-latency data ingestion',
-      'Real-time analytics engine',
-      'Mobile-first athlete interfaces',
-      'Secure data sharing with teams'
-    ],
-    icon: 'Trophy'
   },
   {
     id: 'manufacturing-supply-chain',
     title: 'Manufacturing & Supply Chain',
     challenges: [
-      'Inventory inaccuracies across multiple warehouses',
-      'Inefficient procurement and supplier management',
-      'Lack of real-time visibility into production lines',
-      'Complex logistics and route optimization'
+      'Inventory state changes across warehouses, purchasing, and production',
+      'Approval delays create material and cash-flow consequences',
+      'Operational exceptions are often discovered too late',
+      'Finance must reconcile activity created outside the finance team'
     ],
     workflows: [
-      'Inventory and warehouse management',
-      'Production planning and scheduling',
-      'Supplier relationship management',
-      'Logistics and shipment tracking'
+      'Procurement, supplier approvals, and goods receipt',
+      'Inventory, reservations, transfers, and reorder control',
+      'Production planning, work orders, and material consumption',
+      'Costing, payables, receivables, and operational posting'
     ],
-    dataComplexity: 'Moderate to High. Large volumes of transactional data, IoT sensor data from production lines.',
+    dataComplexity: 'High. Material, commitments, production state, vendor activity, and financial postings need a shared operational history without collapsing every domain into one screen.',
     systemRequirements: [
-      'Real-time data processing',
-      'Audit-safe operational transactions',
-      'Integration with ERP and CRM systems',
-      'Offline-capable warehouse tools'
+      'Traceable business transactions',
+      'Role-aware approvals and exception handling',
+      'Reliable cross-domain state propagation',
+      'Warehouse and field resilience where connectivity is limited'
     ],
     icon: 'Factory'
   },
   {
-    id: 'surgical-equipment-medical-devices',
-    title: 'Surgical Equipment & Medical Devices',
+    id: 'multi-site-operations',
+    title: 'Multi-Site Operations',
     challenges: [
-      'Ensuring software reliability for life-critical devices',
-      'Managing device firmware updates securely',
-      'Collecting and analyzing device telemetry data',
-      'Regulatory compliance for medical software (IEC 62304)'
+      'Different locations operate under the same organization with local constraints',
+      'Central teams need visibility without bypassing local authority',
+      'Connectivity and device quality vary by site',
+      'Duplicate records and delayed synchronization create reconciliation work'
     ],
     workflows: [
-      'Device telemetry and monitoring',
-      'Remote diagnostics and maintenance',
-      'Firmware over-the-air (FOTA) updates',
-      'Integration with hospital HMIS'
+      'Tenant, branch, facility, and department context',
+      'Local operations with central reporting',
+      'Shared master data with controlled local variation',
+      'Offline capture, retry, reconciliation, and exception review'
     ],
-    dataComplexity: 'High. Binary telemetry data, error logs, and high-frequency sensor readings.',
+    dataComplexity: 'High. Shared organizational data must coexist with location-specific state, permissions, device behavior, and synchronization history.',
     systemRequirements: [
-      'Deterministic software behavior',
-      'Secure device-to-cloud communication',
-      'Regulatory-compliant audit trails',
-      'High-reliability data storage'
+      'Strong tenant and site isolation',
+      'Idempotent commands and replay-safe processing',
+      'Deterministic conflict and retry behavior',
+      'Central visibility without centralizing every action'
     ],
-    icon: 'Microscope'
+    icon: 'Building2'
+  },
+  {
+    id: 'regulated-domain-systems',
+    title: 'Regulated & Domain-Specific Systems',
+    challenges: [
+      'Generic software cannot represent specialized authority or evidence rules',
+      'Operational decisions may require full historical traceability',
+      'Integrations introduce external failure and data-quality boundaries',
+      'The cost of silent data corruption is higher than the cost of slower writes'
+    ],
+    workflows: [
+      'Domain-specific commands and approval gates',
+      'Evidence capture and immutable activity history',
+      'Specialized integrations and adapter boundaries',
+      'Operational reporting, exception review, and reconciliation'
+    ],
+    dataComplexity: 'Varies by domain, but usually includes specialized records, external integrations, strict provenance, and business rules that cannot safely live only in frontend forms.',
+    systemRequirements: [
+      'Explicit trusted authority boundaries',
+      'Schema validation and fail-closed commands',
+      'Evidence-preserving audit trails',
+      'Integration isolation and recoverable processing'
+    ],
+    icon: 'ShieldCheck'
   }
 ];
