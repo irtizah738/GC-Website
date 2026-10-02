@@ -39,6 +39,18 @@ export default function Navbar() {
     setIsOpen(false);
   }, [location]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+        document.querySelector<HTMLButtonElement>('[aria-controls="mobile-navigation"]')?.focus();
+      }
+    };
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [isOpen]);
+
   return (
     <nav
       aria-label="Main navigation"
@@ -70,12 +82,13 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden xl:flex items-center gap-8">
             <div className="flex items-center gap-6">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
+                  aria-current={location.pathname === link.path ? "page" : undefined}
                   className={cn(
                     'relative text-[10px] font-mono font-bold uppercase tracking-[0.2em] transition-colors hover:text-zinc-900 dark:hover:text-white py-2 group/link',
                     location.pathname === link.path
@@ -112,11 +125,13 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-2 xl:hidden">
             <button
               className="p-2 text-zinc-600 dark:text-zinc-400"
               onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
             >
               {isOpen ? <X /> : <Menu />}
             </button>
@@ -128,16 +143,18 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-navigation"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 overflow-hidden"
+            className="xl:hidden bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 overflow-hidden max-h-[calc(100dvh-80px)] overflow-y-auto"
           >
             <div className="px-4 pt-2 pb-6 space-y-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
+                  aria-current={location.pathname === link.path ? "page" : undefined}
                   className={cn(
                     'block px-3 py-4 text-base font-medium rounded-md',
                     location.pathname === link.path

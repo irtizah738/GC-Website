@@ -1,5 +1,5 @@
 import { SEO } from '../components/SEO';
-import { motion } from 'motion/react';
+import { motion, type Variants } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, CheckCircle2, Cpu, Database, Globe, ShieldCheck, Zap, Stethoscope, Cloud, Activity, WifiOff } from 'lucide-react';
@@ -27,7 +27,7 @@ const iconMap: Record<string, any> = {
   WifiOff,
 };
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -38,7 +38,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -47,7 +47,7 @@ const itemVariants = {
   },
 };
 
-const fadeInVariants = {
+const fadeInVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,

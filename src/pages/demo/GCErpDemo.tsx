@@ -28,7 +28,6 @@ export default function GCErpDemo() {
   const startDemo = () => {
     setIsSeeding(true);
     const newTenantId = `demo-erp-${Math.random().toString(36).substring(7)}`;
-    setTenantId(newTenantId);
     
     // Seed initial data
     const p1Id = 'prod-1';
@@ -60,18 +59,19 @@ export default function GCErpDemo() {
       createEvent(newTenantId, p2Id, 'inventory', 'inventory_received', { quantity: 120 }),
     ];
 
-    setTimeout(() => {
+    {
       setInventory(initialInventory);
       setEvents(initialEvents);
+      setTenantId(newTenantId);
       setIsSeeding(false);
-    }, 1500);
+    }
   };
 
   const handleReceiveStock = (productId: string) => {
     const qty = 50;
     const event = createEvent(tenantId!, productId, 'inventory', 'inventory_received', { quantity: qty });
     
-    setEvents([event, ...events]);
+    setEvents(previous => [event, ...previous]);
     setInventory(prev => prev.map(item => 
       item.productId === productId 
         ? { ...item, availableQty: item.availableQty + qty, lastUpdated: Date.now() }
@@ -81,9 +81,10 @@ export default function GCErpDemo() {
 
   const handleAllocateStock = (productId: string) => {
     const qty = 10;
+    if (!tenantId || !inventory.some(item => item.productId === productId && item.availableQty >= qty)) return;
     const event = createEvent(tenantId!, productId, 'inventory', 'inventory_allocated', { quantity: qty });
     
-    setEvents([event, ...events]);
+    setEvents(previous => [event, ...previous]);
     setInventory(prev => prev.map(item => 
       item.productId === productId 
         ? { ...item, availableQty: item.availableQty - qty, reservedQty: item.reservedQty + qty, lastUpdated: Date.now() }
@@ -107,7 +108,7 @@ export default function GCErpDemo() {
             <h1 className="text-3xl font-display font-bold text-zinc-900 dark:text-white">GC-ERP Demo</h1>
             <p className="text-zinc-500 dark:text-zinc-400">
               Experience our event-driven manufacturing ERP. 
-              A sandboxed environment will be created for your session.
+              This browser-only simulation uses sample data and resets when you leave.
             </p>
           </div>
           <button
@@ -115,7 +116,7 @@ export default function GCErpDemo() {
             disabled={isSeeding}
             className="w-full py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl font-bold text-lg hover:scale-[1.02] transition-transform flex items-center justify-center gap-2 disabled:opacity-50"
           >
-            {isSeeding ? 'Initializing Sandbox...' : 'Start Live Demo'}
+            {isSeeding ? 'Initializing Sandbox...' : 'Start Interactive Demo'}
           </button>
         </div>
       </div>
@@ -128,7 +129,7 @@ export default function GCErpDemo() {
         <div className="flex flex-col lg:flex-row gap-8">
           
           {/* Main Dashboard */}
-          <div className="flex-1 space-y-8">
+          <div className="flex-1 min-w-0 space-y-8">
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-3xl font-display font-bold text-zinc-900 dark:text-white">Inventory Dashboard</h2>
@@ -154,7 +155,7 @@ export default function GCErpDemo() {
                 <div key={stat.label} className="p-6 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm">
                   <div className="flex items-center justify-between mb-4">
                     <stat.icon className={cn("w-6 h-6", stat.color)} />
-                    <span className="text-[10px] font-mono text-zinc-400">LIVE_SYNC</span>
+                    <span className="text-[10px] font-mono text-zinc-400">SIMULATION</span>
                   </div>
                   <p className="text-2xl font-display font-bold text-zinc-900 dark:text-white">{stat.value}</p>
                   <p className="text-xs text-zinc-500 uppercase tracking-widest mt-1">{stat.label}</p>
@@ -166,9 +167,7 @@ export default function GCErpDemo() {
             <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-sm">
               <div className="p-6 border-b border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
                 <h3 className="font-bold text-zinc-900 dark:text-white">Current Stock</h3>
-                <button className="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors">
-                  <Plus className="w-5 h-5 text-zinc-500" />
-                </button>
+
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
@@ -209,6 +208,7 @@ export default function GCErpDemo() {
                             </button>
                             <button 
                               onClick={() => handleAllocateStock(item.productId)}
+                              disabled={item.availableQty < 10}
                               className="p-2 hover:bg-amber-50 dark:hover:bg-amber-900/20 text-amber-600 rounded-lg transition-colors"
                               title="Allocate Stock"
                             >
@@ -232,7 +232,7 @@ export default function GCErpDemo() {
                   <History className="w-5 h-5 text-zinc-400" />
                   <h3 className="font-bold tracking-tight">Event Stream</h3>
                 </div>
-                <div className="px-2 py-0.5 rounded bg-zinc-800 text-[8px] font-mono text-zinc-500">LIVE</div>
+                <div className="px-2 py-0.5 rounded bg-zinc-800 text-[8px] font-mono text-zinc-500">DEMO</div>
               </div>
               
               <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar">
