@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import GHimsDemo from '@/src/pages/demo/GHimsDemo';
+import GHimsDemo from '@/src/views/demo/GHimsDemo';
 
 export const metadata: Metadata = {
   title: 'G-HIMS Interactive Demo',
