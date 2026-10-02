@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import Link from '../components/AppLink';
 import {
   ArrowRight,
@@ -34,7 +35,7 @@ function ResourceLink({
   className,
 }: {
   href: string;
-  children: React.ReactNode;
+  children: ReactNode;
   className: string;
 }) {
   if (href.startsWith('http')) {
