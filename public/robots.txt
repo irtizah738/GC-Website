@@ -1,9 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin/
-Disallow: /private/
-
-Sitemap: https://gothamcoders.com/sitemap.xml
-
-# Crawl-delay for bots that respect it
-Crawl-delay: 1
