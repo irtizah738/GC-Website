@@ -1,6 +1,15 @@
 # Gotham Coders website
 
-React, TypeScript and Vite marketing site, with browser-only ERP and healthcare simulations.
+Enterprise product website for Gotham Coders, GC-ERP, and G-HIMS.
+
+## Runtime
+
+- Next.js App Router
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Resend contact delivery
+- Browser-only ERP and healthcare workflow simulations
 
 ## Local development
 
@@ -9,9 +18,9 @@ npm ci
 npm run dev
 ```
 
-The Express development server runs on port 3000 (or `PORT`) and serves the same contact handler as Vercel. If the tsx CLI cannot create its IPC socket in a restricted environment, use `node --import tsx server.ts`.
+The development server uses Next.js on port 3000 by default.
 
-## Checks
+## Quality gate
 
 ```sh
 npm run lint
@@ -19,14 +28,29 @@ npm test
 npm run build
 ```
 
-## Deployment and contact delivery
+GitHub Actions runs the same checks for pull requests and pushes to `main`.
 
-Vercel builds `dist` and deploys `api/send-email.ts` separately as a serverless function. SPA routes are rewritten to `index.html`; API requests must remain outside the SPA fallback. A static-only host cannot deliver contact emails without a separately hosted API.
+## Routing and rendering
 
-Set server-only `RESEND_API_KEY` and `CONTACT_FROM_EMAIL` to a sender verified in Resend. `CONTACT_TO_EMAIL` defaults to `help@gothamcoders.com`. Set `SITE_ORIGIN` to the exact website origin, including `https://`; it defaults to `https://gothamcoders.com`. Preview deployments need their own matching origin. See `.env.example`.
+Public routes are native App Router routes. Metadata is generated server-side and unknown routes return a real HTTP 404 through `app/not-found.tsx`.
 
-Before enabling public delivery, configure edge rate limiting or bot protection for POST `/api/send-email`. The origin check rejects unrelated browser origins but is not authentication or a distributed spam limit. Confirm a real message reaches the inbox after deployment; provider acceptance does not prove inbox delivery. Tests do not send emails.
+The ERP and G-HIMS sandboxes are Client Components because they maintain interactive browser-only simulation state. Their surrounding route boundaries and metadata remain server-rendered.
 
-Do not put Gemini, Resend or other secret keys in Vite defines or `VITE_*` variables. Public Firebase variables are optional; the marketing simulations do not connect to Firebase and their sample state disappears on navigation or reload.
+## Contact delivery
 
-Unknown routes show a not-found page; because this is a static SPA, the host still returns its fallback document with HTTP 200. For true HTTP 404 responses and server-rendered SEO, introduce a server-rendered routing layer.
+POST `/api/send-email` is implemented as a Next.js Node.js Route Handler.
+
+Set these server-only variables:
+
+- `RESEND_API_KEY`
+- `CONTACT_FROM_EMAIL`
+- `CONTACT_TO_EMAIL` (defaults to `help@gothamcoders.com`)
+- `SITE_ORIGIN` (defaults to `https://gothamcoders.com`)
+
+The handler validates input, rejects unrelated browser origins, disables caching, and never exposes Resend credentials to the client.
+
+Before enabling high-volume public traffic, configure Vercel Firewall / rate limiting or another edge abuse-control layer for the contact endpoint.
+
+## Deployment
+
+The repository is structured for native Vercel Next.js detection. No SPA rewrite or custom Express/Vite server is required.
