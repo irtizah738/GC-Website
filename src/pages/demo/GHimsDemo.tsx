@@ -1,3 +1,5 @@
+'use client';
+
 import { useMemo, useState } from 'react';
 import {
   Activity,
@@ -20,7 +22,6 @@ import {
   UserRound,
   UsersRound,
 } from 'lucide-react';
-import { SEO } from '../../components/SEO';
 import { cn } from '../../lib/utils';
 
 type Role = 'doctor' | 'nurse' | 'diagnostics' | 'pharmacy' | 'billing';
@@ -259,11 +260,6 @@ export default function GHimsDemo() {
 
   return (
     <div className="min-h-screen bg-zinc-950 pt-16 text-zinc-100">
-      <SEO
-        title="G-HIMS Interactive Demo | Gotham Coders"
-        description="Explore a synthetic browser-based G-HIMS workflow across OPD, diagnostics, pharmacy, billing, and audit."
-        pathname="/demo/g-hims"
-      />
 
       <div className="border-b border-zinc-800 bg-black/40">
         <div className="mx-auto flex max-w-[1500px] flex-col gap-4 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
