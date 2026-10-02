@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from '../components/AppLink';
 import {
   ArrowRight,
   Building2,
@@ -7,7 +7,6 @@ import {
   ShieldCheck,
   Stethoscope,
 } from 'lucide-react';
-import { SEO } from '../components/SEO';
 import Section from '../components/Section';
 import { industries } from '../data/industries';
 
@@ -21,11 +20,6 @@ const iconMap: Record<string, typeof Stethoscope> = {
 export default function Industries() {
   return (
     <div className="pt-16">
-      <SEO
-        title="Industries & Operational Environments | Gotham Coders"
-        description="Gotham Coders designs enterprise systems for healthcare, manufacturing, multi-site organizations, and regulated operational environments."
-        pathname="/industries"
-      />
 
       <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
         <div className="max-w-4xl">
