@@ -3,37 +3,37 @@ import { EngineeringPrinciple } from '../types';
 export const principles: EngineeringPrinciple[] = [
   {
     id: 'event-driven-architecture',
-    title: 'Event-Driven Architecture',
-    description: 'We build systems where components communicate via asynchronous events rather than synchronous requests.',
-    whyItMatters: 'This decouples business domains, allowing them to scale independently and ensures that state changes are recorded and propagated reliably, even during partial system failures.',
+    title: 'Event-Driven Where History Matters',
+    description: 'We use business events to preserve meaningful state transitions and decouple downstream consequences from the command that caused them.',
+    whyItMatters: 'ERP and healthcare workflows often need to explain not only the current state, but how the system arrived there. Events provide a durable boundary for projections, integrations, replay, and audit.',
     icon: 'Zap'
   },
   {
     id: 'offline-first-design',
-    title: 'Offline-First Design',
-    description: 'Our systems are designed to work seamlessly without an internet connection, synchronizing data when connectivity is restored.',
-    whyItMatters: 'In healthcare and industrial environments, connectivity is often intermittent. Offline-first ensures that mission-critical workflows are never interrupted by network issues.',
+    title: 'Offline-First Where Downtime Is Normal',
+    description: 'Workflows that must continue without reliable connectivity are designed around local durability, explicit synchronization, retries, and reconciliation.',
+    whyItMatters: 'Offline support is not a service worker checkbox. It changes command identity, conflict handling, device trust, retry semantics, and the user experience around pending work.',
     icon: 'WifiOff'
   },
   {
     id: 'data-integrity-auditability',
-    title: 'Data Integrity & Auditability',
-    description: 'Every transaction and state change is recorded in an immutable audit log.',
-    whyItMatters: 'For ERP and HMIS systems, data integrity is paramount. Auditability ensures regulatory compliance and provides a clear history of every action taken within the system.',
+    title: 'Data Integrity Before Convenience',
+    description: 'Critical changes are validated, attributable, and designed so historical evidence is not silently overwritten.',
+    whyItMatters: 'Operational systems become dangerous when a convenient update destroys provenance. Auditability improves recovery, reconciliation, accountability, and the ability to explain system behavior.',
     icon: 'ShieldCheck'
   },
   {
     id: 'multi-tenant-system-design',
-    title: 'Multi-Tenant System Design',
-    description: 'We design architectures that securely isolate data and resources for multiple organizations on a shared infrastructure.',
-    whyItMatters: 'Multi-tenancy allows for efficient resource utilization and easier maintenance while ensuring that each tenant\'s data remains private and secure.',
+    title: 'Tenant Isolation Is a Trust Boundary',
+    description: 'Tenant, site, department, and role context are enforced as part of authorization and data access rather than inferred from the visible screen.',
+    whyItMatters: 'A multi-tenant system must assume a hostile or misconfigured client. The backend must independently prove which organization and authority context applies to each sensitive command.',
     icon: 'Users'
   },
   {
     id: 'security-first-backend-validation',
-    title: 'Security-First Backend Validation',
-    description: 'We implement strict schema validation and role-based access control at the API layer.',
-    whyItMatters: 'By validating every request before it reaches the core business logic, we prevent a wide range of security vulnerabilities and ensure that only authorized users can perform sensitive actions.',
+    title: 'Commands Fail Closed at Trusted Boundaries',
+    description: 'Schemas, permissions, credentials, invariants, and idempotency are enforced before business state changes.',
+    whyItMatters: 'Frontend validation improves usability but cannot establish authority. Server-side command handling is where security, integrity, duplicate prevention, and domain invariants must converge.',
     icon: 'Lock'
   }
 ];

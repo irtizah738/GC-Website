@@ -1,210 +1,182 @@
-import { SEO } from '../components/SEO';
-import { motion } from 'motion/react';
-import { ArrowRight, CheckCircle2, Cpu, Database, Globe, ShieldCheck, Zap } from 'lucide-react';
-import Section from '../components/Section';
-import { SectionReveal } from '../components/animations/SectionReveal';
-import { InteractiveCard } from '../components/animations/InteractiveCard';
-import { Heading } from '../components/ui/Heading';
-import { Text } from '../components/ui/Text';
 import { Link } from 'react-router-dom';
-
-const values = [
-  {
-    title: 'Engineering First',
-    description: 'We prioritize technical excellence and long-term scalability over short-term shortcuts.',
-    icon: Cpu
-  },
-  {
-    title: 'Outcome-Driven',
-    description: 'Our success is measured by the real-world impact and ROI we deliver for our clients.',
-    icon: Zap
-  },
-  {
-    title: 'Security-Centric',
-    description: 'We build security into every layer of the architecture, from data storage to user access.',
-    icon: ShieldCheck
-  },
-  {
-    title: 'Transparent Collaboration',
-    description: 'We work as an extension of your team, providing full visibility into our process and progress.',
-    icon: Globe
-  }
-];
+import {
+  ArrowRight,
+  Check,
+  GitBranch,
+  ShieldCheck,
+  Stethoscope,
+  Workflow,
+} from 'lucide-react';
+import { SEO } from '../components/SEO';
+import Section from '../components/Section';
 
 const team = [
-  { 
-    name: 'Irtiza Haider', 
-    role: 'Founder & CEO', 
+  {
+    name: 'Irtiza Haider',
+    role: 'Founder & CEO',
+    focus: 'Product strategy, enterprise architecture, ERP/HMIS systems, and go-to-market.',
     image: 'https://res.cloudinary.com/dzeiyvngc/image/upload/v1749992405/IMG-20230106-WA0013_lixkqr.jpg',
-    bio: 'Digital Research and Strategy Expert, ERP designer & developer. Inventor of G-HIMS and G-ERP. Background: Nuxt/Node.js/AI Expert'
   },
-  { 
-    name: 'Areeba Batool', 
-    role: 'Head Of Engineering', 
+  {
+    name: 'Areeba Batool',
+    role: 'Head of Engineering',
+    focus: 'Data engineering, backend systems, automated pipelines, and AI/ML data workflows.',
     image: 'https://res.cloudinary.com/dzeiyvngc/image/upload/v1775505240/areeba_lkhbqh.png',
-    bio: 'Data Engineering — ETL, automated pipelines, AI/ML, data processing. Background: LLM dataset processing. Data Engineer in scraping, backend, and dataset automation.'
   },
-  { 
-    name: 'Ufaq Waqas', 
-    role: 'Chief Medical Officer', 
+  {
+    name: 'Ufaq Waqas',
+    role: 'Chief Medical Officer',
+    focus: 'Clinical workflow design, hospital operations, and healthcare product validation.',
     image: 'https://res.cloudinary.com/dzeiyvngc/image/upload/v1750199539/download_lckqja.png',
-    bio: 'Director, Govt. Gynae Hospital. Operational lead for G-HIMS pilot deployment and clinical workflow design. Background: MBBS — University of Health Sciences. Pharm D — University of Lahore.'
   },
+];
+
+const operatingPrinciples = [
+  'Start with workflow, authority, and failure modes before selecting implementation patterns.',
+  'Treat critical data as evidence: attributable, recoverable, and hard to silently overwrite.',
+  'Keep product claims proportional to deployment and validation evidence.',
+  'Prefer systems that operators can understand during exceptions, not only on the happy path.',
 ];
 
 export default function About() {
   return (
-    <div className="pt-20">
-      <SEO 
-        title="About Us | Gotham Coders"
-        description="Learn about Gotham Coders' mission to build resilient, scalable, and secure software architecture for modern enterprises."
+    <div className="pt-16">
+      <SEO
+        title="About Gotham Coders | Enterprise Systems Engineering"
+        description="Gotham Coders builds ERP, healthcare, and domain-specific enterprise systems around operational reality, data integrity, and resilient architecture."
         pathname="/about"
       />
 
-      {/* Hero */}
-      <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-zinc opacity-20 -z-10" />
-        <div className="max-w-4xl space-y-8">
-          <Text variant="caption">Our Story // Mission</Text>
-          <Heading level={1}>
-            Built by <span className="text-zinc-400 italic font-light">Engineers</span> for Modern Enterprises
-          </Heading>
-          <Text className="text-xl">
-            Gotham Coders was founded with a single mission: to provide the highest level 
-            of technical expertise for companies building mission-critical systems.
-          </Text>
+      <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
+        <div className="max-w-4xl">
+          <p className="text-sm font-semibold text-zinc-500">Company</p>
+          <h1 className="mt-5 text-5xl font-semibold tracking-[-0.045em] text-white md:text-7xl">
+            We build operational systems for environments where software cannot be casual.
+          </h1>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-zinc-400">
+            Gotham Coders focuses on enterprise software that coordinates people, money, inventory, clinical activity, approvals, and critical records across real operational constraints.
+          </p>
         </div>
       </Section>
 
-      {/* Mission & Philosophy */}
-      <Section>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <Text variant="caption">Our Mission</Text>
-              <Heading level={2}>
-                To empower organizations through resilient, scalable, and secure software architecture.
-              </Heading>
-            </div>
-            <Text className="text-lg">
-              We believe that the best software is built on a foundation of clear architecture, 
-              robust security, and a deep understanding of the business problem. Our team 
-              consists of senior engineers and architects who have built systems for 
-              global enterprises, healthcare providers, and high-growth startups.
-            </Text>
-            <div className="space-y-6">
-              <Text variant="caption">Our Philosophy</Text>
-              <ul className="space-y-4">
-                {[
-                  'No technical debt by design',
-                  'Security as a first-class citizen',
-                  'Scalability is not an afterthought',
-                  'Clear, maintainable, and documented code'
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full bg-zinc-900 dark:bg-white flex items-center justify-center">
-                      <CheckCircle2 className="w-3 h-3 text-white dark:text-zinc-900" />
-                    </div>
-                    <Text variant="small" className="text-zinc-900 dark:text-white font-medium">{item}</Text>
-                  </li>
-                ))}
-              </ul>
-            </div>
+      <Section className="border-b border-zinc-800">
+        <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div>
+            <p className="text-sm font-semibold text-zinc-500">Why we exist</p>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+              The difficult part of enterprise software is not drawing the screen.
+            </h2>
+            <p className="mt-5 text-base leading-7 text-zinc-400">
+              The difficult part is deciding what happens when two departments disagree, a device goes offline, a user retries the same command, an integration fails halfway through, or an auditor asks why a critical record changed.
+            </p>
           </div>
-          <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-zinc-100 dark:bg-zinc-900">
-            <img
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200&h=1500"
-              alt="Gotham Coders Office"
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-              loading="lazy"
-              decoding="async"
-            />
-            <div className="absolute inset-0 bg-zinc-900/10" />
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            {[
+              {
+                icon: Workflow,
+                title: 'Operational modeling',
+                copy: 'We map the real workflow, including exceptions, partial completion, authority boundaries, and recovery paths.',
+              },
+              {
+                icon: GitBranch,
+                title: 'Event-driven thinking',
+                copy: 'Important business facts can drive downstream read models and integrations without losing the history of change.',
+              },
+              {
+                icon: ShieldCheck,
+                title: 'Trusted boundaries',
+                copy: 'Sensitive commands are validated where authority can actually be enforced—not only in the browser.',
+              },
+              {
+                icon: Stethoscope,
+                title: 'Domain collaboration',
+                copy: 'Healthcare and other high-stakes domains require engineering decisions to be tested against operational expertise.',
+              },
+            ].map(({ icon: Icon, title, copy }) => (
+              <div key={title} className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6">
+                <Icon className="h-5 w-5 text-zinc-500" />
+                <h3 className="mt-5 text-base font-semibold text-white">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-500">{copy}</p>
+              </div>
+            ))}
           </div>
         </div>
       </Section>
 
-      {/* Values */}
-      <Section variant="muted" className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
-        <div className="text-center space-y-4 mb-20">
-          <Text variant="caption">Our Values</Text>
-          <Heading level={2}>What Drives Us</Heading>
+      <Section className="border-b border-zinc-800 bg-black">
+        <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <p className="text-sm font-semibold text-zinc-500">How we work</p>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+              Architecture is a sequence of explicit trade-offs.
+            </h2>
+          </div>
+
+          <div className="space-y-3">
+            {operatingPrinciples.map((item, index) => (
+              <div key={item} className="grid gap-3 rounded-2xl border border-zinc-800 bg-zinc-950 p-5 sm:grid-cols-[36px_1fr]">
+                <span className="grid h-8 w-8 place-items-center rounded-lg bg-zinc-900 text-[10px] font-semibold text-zinc-500">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <p className="text-sm leading-7 text-zinc-300">{item}</p>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {values.map((value) => (
-            <div
-              key={value.title}
-              className="group bg-white dark:bg-zinc-950 p-10 rounded-xl border border-zinc-200 dark:border-zinc-900 space-y-8 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-            >
-              <div className="w-14 h-14 bg-zinc-900 dark:bg-white rounded-lg flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                <value.icon className="w-7 h-7 text-white dark:text-zinc-900" />
+      </Section>
+
+      <Section className="border-b border-zinc-800">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold text-zinc-500">Leadership</p>
+          <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+            Product, engineering, and domain expertise in the same room.
+          </h2>
+          <p className="mt-5 text-base leading-7 text-zinc-400">
+            Our leadership structure reflects the systems we build: product decisions, technical architecture, and domain reality need to challenge one another early.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {team.map((member) => (
+            <article key={member.name} className="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40">
+              <div className="aspect-[4/3] overflow-hidden bg-zinc-900">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="h-full w-full object-cover grayscale"
+                  loading="lazy"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
+                />
               </div>
-              <div className="space-y-4">
-                <Heading level={3}>{value.title}</Heading>
-                <Text variant="small">
-                  {value.description}
-                </Text>
+              <div className="p-6">
+                <h3 className="text-lg font-semibold text-white">{member.name}</h3>
+                <p className="mt-1 text-sm font-medium text-zinc-500">{member.role}</p>
+                <p className="mt-4 text-sm leading-6 text-zinc-400">{member.focus}</p>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </Section>
 
-      {/* Team Section */}
-      <Section className="border-b border-zinc-100 dark:border-zinc-900">
-        <SectionReveal className="space-y-16">
-          <div className="text-center space-y-4">
-            <Text variant="caption">Our Leadership</Text>
-            <Heading level={2}>The Engineering Mindset</Heading>
-            <Text className="text-lg max-w-2xl mx-auto">
-              Our team is composed of systems architects and engineers who thrive on complexity.
-            </Text>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {team.map((member) => (
-              <InteractiveCard key={member.name} className="p-8 space-y-6">
-                <div className="relative aspect-square rounded-2xl overflow-hidden bg-zinc-100 dark:bg-zinc-800 shadow-xl">
-                  <img 
-                    src={member.image} 
-                    alt={`Portrait of ${member.name}, ${member.role}`}
-                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-                    referrerPolicy="no-referrer"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Heading level={4}>{member.name}</Heading>
-                  <Text variant="caption" className="text-emerald-500">{member.role}</Text>
-                </div>
-                <Text variant="small">{member.bio}</Text>
-              </InteractiveCard>
-            ))}
-          </div>
-        </SectionReveal>
-      </Section>
-
-      {/* Final CTA */}
-      <Section variant="dark" className="text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
-        <div className="max-w-4xl mx-auto space-y-12">
-          <Heading level={1}>
-            Ready to <span className="text-zinc-400 italic font-light">Partner</span> with Us?
-          </Heading>
-          <Text className="text-xl max-w-2xl mx-auto">
-            Let's build the future of your organization together.
-          </Text>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-3 px-12 py-6 bg-white text-zinc-900 rounded-full font-bold text-xl hover:scale-[1.05] transition-transform shadow-2xl"
-          >
-            Start a Technical Discussion
-            <ArrowRight className="w-6 h-6" />
-          </Link>
+      <Section className="text-center">
+        <div className="mx-auto grid h-9 w-9 place-items-center rounded-full bg-emerald-500/10 text-emerald-400">
+          <Check className="h-4 w-4" />
         </div>
+        <h2 className="mx-auto mt-6 max-w-3xl text-4xl font-semibold tracking-[-0.035em] text-white md:text-6xl">
+          Bring us the workflow that your current software cannot model safely.
+        </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-zinc-400">
+          We can start from the operational problem, map the authority and data boundaries, and determine whether a custom system is justified.
+        </p>
+        <Link
+          to="/contact"
+          className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+        >
+          Start the discussion
+          <ArrowRight className="h-4 w-4" />
+        </Link>
       </Section>
     </div>
   );

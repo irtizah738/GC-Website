@@ -1,154 +1,134 @@
-import { SEO } from '../components/SEO';
-import { Helmet } from 'react-helmet-async';
-import { ArrowRight, CheckCircle2, Stethoscope, Activity, Trophy, Factory, Microscope } from 'lucide-react';
-import Section from '../components/Section';
-import { Heading } from '../components/ui/Heading';
-import { Text } from '../components/ui/Text';
-import { industries } from '../data/industries';
 import { Link } from 'react-router-dom';
-
-const iconMap: Record<string, any> = {
-  Stethoscope,
-  Activity,
-  Trophy,
+import {
+  ArrowRight,
+  Building2,
+  Check,
   Factory,
-  Microscope,
+  ShieldCheck,
+  Stethoscope,
+} from 'lucide-react';
+import { SEO } from '../components/SEO';
+import Section from '../components/Section';
+import { industries } from '../data/industries';
+
+const iconMap: Record<string, typeof Stethoscope> = {
+  Stethoscope,
+  Factory,
+  Building2,
+  ShieldCheck,
 };
 
 export default function Industries() {
   return (
-    <div className="pt-20">
-      <SEO 
-        title="Industries We Serve | Gotham Coders"
-        description="Healthcare, manufacturing, supply chain, and research industries. Deep domain expertise in mission-critical system development."
+    <div className="pt-16">
+      <SEO
+        title="Industries & Operational Environments | Gotham Coders"
+        description="Gotham Coders designs enterprise systems for healthcare, manufacturing, multi-site organizations, and regulated operational environments."
         pathname="/industries"
       />
 
-      {/* Hero */}
-      <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-zinc opacity-20 -z-10" />
-        <div className="max-w-4xl space-y-8">
-          <Text variant="caption">Domain Expertise // Verticals</Text>
-          <Heading level={1}>
-            Deep Domain <span className="text-zinc-400 italic font-light">Expertise</span>
-          </Heading>
-          <Text className="text-xl">
-            We understand the unique constraints and data complexities of high-stakes industries. 
-            Our systems are built to handle the most demanding workflows.
-          </Text>
+      <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
+        <div className="max-w-4xl">
+          <p className="text-sm font-semibold text-zinc-500">Operational environments</p>
+          <h1 className="mt-5 text-5xl font-semibold tracking-[-0.045em] text-white md:text-7xl">
+            Different industries fail in different ways. The architecture should know the difference.
+          </h1>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-zinc-400">
+            We focus on environments where workflows cross teams, authority matters, connectivity cannot be assumed, and critical records need a defensible history.
+          </p>
         </div>
       </Section>
 
-      {/* Industries List */}
       {industries.map((industry, index) => {
-        const Icon = iconMap[industry.icon];
+        const Icon = iconMap[industry.icon] ?? ShieldCheck;
         return (
           <Section
             key={industry.id}
             id={industry.id}
-            variant={index % 2 === 0 ? 'default' : 'muted'}
-            className="border-b border-zinc-100 dark:border-zinc-900 last:border-0"
+            className="border-b border-zinc-800"
+            variant={index % 2 ? 'muted' : 'default'}
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-              <div className="space-y-10">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3 text-zinc-500">
-                    <div className="w-10 h-10 bg-zinc-900 dark:bg-white rounded-lg flex items-center justify-center shadow-lg">
-                      <Icon className="w-6 h-6 text-white dark:text-zinc-900" />
-                    </div>
-                    <Text variant="caption">0{index + 1} // {industry.title}</Text>
-                  </div>
-                  <Heading level={2}>{industry.title}</Heading>
+            <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+              <div className="lg:sticky lg:top-24">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900">
+                  <Icon className="h-5 w-5 text-zinc-300" />
                 </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-4">
-                    <Text variant="caption">Industry Challenges</Text>
-                    <ul className="space-y-3">
-                      {industry.challenges.map((challenge) => (
-                        <li key={challenge} className="flex items-start gap-3">
-                          <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5 shrink-0" />
-                          <Text variant="small">{challenge}</Text>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="space-y-4">
-                    <Text variant="caption">Typical Workflows</Text>
-                    <ul className="space-y-3">
-                      {industry.workflows.map((workflow) => (
-                        <li key={workflow} className="flex items-start gap-3">
-                          <div className="w-1.5 h-1.5 rounded-full bg-zinc-400 mt-1.5 shrink-0" />
-                          <Text variant="small">{workflow}</Text>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-8 lg:sticky lg:top-32">
-                <div className="p-10 bg-zinc-950 border border-zinc-800 text-white rounded-xl space-y-8 relative overflow-hidden group shadow-2xl">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-zinc-700 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <Text variant="caption">Data Complexity</Text>
-                      <div className="flex gap-1">
-                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                        <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
-                      </div>
-                    </div>
-                    <Text variant="small">
-                      {industry.dataComplexity}
-                    </Text>
-                  </div>
-                  <div className="space-y-6 pt-8 border-t border-zinc-900">
-                    <Text variant="caption">System Requirements</Text>
-                    <ul className="grid grid-cols-1 gap-4">
-                      {industry.systemRequirements.map((req) => (
-                        <li key={req} className="flex items-center gap-3">
-                          <CheckCircle2 className="w-4 h-4 text-zinc-600 shrink-0" />
-                          <Text variant="small" className="font-medium tracking-tight">{req}</Text>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="pt-4 text-right">
-                    <span className="text-[10px] font-mono text-zinc-800 uppercase tracking-widest">IND_REF_{industry.id.toUpperCase()}</span>
-                  </div>
-                </div>
-                
+                <p className="mt-7 text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">
+                  Environment {String(index + 1).padStart(2, '0')}
+                </p>
+                <h2 className="mt-3 text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+                  {industry.title}
+                </h2>
+                <p className="mt-5 text-sm leading-7 text-zinc-400">{industry.dataComplexity}</p>
                 <Link
                   to="/contact"
-                  className="w-full py-4 bg-zinc-100 dark:bg-zinc-900 text-zinc-900 dark:text-white rounded-2xl font-bold text-center hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors flex items-center justify-center gap-2"
+                  className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-zinc-300"
                 >
-                  Discuss Your {industry.title} System
-                  <ArrowRight className="w-5 h-5" />
+                  Discuss this environment
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
+              </div>
+
+              <div className="grid gap-4">
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">Operational pressure</p>
+                    <div className="mt-5 space-y-4">
+                      {industry.challenges.map((challenge) => (
+                        <div key={challenge} className="flex gap-3">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-600" />
+                          <p className="text-sm leading-6 text-zinc-300">{challenge}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">Connected workflows</p>
+                    <div className="mt-5 space-y-4">
+                      {industry.workflows.map((workflow) => (
+                        <div key={workflow} className="flex gap-3">
+                          <ArrowRight className="mt-1 h-3.5 w-3.5 shrink-0 text-zinc-600" />
+                          <p className="text-sm leading-6 text-zinc-300">{workflow}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-zinc-800 bg-black p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">Architecture implications</p>
+                  <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                    {industry.systemRequirements.map((requirement) => (
+                      <div key={requirement} className="flex gap-3 rounded-xl border border-zinc-800 bg-zinc-950 p-4">
+                        <div className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-emerald-500/10 text-emerald-400">
+                          <Check className="h-3 w-3" />
+                        </div>
+                        <p className="text-sm leading-6 text-zinc-300">{requirement}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </Section>
         );
       })}
 
-      {/* Final CTA */}
-      <Section variant="dark" className="text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
-        <div className="max-w-4xl mx-auto space-y-12">
-          <Heading level={1}>
-            Deep Domain <span className="text-zinc-400 italic font-light">Knowledge</span> Matters
-          </Heading>
-          <Text className="text-xl max-w-2xl mx-auto">
-            Let's build a system that truly understands your industry.
-          </Text>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-3 px-12 py-6 bg-white text-zinc-900 rounded-full font-bold text-xl hover:scale-[1.05] transition-transform shadow-2xl"
-          >
-            Start Your Industry Project
-            <ArrowRight className="w-6 h-6" />
-          </Link>
-        </div>
+      <Section className="text-center">
+        <h2 className="mx-auto max-w-3xl text-4xl font-semibold tracking-[-0.035em] text-white md:text-6xl">
+          Start with the operational constraints, then choose the architecture.
+        </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-zinc-400">
+          We would rather understand where your workflows break, who has authority, and what must survive failure than begin with a predetermined stack.
+        </p>
+        <Link
+          to="/contact"
+          className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+        >
+          Map your workflow with us
+          <ArrowRight className="h-4 w-4" />
+        </Link>
       </Section>
     </div>
   );

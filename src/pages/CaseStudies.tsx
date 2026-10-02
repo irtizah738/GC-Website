@@ -1,169 +1,131 @@
-import { SEO } from '../components/SEO';
-import { Helmet } from 'react-helmet-async';
-import { ArrowRight, CheckCircle2, ShieldCheck, Zap } from 'lucide-react';
-import Section from '../components/Section';
-import { Heading } from '../components/ui/Heading';
-import { Text } from '../components/ui/Text';
-import { caseStudies } from '../data/case-studies';
 import { Link } from 'react-router-dom';
+import {
+  ArrowRight,
+  Boxes,
+  Check,
+  GitBranch,
+  ShieldCheck,
+  Stethoscope,
+} from 'lucide-react';
+import { SEO } from '../components/SEO';
+import Section from '../components/Section';
+import { caseStudies } from '../data/case-studies';
+
+const studyIcons = [Boxes, Stethoscope];
 
 export default function CaseStudies() {
   return (
-    <div className="pt-20">
-      <SEO 
-        title="Case Studies | Gotham Coders"
-        description="Explore our portfolio of mission-critical systems, including ERP, HMIS, and custom enterprise platforms."
+    <div className="pt-16">
+      <SEO
+        title="Product Engineering Studies | Gotham Coders"
+        description="Transparent engineering studies showing how Gotham Coders approaches ERP, healthcare, workflow, auditability, and enterprise product design."
         pathname="/case-studies"
       />
 
-      {/* Hero */}
-      <Section className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-zinc opacity-20 -z-10" />
-        <div className="max-w-4xl space-y-8">
-          <Text variant="caption">Portfolio // Case Studies</Text>
-          <Heading level={1}>
-            Proven <span className="text-zinc-400 italic font-light">Systems</span>
-          </Heading>
-          <Text className="text-xl">
-            Detailed breakdowns of how we architected and delivered mission-critical 
-            platforms for our clients.
-          </Text>
+      <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
+        <div className="max-w-4xl">
+          <p className="text-sm font-semibold text-zinc-500">Evidence & product studies</p>
+          <h1 className="mt-5 text-5xl font-semibold tracking-[-0.045em] text-white md:text-7xl">
+            Show the work. Label the evidence correctly.
+          </h1>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-zinc-400">
+            These are product engineering studies built from Gotham Coders-owned systems and public simulations. We distinguish demos, R&D, and production evidence instead of turning prototypes into customer claims.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-3 sm:grid-cols-3">
+          {[
+            ['Product study', 'Architecture and workflow decisions are documented.'],
+            ['Public simulation', 'Interactive demos use synthetic sample data.'],
+            ['Verified claim only', 'Customer or performance claims require evidence before publication.'],
+          ].map(([title, copy]) => (
+            <div key={title} className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5">
+              <p className="text-sm font-semibold text-white">{title}</p>
+              <p className="mt-2 text-xs leading-5 text-zinc-500">{copy}</p>
+            </div>
+          ))}
         </div>
       </Section>
 
-      {/* Case Studies List */}
-      {caseStudies.map((study, index) => (
-        <Section
-          key={study.id}
-          id={study.id}
-          variant={index % 2 === 0 ? 'default' : 'muted'}
-          className="border-b border-zinc-100 dark:border-zinc-900 last:border-0"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-            <div className="space-y-10">
+      {caseStudies.map((study, index) => {
+        const Icon = studyIcons[index] ?? GitBranch;
+        return (
+          <Section
+            key={study.id}
+            id={study.id}
+            className="border-b border-zinc-800"
+            variant={index % 2 ? 'muted' : 'default'}
+          >
+            <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+              <div className="lg:sticky lg:top-24">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900">
+                  <Icon className="h-5 w-5 text-zinc-300" />
+                </div>
+                <p className="mt-7 text-sm font-semibold text-zinc-500">{study.client}</p>
+                <h2 className="mt-3 text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+                  {study.title}
+                </h2>
+                <p className="mt-4 text-sm font-medium text-zinc-500">{study.industry}</p>
+              </div>
+
               <div className="space-y-4">
-                <div className="flex items-center gap-4 text-zinc-500">
-                  <Text variant="caption">{study.client}</Text>
-                  <div className="h-px w-8 bg-zinc-200 dark:bg-zinc-800" />
-                  <Text variant="caption">{study.industry}</Text>
-                </div>
-                <Heading level={2}>{study.title}</Heading>
-              </div>
-
-              <div className="space-y-6">
-                <div className="space-y-2">
-                  <Text variant="caption">Problem Context</Text>
-                  <Text>
-                    {study.problemContext}
-                  </Text>
-                </div>
-                <div className="space-y-2">
-                  <Text variant="caption">System Complexity</Text>
-                  <Text>
-                    {study.systemComplexity}
-                  </Text>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-4 p-6 bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-2xl">
-                  <Heading level={4} className="flex items-center gap-2 uppercase tracking-widest text-xs">
-                    <Zap className="w-4 h-4 text-yellow-500" />
-                    Architecture Decisions
-                  </Heading>
-                  <Text variant="small">
-                    {study.architectureDecisions}
-                  </Text>
-                </div>
-                <div className="space-y-4 p-6 bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 rounded-2xl">
-                  <Heading level={4} className="flex items-center gap-2 uppercase tracking-widest text-xs">
-                    <ShieldCheck className="w-4 h-4 text-blue-500" />
-                    Trade-offs
-                  </Heading>
-                  <Text variant="small">
-                    {study.tradeoffs}
-                  </Text>
-                </div>
-              </div>
-
-              <div className="p-10 bg-zinc-950 border border-zinc-800 text-white rounded-xl space-y-8 relative overflow-hidden group shadow-2xl">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="flex items-center justify-between">
-                  <Heading level={3} className="flex items-center gap-3 text-white">
-                    <CheckCircle2 className="w-6 h-6 text-emerald-500" />
-                    System Outcome
-                  </Heading>
-                  <div className="flex gap-1">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <div className="w-1.5 h-1.5 rounded-full bg-zinc-800" />
+                {[
+                  ['Problem context', study.problemContext],
+                  ['System complexity', study.systemComplexity],
+                  ['Architecture decisions', study.architectureDecisions],
+                  ['Trade-offs', study.tradeoffs],
+                ].map(([label, copy]) => (
+                  <div key={label} className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">{label}</p>
+                    <p className="mt-3 text-sm leading-7 text-zinc-300">{copy}</p>
                   </div>
-                </div>
-                <Text variant="small" className="text-zinc-500">
-                  {study.outcome}
-                </Text>
-                <div className="pt-8 border-t border-zinc-900 flex items-center justify-between">
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-400">Project Validated</span>
-                  <span className="text-[10px] font-mono text-zinc-800 uppercase tracking-widest">CASE_REF_{study.id.toUpperCase()}</span>
-                </div>
-              </div>
-            </div>
+                ))}
 
-            <div className="space-y-8 lg:sticky lg:top-32">
-              <div className="aspect-[16/10] overflow-hidden rounded-3xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800">
-                <img
-                  src={study.imageUrl}
-                  alt={`Interface preview of the ${study.title} system`}
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              
-              <div className="space-y-4">
-                <Text variant="caption">Technology Stack</Text>
-                <div className="flex flex-wrap gap-2">
+                <div className="rounded-2xl border border-emerald-900/50 bg-emerald-950/15 p-6">
+                  <div className="flex items-center gap-2">
+                    <Check className="h-4 w-4 text-emerald-400" />
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-emerald-400">Current evidence</p>
+                  </div>
+                  <p className="mt-3 text-sm leading-7 text-zinc-300">{study.outcome}</p>
+                </div>
+
+                <div className="flex flex-wrap gap-2 pt-2">
                   {study.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 rounded-full text-xs font-medium border border-zinc-200 dark:border-zinc-800"
-                    >
+                    <span key={tech} className="rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1.5 text-xs text-zinc-400">
                       {tech}
                     </span>
                   ))}
                 </div>
+
+                <div className="flex flex-col gap-3 pt-4 sm:flex-row">
+                  <Link
+                    to={study.id.startsWith('gc-erp') ? '/demo/gc-erp' : '/demo/g-hims'}
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+                  >
+                    Open product demo
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-700 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-900"
+                  >
+                    Discuss a similar system
+                  </Link>
+                </div>
               </div>
-
-              <Link
-                to="/contact"
-                className="w-full py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-2xl font-bold text-center hover:scale-[1.02] transition-transform flex items-center justify-center gap-2"
-              >
-                Discuss a Similar Project
-                <ArrowRight className="w-5 h-5" />
-              </Link>
             </div>
-          </div>
-        </Section>
-      ))}
+          </Section>
+        );
+      })}
 
-      {/* Final CTA */}
-      <Section variant="dark" className="text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
-        <div className="max-w-4xl mx-auto space-y-12">
-          <Heading level={1}>
-            Your System Could <span className="text-zinc-400 italic font-light">Be Next</span>
-          </Heading>
-          <Text className="text-xl max-w-2xl mx-auto">
-            Let's build a system that delivers real business outcomes.
-          </Text>
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-3 px-12 py-6 bg-white text-zinc-900 rounded-full font-bold text-xl hover:scale-[1.05] transition-transform shadow-2xl"
-          >
-            Start Your Case Study
-            <ArrowRight className="w-6 h-6" />
-          </Link>
-        </div>
+      <Section className="text-center">
+        <ShieldCheck className="mx-auto h-6 w-6 text-zinc-600" />
+        <h2 className="mx-auto mt-6 max-w-3xl text-4xl font-semibold tracking-[-0.035em] text-white md:text-6xl">
+          Customer proof should become stronger as evidence becomes stronger.
+        </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-zinc-400">
+          As deployments produce permissioned references, measured outcomes, and implementation evidence, this section can graduate from product studies to verified customer stories.
+        </p>
       </Section>
     </div>
   );

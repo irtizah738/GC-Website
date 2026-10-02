@@ -2,42 +2,29 @@ import { CaseStudy } from '../types';
 
 export const caseStudies: CaseStudy[] = [
   {
-    id: 'meditech-hmis',
-    title: 'Modernizing a Legacy HMIS for a Multi-Clinic Network',
-    client: 'MediTech Solutions',
-    industry: 'Healthcare & Hospitals',
-    problemContext: 'A 15-year-old Electronic Health Record system was causing frequent downtime, slow performance, and clinical errors due to its monolithic, on-premise architecture.',
-    systemComplexity: 'The system needed to synchronize patient records across 20+ clinics with intermittent connectivity, while maintaining strict HIPAA compliance and sub-second latency for clinical documentation.',
-    architectureDecisions: 'We moved to a microservices architecture with a React-based frontend and a Node.js/PostgreSQL backend. We implemented an event-driven synchronization layer using Kafka to handle clinic-to-cloud data propagation.',
-    tradeoffs: 'We chose eventual consistency for non-critical patient data to ensure high availability, while using distributed locking for critical clinical orders to prevent data corruption.',
-    outcome: 'Reduced patient check-in times by 40% and eliminated system downtime during peak clinical hours. The system now handles 50k+ patient records with 99.99% uptime.',
-    techStack: ['React', 'Node.js', 'PostgreSQL', 'Kafka', 'Docker', 'Terraform'],
-    imageUrl: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200&h=800'
+    id: 'gc-erp-product-study',
+    title: 'Designing a Connected ERP Workflow Across Operations and Finance',
+    client: 'Gotham Coders Product R&D',
+    industry: 'Manufacturing & Enterprise Operations',
+    problemContext: 'ERP credibility depends on more than isolated dashboards. A single business transaction needs to remain understandable as it crosses procurement, inventory, production, finance, and audit.',
+    systemComplexity: 'The product study models role-aware workspaces, operational exceptions, inventory state, purchasing approvals, financial consequences, and an event history without presenting a browser simulation as a production deployment.',
+    architectureDecisions: 'The public sandbox uses explicit business actions and a shared event timeline to demonstrate how domain state can remain connected. The marketing UI is intentionally separated from claims about production infrastructure.',
+    tradeoffs: 'The demo favors clarity and traceability over breadth. It does not attempt to reproduce every ERP module or persist demo state beyond the browser session.',
+    outcome: 'A working interactive GC-ERP sandbox now demonstrates a connected approval → receipt → financial posting → audit sequence and role-specific operational views.',
+    techStack: ['React', 'TypeScript', 'Event-driven modeling', 'Role-aware UI', 'Audit timeline'],
+    imageUrl: ''
   },
   {
-    id: 'supplyflow-erp',
-    title: 'Building an Audit-Safe ERP for Inventory Automation',
-    client: 'SupplyFlow Inc.',
-    industry: 'Manufacturing & Supply Chain',
-    problemContext: 'SupplyFlow needed a platform that could handle complex inventory workflows, integrate with multiple ERPs, and scale to thousands of tenants while being fully audit-safe.',
-    systemComplexity: 'The system required multi-tenant data isolation, real-time inventory synchronization across global warehouses, and an immutable audit log for every inventory transaction.',
-    architectureDecisions: 'We implemented a multi-tenant database strategy with row-level security and a central event bus for reliable message processing. Every state change is recorded in a ledger-style audit log.',
-    tradeoffs: 'We prioritized data integrity over write performance for inventory transactions, using synchronous database writes with strict validation at the API layer.',
-    outcome: 'Successfully launched and scaled to 500+ corporate clients within the first year, processing over 10M inventory events with zero data integrity issues.',
-    techStack: ['Next.js', 'Go', 'Kafka', 'MongoDB', 'Redis', 'Kubernetes'],
-    imageUrl: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200&h=800'
-  },
-  {
-    id: 'logistix-supply-chain',
-    title: 'Custom Supply Chain System for Global Logistics',
-    client: 'LogistiX Global',
-    industry: 'Manufacturing & Supply Chain',
-    problemContext: 'Manual tracking and fragmented data across different regions led to significant shipment delays and inventory inaccuracies in a global supply chain.',
-    systemComplexity: 'The system needed to track shipments in real-time across multiple time zones, optimize warehouse inventory, and provide offline-capable tools for warehouse staff.',
-    architectureDecisions: 'We built a modular monolith with a real-time event bus for global data synchronization and an offline-first mobile app for warehouse staff using CRDTs for conflict resolution.',
-    tradeoffs: 'We used a hybrid cloud/edge architecture to ensure that warehouse operations could continue even during internet outages, with data syncing back to the cloud when connectivity was restored.',
-    outcome: 'Improved inventory accuracy to 99.8% and reduced average shipment delays by 25% through real-time route optimization and automated tracking.',
-    techStack: ['React', 'Python', 'PostgreSQL', 'Redis', 'WebSockets', 'React Native'],
-    imageUrl: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200&h=800'
+    id: 'g-hims-product-study',
+    title: 'Modeling a Traceable Hospital Workflow from Registration to Billing',
+    client: 'Gotham Coders Product R&D',
+    industry: 'Healthcare & Hospital Operations',
+    problemContext: 'Hospital workflows cross clinical, diagnostic, pharmacy, billing, and operational boundaries. A useful system must preserve patient context while keeping actions attributable and role-aware.',
+    systemComplexity: 'The public product study must communicate clinical workflow relationships without pretending a marketing sandbox is a validated clinical deployment or replacing production safety controls.',
+    architectureDecisions: 'The demonstration is structured around an encounter timeline and explicit operational stages so patient identity, clinical actions, orders, fulfillment, billing, and audit events remain connected.',
+    tradeoffs: 'The public demo intentionally uses synthetic sample data and simplified clinical actions. It demonstrates interaction and system structure, not clinical decision support or production readiness.',
+    outcome: 'A transparent browser-based G-HIMS experience demonstrates how patient workflow events can be organized into a longitudinal, auditable operational view.',
+    techStack: ['React', 'TypeScript', 'Clinical workflow modeling', 'Event history', 'Role-aware UI'],
+    imageUrl: ''
   }
 ];
