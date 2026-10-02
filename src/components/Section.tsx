@@ -11,7 +11,6 @@ interface SectionProps {
   id?: string;
   variant?: 'default' | 'muted' | 'dark';
   animate?: boolean;
-  key?: string | number;
 }
 
 export default function Section({
