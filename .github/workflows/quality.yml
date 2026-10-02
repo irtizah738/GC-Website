@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 concurrency:
   group: website-quality-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -20,6 +23,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
 
       - name: Use Node.js
         uses: actions/setup-node@v4
@@ -29,12 +34,16 @@ jobs:
       - name: Regenerate dependency lock
         run: npm install --ignore-scripts --no-audit --no-fund
 
-      - name: Upload regenerated lockfile
-        uses: actions/upload-artifact@v4
-        with:
-          name: next-package-lock
-          path: package-lock.json
-          if-no-files-found: error
+      - name: Commit regenerated lockfile
+        if: github.event_name == 'pull_request'
+        run: |
+          if ! git diff --quiet -- package-lock.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add package-lock.json
+            git commit -m "chore: regenerate Next.js dependency lock"
+            git push origin HEAD:${{ github.head_ref }}
+          fi
 
       - name: Type check
         run: npm run lint
