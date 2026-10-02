@@ -11,8 +11,7 @@ export const caseStudies: CaseStudy[] = [
     architectureDecisions: 'The public sandbox uses explicit business actions and a shared event timeline to demonstrate how domain state can remain connected. The marketing UI is intentionally separated from claims about production infrastructure.',
     tradeoffs: 'The demo favors clarity and traceability over breadth. It does not attempt to reproduce every ERP module or persist demo state beyond the browser session.',
     outcome: 'A working interactive GC-ERP sandbox now demonstrates a connected approval → receipt → financial posting → audit sequence and role-specific operational views.',
-    techStack: ['React', 'TypeScript', 'Event-driven modeling', 'Role-aware UI', 'Audit timeline'],
-    imageUrl: ''
+    techStack: ['React', 'TypeScript', 'Event-driven modeling', 'Role-aware UI', 'Audit timeline']
   },
   {
     id: 'g-hims-product-study',
@@ -24,7 +23,6 @@ export const caseStudies: CaseStudy[] = [
     architectureDecisions: 'The demonstration is structured around an encounter timeline and explicit operational stages so patient identity, clinical actions, orders, fulfillment, billing, and audit events remain connected.',
     tradeoffs: 'The public demo intentionally uses synthetic sample data and simplified clinical actions. It demonstrates interaction and system structure, not clinical decision support or production readiness.',
     outcome: 'A transparent browser-based G-HIMS experience demonstrates how patient workflow events can be organized into a longitudinal, auditable operational view.',
-    techStack: ['React', 'TypeScript', 'Clinical workflow modeling', 'Event history', 'Role-aware UI'],
-    imageUrl: ''
+    techStack: ['React', 'TypeScript', 'Clinical workflow modeling', 'Event history', 'Role-aware UI']
   }
 ];
