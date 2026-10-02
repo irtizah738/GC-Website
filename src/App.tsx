@@ -11,7 +11,6 @@ import { AlertCircle } from 'lucide-react';
 import { ThemeProvider } from './lib/ThemeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import { AnimatedBackground } from './components/animations/AnimatedBackground';
 import { Loading } from './components/ui/Loading';
 import Home from './pages/Home';
 
@@ -167,7 +166,6 @@ export default function App() {
               <a href="#main-content" className="skip-link">
                 Skip to main content
               </a>
-              <AnimatedBackground />
               <Navbar />
               <main id="main-content" className="relative z-10">
                 <AnimatedRoutes />

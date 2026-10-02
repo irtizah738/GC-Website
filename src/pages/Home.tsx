@@ -1,470 +1,291 @@
-import { SEO } from '../components/SEO';
-import { motion, type Variants } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import { ArrowRight, CheckCircle2, Cpu, Database, Globe, ShieldCheck, Zap, Stethoscope, Cloud, Activity, WifiOff } from 'lucide-react';
-import Section from '../components/Section';
-import { systems } from '../data/systems';
-import { industries } from '../data/industries';
-import { caseStudies } from '../data/case-studies';
-import { principles } from '../data/principles';
-import { AnimatedBackground } from '../components/animations/AnimatedBackground';
-import { DataFlowLayer } from '../components/animations/DataFlowLayer';
-import { NodeNetwork } from '../components/animations/NodeNetwork';
-import { SectionReveal } from '../components/animations/SectionReveal';
-import { InteractiveCard } from '../components/animations/InteractiveCard';
-import { ERPAnimation, HMISAnimation, SaaSAnimation } from '../components/animations/SystemAnimations';
-
-const iconMap: Record<string, any> = {
+import {
+  ArrowRight,
+  Boxes,
+  Building2,
+  Check,
+  CloudCog,
   Database,
-  Stethoscope,
-  Cloud,
-  Cpu,
-  Activity,
-  Zap,
+  GitBranch,
+  Layers3,
   ShieldCheck,
-  Globe,
-  WifiOff,
-};
+  Stethoscope,
+} from 'lucide-react';
+import { SEO } from '../components/SEO';
+import Section from '../components/Section';
+import EnterpriseProductShowcase from '../components/product/EnterpriseProductShowcase';
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
+const capabilities = [
+  {
+    icon: Boxes,
+    title: 'GC-ERP',
+    description: 'Connected finance, procurement, inventory and manufacturing workflows built around the way your business actually operates.',
+    href: '/systems#erp-systems',
+    cta: 'Explore ERP',
   },
-};
+  {
+    icon: Stethoscope,
+    title: 'G-HIMS',
+    description: 'Clinical, financial and operational hospital workflows with offline resilience, traceability and role-aware controls.',
+    href: '/systems#hmis-healthcare',
+    cta: 'Explore HIMS',
+  },
+  {
+    icon: CloudCog,
+    title: 'Enterprise Platforms',
+    description: 'Multi-tenant SaaS and domain-specific systems for organizations whose workflows do not fit generic software.',
+    href: '/systems#saas-platforms',
+    cta: 'Explore platforms',
+  },
+];
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: 'easeOut' },
-  },
-};
+const workflow = [
+  { step: '01', title: 'Order', detail: 'Demand enters the system' },
+  { step: '02', title: 'Reserve', detail: 'Availability is checked' },
+  { step: '03', title: 'Supply', detail: 'Buy or produce shortages' },
+  { step: '04', title: 'Fulfil', detail: 'Inventory and delivery update' },
+  { step: '05', title: 'Post', detail: 'Finance receives the event' },
+  { step: '06', title: 'Audit', detail: 'Every change remains traceable' },
+];
 
-const fadeInVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { duration: 1 },
+const principles = [
+  {
+    icon: GitBranch,
+    title: 'Event-driven',
+    copy: 'Business events connect operational domains without hiding the history of how state changed.',
   },
-};
+  {
+    icon: ShieldCheck,
+    title: 'Audit-first',
+    copy: 'Permissions, approvals and material state changes are designed to remain attributable and explainable.',
+  },
+  {
+    icon: Layers3,
+    title: 'Multi-tenant',
+    copy: 'Tenant boundaries and role-aware access are treated as architecture, not as a UI convention.',
+  },
+  {
+    icon: Database,
+    title: 'Data integrity',
+    copy: 'Critical records are validated server-side and designed around durable, recoverable workflows.',
+  },
+];
 
 export default function Home() {
   return (
-    <div className="pt-20 relative">
-      <SEO 
-        title="Gotham Coders | Mission-Critical Systems Engineering"
-        description="We build mission-critical software systems for healthcare, ERP, and SaaS platforms. Specializing in event-driven architecture and audit-safe platforms."
+    <div className="pt-16">
+      <SEO
+        title="Gotham Coders | Enterprise Systems for Complex Operations"
+        description="Gotham Coders builds ERP, healthcare and enterprise platforms for complex operational environments."
         pathname="/"
       />
 
-      {/* Hero Section */}
-      <Section className="relative min-h-[90vh] flex items-center pt-0" animate={false}>
-        <DataFlowLayer />
-        <NodeNetwork />
-        <div className="absolute inset-0 bg-grid-zinc bg-grid-fade opacity-50 -z-10" />
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="space-y-8"
-          >
-            <SectionReveal delay={0.2}>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-zinc-600 dark:text-zinc-400">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                Systems Engineering Firm // v1.1.7
-              </div>
-            </SectionReveal>
-            <SectionReveal delay={0.3}>
-              <h1 className="text-5xl md:text-8xl font-display font-bold tracking-tighter text-zinc-900 dark:text-white leading-[0.9]">
-                We build <span className="text-zinc-400 italic font-light">mission-critical</span> systems.
-              </h1>
-            </SectionReveal>
-            <SectionReveal delay={0.4}>
-              <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-xl leading-relaxed font-light">
-                Specializing in high-complexity domains: ERP, HMIS, SaaS, and 
-                research-driven platforms. Built for resilience, scale, and data integrity.
-              </p>
-            </SectionReveal>
-            <SectionReveal delay={0.5}>
-              <div className="flex flex-col sm:flex-row items-center gap-4">
-                <Link
-                  to="/contact"
-                  className="w-full sm:w-auto px-8 py-4 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-xl font-mono font-bold text-xs uppercase tracking-widest hover:scale-[1.02] transition-transform flex items-center justify-center gap-2"
-                >
-                  Discuss Your System
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-                <Link
-                  to="/systems"
-                  className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white rounded-xl font-mono font-bold text-xs uppercase tracking-widest hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-center"
-                >
-                  Systems We Build
-                </Link>
-              </div>
-            </SectionReveal>
-          </motion.div>
+      <Section className="relative border-b border-zinc-800/80 pb-16 pt-20 md:pb-24 md:pt-28" animate={false}>
+        <div className="mx-auto max-w-4xl text-center">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/70 px-3 py-1.5 text-xs font-medium text-zinc-300">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            Enterprise systems engineering
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, rotateY: 20 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-            transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
-            className="relative hidden lg:block [perspective:1000px]"
-          >
-            <div className="absolute -inset-4 bg-gradient-to-tr from-zinc-100 to-zinc-50 dark:from-zinc-900 dark:to-zinc-950 rounded-3xl -z-10" />
-            <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-2xl overflow-hidden">
-              <div className="bg-zinc-100 dark:bg-zinc-800 px-4 py-2 border-b border-zinc-200 dark:border-zinc-700 flex items-center gap-2">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-zinc-300 dark:bg-zinc-600" />
-                  <div className="w-3 h-3 rounded-full bg-zinc-300 dark:bg-zinc-600" />
-                  <div className="w-3 h-3 rounded-full bg-zinc-300 dark:bg-zinc-600" />
-                </div>
-                <div className="mx-auto text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
-                  system-architecture.yaml
-                </div>
-              </div>
-              <div className="p-6 font-mono text-sm leading-relaxed">
-                <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1, duration: 0.5 }}
-                  className="text-zinc-500"
-                ># Event-Driven Core</motion.div>
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.2 }}
-                >
-                  <span className="text-blue-500">architecture</span>: <span className="text-green-600">distributed</span>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.3 }}
-                >
-                  <span className="text-blue-500">persistence</span>: <span className="text-green-600">event-sourcing</span>
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.4 }}
-                >
-                  <span className="text-blue-500">multi_tenancy</span>: <span className="text-green-600">schema-isolated</span>
-                </motion.div>
-                <br />
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.5 }}
-                >
-                  <span className="text-blue-500">domains</span>:
-                </motion.div>
-                <div className="pl-4">
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6 }}>- <span className="text-yellow-600">Healthcare</span> (HMIS)</motion.div>
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.7 }}>- <span className="text-yellow-600">Supply Chain</span> (ERP)</motion.div>
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.8 }}>- <span className="text-yellow-600">Research</span> (Data-Heavy)</motion.div>
-                </div>
-                <br />
-                <motion.div
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1.9 }}
-                >
-                  <span className="text-blue-500">constraints</span>:
-                </motion.div>
-                <div className="pl-4">
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.0 }}>- <span className="text-orange-500">offline_first: true</span></motion.div>
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.1 }}>- <span className="text-orange-500">audit_safe: true</span></motion.div>
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2 }}>- <span className="text-orange-500">strict_validation: true</span></motion.div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          <h1 className="text-balance text-5xl font-semibold tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl">
+            Enterprise systems built around how your business actually operates.
+          </h1>
+
+          <p className="mx-auto mt-7 max-w-2xl text-pretty text-lg leading-8 text-zinc-400 md:text-xl">
+            ERP, healthcare and custom operational platforms engineered for complex workflows, critical data and environments where reliability matters.
+          </p>
+
+          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              to="/demo/gc-erp"
+              className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-200 sm:w-auto"
+            >
+              Explore GC-ERP
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-900 px-6 py-3 text-sm font-semibold text-white transition hover:border-zinc-600 hover:bg-zinc-800 sm:w-auto"
+            >
+              Discuss your system
+            </Link>
+          </div>
         </div>
-      </Section>
 
-      {/* Social Proof Badges */}
-      <Section className="py-12 border-y border-zinc-200 dark:border-zinc-900">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="mx-auto mt-14 max-w-6xl lg:mt-16">
+          <EnterpriseProductShowcase />
+        </div>
+
+        <div className="mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-4 border-t border-zinc-800/80 pt-6 md:grid-cols-4">
           {[
-            { label: 'Trusted by', value: '15+ Enterprises' },
-            { label: 'Systems Deployed', value: '40+' },
-            { label: 'Combined Experience', value: '25+ Years' },
-            { label: 'Uptime Guarantee', value: '99.9%' },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center space-y-1">
-              <div className="text-2xl font-display font-bold text-zinc-900 dark:text-white">{stat.value}</div>
-              <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-500">{stat.label}</div>
+            ['Operations', 'Connected workflows'],
+            ['Architecture', 'Event-driven core'],
+            ['Security', 'Role-aware boundaries'],
+            ['Reliability', 'Built for critical data'],
+          ].map(([label, value]) => (
+            <div key={label}>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-zinc-600">{label}</p>
+              <p className="mt-1 text-sm font-medium text-zinc-300">{value}</p>
             </div>
           ))}
         </div>
       </Section>
 
-      {/* Systems We Build Overview */}
-      <Section variant="muted" className="relative">
-        <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={containerVariants}
-          className="text-center space-y-4 mb-20"
-        >
-          <motion.p variants={itemVariants} className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-600 dark:text-zinc-400">Systems We Build</motion.p>
-          <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">Engineering for <span className="italic font-light">High-Complexity</span></motion.h2>
-        </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {systems.map((system, idx) => {
-            const Icon = iconMap[system.icon] || Activity;
-            return (
-              <SectionReveal key={system.id} delay={idx * 0.1}>
-                <InteractiveCard className="group relative h-full block p-8 overflow-hidden">
-                  {system.id === 'erp' && <ERPAnimation />}
-                  {system.id === 'hmis' && <HMISAnimation />}
-                  {system.id === 'saas' && <SaaSAnimation />}
-                  <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
-                    <Icon className="w-24 h-24 -mr-8 -mt-8 rotate-12" />
-                  </div>
-                  <div className="w-12 h-12 bg-zinc-900 dark:bg-zinc-100 rounded-lg flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-lg relative z-10">
-                    <Icon className="w-6 h-6 text-white dark:text-zinc-900" />
-                  </div>
-                  <h3 className="text-xl font-display font-bold text-zinc-900 dark:text-white mb-3 tracking-tight relative z-10">{system.title}</h3>
-                  <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-8 font-light relative z-10">
-                    {system.description}
-                  </p>
-                  <div className="flex items-center gap-4 relative z-10">
-                    <Link 
-                      to={`/systems#${system.id}`}
-                      className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-900 dark:text-white group-hover:translate-x-1 transition-transform"
-                    >
-                      System Specs <ArrowRight className="w-3 h-3" />
-                    </Link>
-                    {system.externalLink && (
-                      <a 
-                        href={system.externalLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400 hover:opacity-70 transition-opacity"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Visit <Globe className="w-3 h-3" />
-                      </a>
-                    )}
-                  </div>
-                </InteractiveCard>
-              </SectionReveal>
-            );
-          })}
+      <Section className="border-b border-zinc-800/80">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <div>
+            <p className="text-sm font-semibold text-zinc-500">What we build</p>
+            <h2 className="mt-4 max-w-xl text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+              Software for organizations with real operational complexity.
+            </h2>
+          </div>
+          <p className="max-w-xl text-base leading-7 text-zinc-400 lg:justify-self-end">
+            We focus on systems where departments, money, inventory, people and critical records must stay synchronized without sacrificing traceability or control.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+          {capabilities.map(({ icon: Icon, title, description, href, cta }) => (
+            <Link
+              key={title}
+              to={href}
+              className="group rounded-2xl border border-zinc-800 bg-zinc-900/45 p-7 transition hover:-translate-y-0.5 hover:border-zinc-700 hover:bg-zinc-900"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950">
+                <Icon className="h-5 w-5 text-zinc-300" />
+              </div>
+              <h3 className="mt-7 text-xl font-semibold text-white">{title}</h3>
+              <p className="mt-3 min-h-20 text-sm leading-6 text-zinc-400">{description}</p>
+              <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-zinc-200">
+                {cta}
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          ))}
         </div>
       </Section>
 
-      {/* Industries Served */}
-      <Section>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">
-          <SectionReveal direction="right" className="lg:col-span-1 space-y-6 lg:sticky lg:top-32">
-            <p className="text-sm font-bold uppercase tracking-[0.3em] text-zinc-600 dark:text-zinc-400">Industries</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white leading-tight">Deep Domain Understanding</h2>
-            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              We understand the unique constraints and data complexities of high-stakes industries.
+      <Section className="border-b border-zinc-800/80 bg-black">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-semibold text-zinc-500">Connected operations</p>
+          <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+            One business transaction should not become six disconnected workflows.
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-zinc-400">
+            A modern ERP should preserve the operational chain from demand to fulfilment to finance while making exceptions visible before they become reconciliation work.
+          </p>
+        </div>
+
+        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-800 md:grid-cols-3 xl:grid-cols-6">
+          {workflow.map((item, index) => (
+            <div key={item.step} className="relative bg-zinc-950 p-5">
+              <p className="text-[10px] font-semibold tracking-[0.16em] text-zinc-600">{item.step}</p>
+              <p className="mt-8 text-sm font-semibold text-white">{item.title}</p>
+              <p className="mt-1 text-xs leading-5 text-zinc-500">{item.detail}</p>
+              {index < workflow.length - 1 && (
+                <ArrowRight className="absolute right-3 top-5 hidden h-3.5 w-3.5 text-zinc-700 xl:block" />
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <Link to="/demo/gc-erp" className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-zinc-300">
+            Open the interactive ERP sandbox
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </Section>
+
+      <Section className="border-b border-zinc-800/80">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p className="text-sm font-semibold text-zinc-500">Enterprise engineering</p>
+            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+              The interface is only the visible layer.
+            </h2>
+            <p className="mt-5 max-w-lg text-base leading-7 text-zinc-400">
+              The harder work is protecting authority boundaries, keeping data consistent, recovering from failure and making system behavior explainable.
             </p>
             <Link
-              to="/industries"
-              className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-zinc-900 dark:text-white hover:underline"
+              to="/approach"
+              className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-zinc-300"
             >
-              All Industries <ArrowRight className="w-4 h-4" />
+              See our engineering approach
+              <ArrowRight className="h-4 w-4" />
             </Link>
-          </SectionReveal>
-          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8">
-            {industries.map((industry, idx) => (
-              <SectionReveal key={industry.id} delay={idx * 0.1} direction="up">
-                <InteractiveCard className="p-8 space-y-4">
-                  <h3 className="text-xl font-bold text-zinc-900 dark:text-white">{industry.title}</h3>
-                  <ul className="space-y-2">
-                    {industry.challenges.slice(0, 2).map((challenge) => (
-                      <li key={challenge} className="flex items-start gap-2 text-xs text-zinc-600 dark:text-zinc-400">
-                        <div className="w-1 h-1 rounded-full bg-zinc-400 mt-1.5 shrink-0" />
-                        {challenge}
-                      </li>
-                    ))}
-                  </ul>
-                </InteractiveCard>
-              </SectionReveal>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            {principles.map(({ icon: Icon, title, copy }) => (
+              <div key={title} className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6">
+                <Icon className="h-5 w-5 text-zinc-400" />
+                <h3 className="mt-5 text-base font-semibold text-white">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">{copy}</p>
+              </div>
             ))}
           </div>
         </div>
       </Section>
 
-      {/* Product Demos Section */}
-      <Section id="demos" variant="muted" className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
-        <SectionReveal className="flex flex-col md:flex-row justify-between items-end gap-8 mb-20">
-          <div className="space-y-4">
-            <p className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-600 dark:text-zinc-400">Live Proof of Capability</p>
-            <h2 className="text-4xl md:text-7xl font-display font-bold text-zinc-900 dark:text-white tracking-tight">Interactive <span className="italic font-light">Demos</span></h2>
-          </div>
-        </SectionReveal>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <SectionReveal delay={0.1}>
-            <InteractiveCard className="group relative p-10 h-full">
-              <div className="flex items-center justify-between mb-8">
-                <div className="w-14 h-14 bg-zinc-900 dark:bg-zinc-100 rounded-xl flex items-center justify-center shadow-lg">
-                  <Database className="w-7 h-7 text-white dark:text-zinc-900" />
-                </div>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400">GC-ERP // Manufacturing</span>
-              </div>
-              <h3 className="text-3xl font-display font-bold text-zinc-900 dark:text-white mb-4">Manufacturing ERP</h3>
-              <p className="text-zinc-600 dark:text-zinc-400 mb-8 font-light leading-relaxed">
-                Experience our event-driven inventory management system. Track stock movements, 
-                allocate resources, and watch the real-time audit trail evolve.
+      <Section className="border-b border-zinc-800/80 bg-zinc-900/40">
+        <div className="rounded-3xl border border-zinc-800 bg-zinc-950 p-7 md:p-10 lg:p-12">
+          <div className="grid gap-10 lg:grid-cols-[1fr_.85fr] lg:items-center">
+            <div>
+              <p className="text-sm font-semibold text-zinc-500">Product experience</p>
+              <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+                See the workflow, not just the pitch.
+              </h2>
+              <p className="mt-5 max-w-xl text-base leading-7 text-zinc-400">
+                Our public demos are intentionally transparent simulations. They show how we structure operational state, commands and audit history without pretending a marketing sandbox is a production deployment.
               </p>
-              <Link
-                to="/demo/gc-erp"
-                className="inline-flex items-center gap-3 px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-mono font-bold text-[10px] uppercase tracking-widest hover:scale-[1.05] transition-transform"
-              >
-                Launch ERP Demo <ArrowRight className="w-3 h-3" />
-              </Link>
-            </InteractiveCard>
-          </SectionReveal>
-
-          <SectionReveal delay={0.2}>
-            <InteractiveCard className="group relative p-10 h-full">
-              <div className="flex items-center justify-between mb-8">
-                <div className="w-14 h-14 bg-red-500 rounded-xl flex items-center justify-center shadow-lg">
-                  <Stethoscope className="w-7 h-7 text-white" />
-                </div>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400">G-HIMS // Healthcare</span>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <Link to="/demo/gc-erp" className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200">
+                  Launch GC-ERP demo
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link to="/demo/g-hims" className="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-700 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-900">
+                  Launch G-HIMS demo
+                </Link>
               </div>
-              <h3 className="text-3xl font-display font-bold text-zinc-900 dark:text-white mb-4">Clinical Workflow</h3>
-              <p className="text-zinc-600 dark:text-zinc-400 mb-8 font-light leading-relaxed">
-                Explore our healthcare information system. Manage patient encounters, 
-                record diagnoses, and handle prescriptions with clinical integrity.
-              </p>
-              <Link
-                to="/demo/g-hims"
-                className="inline-flex items-center gap-3 px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-mono font-bold text-[10px] uppercase tracking-widest hover:scale-[1.05] transition-transform"
-              >
-                Launch HIMS Demo <ArrowRight className="w-3 h-3" />
-              </Link>
-            </InteractiveCard>
-          </SectionReveal>
-        </div>
-      </Section>
+            </div>
 
-      {/* Testimonials */}
-      <Section variant="muted" className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
-        <SectionReveal className="text-center space-y-4 mb-20">
-          <p className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-600 dark:text-zinc-400">Client Feedback</p>
-          <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight">Trusted by <span className="italic font-light text-zinc-500 dark:text-zinc-400">Industry Leaders</span></h2>
-        </SectionReveal>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            {
-              quote: "Gotham Coders transformed our healthcare platform. Their event-driven architecture handles 10x our previous load with zero latency.",
-              author: "Dr. Sarah Chen",
-              role: "CTO, MediFlow Systems"
-            },
-            {
-              quote: "The ERP system they built for our manufacturing plants has reduced operational errors by 40% and improved inventory accuracy significantly.",
-              author: "Marcus Thorne",
-              role: "Operations Director, Global Fab"
-            },
-            {
-              quote: "Their engineering approach is rigorous. They don't just write code; they architect resilience into every layer of the system.",
-              author: "Elena Rodriguez",
-              role: "VP Engineering, SaaS Scale"
-            }
-          ].map((testimonial, idx) => (
-            <SectionReveal key={idx} delay={idx * 0.1}>
-              <InteractiveCard className="p-10 space-y-6 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl">
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <div key={i} className="w-3 h-3 rounded-full bg-emerald-500" />
-                  ))}
+            <div className="grid gap-3">
+              {[
+                ['Role-aware views', 'Different teams need different operational surfaces.'],
+                ['Traceable state changes', 'Actions should remain attributable after the dashboard changes.'],
+                ['Cross-domain workflows', 'Operational and financial consequences should stay connected.'],
+              ].map(([title, copy]) => (
+                <div key={title} className="flex gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/50 p-5">
+                  <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400">
+                    <Check className="h-3.5 w-3.5" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-white">{title}</p>
+                    <p className="mt-1 text-sm leading-6 text-zinc-500">{copy}</p>
+                  </div>
                 </div>
-                <p className="text-lg text-zinc-700 dark:text-zinc-300 font-light italic leading-relaxed">
-                  "{testimonial.quote}"
-                </p>
-                <div className="pt-6 border-t border-zinc-100 dark:border-zinc-800">
-                  <div className="font-bold text-zinc-900 dark:text-white">{testimonial.author}</div>
-                  <div className="text-xs font-mono text-zinc-600 dark:text-zinc-400 uppercase tracking-widest">{testimonial.role}</div>
-                </div>
-              </InteractiveCard>
-            </SectionReveal>
-          ))}
-        </div>
-      </Section>
-
-      {/* Engineering Principles */}
-      <Section variant="dark" className="relative">
-        <div className="absolute inset-0 bg-grid-zinc opacity-5 -z-10" />
-        <SectionReveal className="text-center space-y-4 mb-20">
-          <p className="text-xs font-mono font-bold uppercase tracking-[0.4em] text-zinc-400">Engineering Approach</p>
-          <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight text-white">Built for <span className="italic font-light text-zinc-400">Resilience</span></h2>
-        </SectionReveal>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {principles.slice(0, 3).map((principle, idx) => {
-            const Icon = iconMap[principle.icon];
-            return (
-              <SectionReveal key={principle.id} delay={idx * 0.1}>
-                <InteractiveCard className="p-10 bg-zinc-950 border border-zinc-800 rounded-xl space-y-8 relative group overflow-hidden">
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-zinc-700 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="w-14 h-14 bg-zinc-900 border border-zinc-800 rounded-lg flex items-center justify-center group-hover:border-zinc-500 transition-colors">
-                    <Icon className="w-7 h-7 text-zinc-400 group-hover:text-white transition-colors" />
-                  </div>
-                  <div className="space-y-4">
-                    <h3 className="text-2xl font-display font-bold tracking-tight text-white">{principle.title}</h3>
-                    <p className="text-zinc-400 text-sm leading-relaxed font-light">
-                      {principle.description}
-                    </p>
-                  </div>
-                  <div className="pt-4 flex items-center gap-4">
-                    <div className="h-px flex-1 bg-zinc-800" />
-                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest">0{idx + 1}</span>
-                  </div>
-                </InteractiveCard>
-              </SectionReveal>
-            );
-          })}
-        </div>
-        <SectionReveal delay={0.5} className="mt-12 text-center">
-          <Link
-            to="/approach"
-            className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-zinc-300 hover:text-white transition-colors"
-          >
-            Our Full Engineering Approach <ArrowRight className="w-4 h-4" />
-          </Link>
-        </SectionReveal>
-      </Section>
-
-      {/* Final CTA */}
-      <Section className="text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-zinc opacity-10 -z-10" />
-        <SectionReveal className="max-w-4xl mx-auto space-y-12">
-          <h2 className="text-5xl md:text-8xl font-display font-bold text-zinc-900 dark:text-white leading-[0.85] tracking-tighter">
-            Ready to Build a <span className="text-zinc-400 italic font-light">Resilient</span> System?
-          </h2>
-          <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed">
-            Let's discuss your system requirements and how our engineering team can help you scale.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Link
-              to="/contact"
-              className="w-full sm:w-auto px-12 py-6 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 rounded-full font-mono font-bold text-sm uppercase tracking-[0.2em] hover:scale-[1.05] transition-transform flex items-center justify-center gap-3 shadow-2xl"
-            >
-              Discuss Your System
-              <ArrowRight className="w-6 h-6" />
-            </Link>
+              ))}
+            </div>
           </div>
-        </SectionReveal>
+        </div>
+      </Section>
+
+      <Section className="pb-28 pt-24 text-center md:pb-36 md:pt-32">
+        <Building2 className="mx-auto h-6 w-6 text-zinc-600" />
+        <h2 className="mx-auto mt-6 max-w-3xl text-4xl font-semibold tracking-[-0.035em] text-white md:text-6xl">
+          Need software that matches the reality of your operation?
+        </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-zinc-400">
+          Tell us what your teams are coordinating today, where data breaks down and what your current software cannot model.
+        </p>
+        <Link
+          to="/contact"
+          className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+        >
+          Discuss your system
+          <ArrowRight className="h-4 w-4" />
+        </Link>
       </Section>
     </div>
   );
