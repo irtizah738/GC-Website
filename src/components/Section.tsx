@@ -20,9 +20,9 @@ export default function Section({
   variant = 'default',
 }: SectionProps) {
   const variants = {
-    default: 'bg-zinc-950',
-    muted: 'bg-zinc-900/50',
-    dark: 'bg-black text-white',
+    default: 'bg-[#0a0e17]',
+    muted: 'bg-[#0f1523]',
+    dark: 'bg-[#0b101c] text-white',
   };
 
   return (
