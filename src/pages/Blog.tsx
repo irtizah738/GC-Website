@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
+import Link from '../components/AppLink';
 import { ArrowRight, Clock, FileText } from 'lucide-react';
-import { SEO } from '../components/SEO';
 import Section from '../components/Section';
 
 export const posts = [
@@ -33,11 +32,6 @@ export const posts = [
 export default function Blog() {
   return (
     <div className="pt-16">
-      <SEO
-        title="Engineering Notes | Gotham Coders"
-        description="Architecture, enterprise systems, healthcare, and operational software notes from Gotham Coders."
-        pathname="/blog"
-      />
 
       <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
         <div className="max-w-4xl">
