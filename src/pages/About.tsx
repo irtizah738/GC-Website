@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from '../components/AppLink';
 import {
   ArrowRight,
@@ -134,14 +135,13 @@ export default function About() {
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {team.map((member) => (
             <article key={member.name} className="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40">
-              <div className="aspect-[4/3] overflow-hidden bg-zinc-900">
-                <img
+              <div className="relative aspect-[4/3] overflow-hidden bg-zinc-900">
+                <Image
                   src={member.image}
                   alt={member.name}
-                  className="h-full w-full object-cover grayscale"
-                  loading="lazy"
-                  decoding="async"
-                  referrerPolicy="no-referrer"
+                  fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  className="object-cover grayscale"
                 />
               </div>
               <div className="p-6">
