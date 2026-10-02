@@ -1,15 +1,3 @@
-export interface System {
-  id: string;
-  title: string;
-  description: string;
-  whyItsHard: string;
-  howWeSolveIt: string;
-  keyFeatures: string[];
-  architectureThinking: string;
-  icon: string;
-  externalLink?: string;
-}
-
 export interface Industry {
   id: string;
   title: string;
@@ -31,7 +19,6 @@ export interface CaseStudy {
   tradeoffs: string;
   outcome: string;
   techStack: string[];
-  imageUrl: string;
 }
 
 export interface EngineeringPrinciple {
