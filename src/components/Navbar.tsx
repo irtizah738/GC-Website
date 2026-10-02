@@ -8,9 +8,9 @@ import { ArrowRight, Menu, X } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 const navLinks = [
-  { name: 'Products', path: '/systems' },
+  { name: 'Products', path: '/products' },
+  { name: 'Solutions', path: '/systems' },
   { name: 'Industries', path: '/industries' },
-  { name: 'Customers', path: '/case-studies' },
   { name: 'Engineering', path: '/approach' },
   { name: 'Company', path: '/about' },
 ];
@@ -43,7 +43,7 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', closeOnEscape);
   }, [isOpen]);
 
-  const isActive = (path: string) => pathname === path;
+  const isActive = (path: string) => pathname === path || (path !== '/' && pathname.startsWith(`${path}/`));
 
   return (
     <nav
@@ -83,7 +83,7 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-2 lg:flex">
           <Link
-            to="/demo/gc-erp"
+            to="/products"
             className="rounded-lg px-3.5 py-2 text-sm font-semibold text-zinc-300 transition hover:bg-zinc-900 hover:text-white"
           >
             View demo
@@ -135,7 +135,7 @@ export default function Navbar() {
               ))}
               <div className="grid gap-2 border-t border-zinc-800 pt-4 sm:grid-cols-2">
                 <Link
-                  to="/demo/gc-erp"
+                  to="/products"
                   className="rounded-lg border border-zinc-800 px-4 py-3 text-center text-sm font-semibold text-white"
                 >
                   View ERP demo

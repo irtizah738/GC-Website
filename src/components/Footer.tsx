@@ -5,9 +5,10 @@ const groups = [
   {
     title: 'Products',
     links: [
-      ['GC-ERP', '/systems#erp-systems'],
-      ['G-HIMS', '/systems#hmis-healthcare'],
-      ['Enterprise platforms', '/systems#saas-platforms'],
+      ['GC-ERP', '/products/gc-erp'],
+      ['G-HIMS', '/products/g-hims'],
+      ['All products', '/products'],
+      ['Solutions', '/systems'],
       ['ERP demo', '/demo/gc-erp'],
       ['HIMS demo', '/demo/g-hims'],
     ],

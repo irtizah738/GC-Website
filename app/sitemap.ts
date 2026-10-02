@@ -5,6 +5,9 @@ const lastModified = new Date('2026-10-02T00:00:00.000Z');
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     ['', 'weekly', 1],
+    ['/products', 'monthly', 0.95],
+    ['/products/g-hims', 'monthly', 0.95],
+    ['/products/gc-erp', 'monthly', 0.95],
     ['/systems', 'monthly', 0.9],
     ['/industries', 'monthly', 0.9],
     ['/approach', 'monthly', 0.9],
