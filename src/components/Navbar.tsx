@@ -12,6 +12,7 @@ const navLinks = [
   { name: 'Solutions', path: '/systems' },
   { name: 'Industries', path: '/industries' },
   { name: 'Engineering', path: '/approach' },
+  { name: 'Evidence', path: '/case-studies' },
   { name: 'Company', path: '/about' },
 ];
 
@@ -44,6 +45,9 @@ export default function Navbar() {
   }, [isOpen]);
 
   const isActive = (path: string) => pathname === path || (path !== '/' && pathname.startsWith(`${path}/`));
+  const isHimsContext = pathname.includes('g-hims');
+  const primaryDemoHref = isHimsContext ? '/demo/g-hims' : '/demo/gc-erp';
+  const primaryDemoLabel = isHimsContext ? 'G-HIMS sandbox' : 'Live sandbox';
 
   return (
     <nav
@@ -56,7 +60,7 @@ export default function Navbar() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-2.5" aria-label="Gotham Coders home">
+        <Link to="/" className="flex shrink-0 items-center gap-2.5 whitespace-nowrap" aria-label="Gotham Coders home">
           <span className="grid h-8 w-8 place-items-center rounded-lg border border-indigo-400/30 bg-indigo-600 text-[10px] font-bold tracking-tight text-white shadow-[0_8px_24px_-12px_rgba(79,70,229,0.9)]">
             GC
           </span>
@@ -65,14 +69,14 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div className="hidden items-center gap-7 lg:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           {navLinks.map((link) => (
             <Link
               key={link.path}
               to={link.path}
               aria-current={isActive(link.path) ? 'page' : undefined}
               className={cn(
-                'text-sm font-medium transition-colors',
+                'whitespace-nowrap text-sm font-medium transition-colors',
                 isActive(link.path) ? 'text-indigo-300' : 'text-zinc-400 hover:text-white',
               )}
             >
@@ -83,14 +87,14 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-2 lg:flex">
           <Link
-            to="/products"
-            className="rounded-lg border border-transparent px-3.5 py-2 text-sm font-semibold text-zinc-300 transition hover:border-[#223049] hover:bg-[#131b2e] hover:text-white"
+            to={primaryDemoHref}
+            className="whitespace-nowrap rounded-lg border border-transparent px-3.5 py-2 text-sm font-semibold text-zinc-300 transition hover:border-[#223049] hover:bg-[#131b2e] hover:text-white"
           >
-            View demo
+            {primaryDemoLabel}
           </Link>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-indigo-500 bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_24px_-14px_rgba(79,70,229,0.9)] transition hover:bg-indigo-700"
+            className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg border border-indigo-500 bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_24px_-14px_rgba(79,70,229,0.9)] transition hover:bg-indigo-700"
           >
             Talk to us
             <ArrowRight className="h-3.5 w-3.5" />
@@ -133,12 +137,18 @@ export default function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              <div className="grid gap-2 border-t border-zinc-800 pt-4 sm:grid-cols-2">
+              <div className="grid gap-2 border-t border-zinc-800 pt-4 sm:grid-cols-3">
                 <Link
-                  to="/products"
+                  to="/demo/gc-erp"
                   className="rounded-lg border border-zinc-800 px-4 py-3 text-center text-sm font-semibold text-white"
                 >
-                  View ERP demo
+                  GC-ERP demo
+                </Link>
+                <Link
+                  to="/demo/g-hims"
+                  className="rounded-lg border border-zinc-800 px-4 py-3 text-center text-sm font-semibold text-white"
+                >
+                  G-HIMS demo
                 </Link>
                 <Link
                   to="/contact"

@@ -53,19 +53,20 @@ export default function Blog() {
               to={`/blog/${post.slug}`}
               className="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 transition hover:border-zinc-700 hover:bg-zinc-900"
             >
-              <div className="flex items-center justify-between gap-3">
-                <span className="rounded-full border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[10px] font-semibold text-zinc-500">
-                  {post.category}
-                </span>
-                <span className="inline-flex items-center gap-1.5 text-[10px] text-zinc-600">
+              <div className="flex items-center gap-2 text-xs text-zinc-500">
+                <span className="font-semibold text-zinc-400">{post.category}</span>
+                <span aria-hidden="true">·</span>
+                <span>{post.date}</span>
+                <span aria-hidden="true">·</span>
+                <span className="inline-flex items-center gap-1">
                   <Clock className="h-3 w-3" />
                   {post.readTime}
                 </span>
               </div>
 
-              <FileText className="mt-6 h-5 w-5 text-zinc-600" />
+              <FileText className="mt-6 h-5 w-5 text-zinc-500" />
               <h2 className="mt-5 text-xl font-semibold tracking-tight text-white">{post.title}</h2>
-              <p className="mt-3 flex-1 text-sm leading-6 text-zinc-500">{post.excerpt}</p>
+              <p className="mt-3 flex-1 text-sm leading-6 text-zinc-400">{post.excerpt}</p>
               <span className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-zinc-300">
                 Read note
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />

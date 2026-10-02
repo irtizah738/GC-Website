@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   AlertCircle,
   ArrowRight,
@@ -11,6 +11,44 @@ import {
 } from 'lucide-react';
 import Section from '../components/Section';
 import { cn } from '../lib/utils';
+
+type InquiryTopic = 'gc-erp' | 'g-hims' | 'custom' | 'research';
+
+const topicOptions: Array<{
+  id: InquiryTopic;
+  label: string;
+  tag: string;
+  placeholder: string;
+}> = [
+  {
+    id: 'gc-erp',
+    label: 'GC-ERP Evaluation',
+    tag: 'GC-ERP Enterprise Operations Platform',
+    placeholder:
+      'Tell us about your manufacturing, inventory, procurement, or finance workflows, number of sites, and where current systems require manual reconciliation.',
+  },
+  {
+    id: 'g-hims',
+    label: 'G-HIMS Hospital Pilot',
+    tag: 'G-HIMS Hospital Operating System',
+    placeholder:
+      'Describe your hospital or clinic setup (OPD, inpatient, diagnostics, pharmacy, billing), connectivity constraints, and the pilot wedge you are evaluating.',
+  },
+  {
+    id: 'custom',
+    label: 'Custom Enterprise System',
+    tag: 'Custom Enterprise Platform Engineering',
+    placeholder:
+      'Describe the operational workflow, who uses it, where approvals or data break down today, and any critical authority or offline constraints.',
+  },
+  {
+    id: 'research',
+    label: 'Research & Architecture',
+    tag: 'Research & Technical Architecture Review',
+    placeholder:
+      'Share which research paper, architecture pattern, or qualification study you want to discuss and how it relates to your operating environment.',
+  },
+];
 
 interface FormData {
   name: string;
@@ -34,11 +72,22 @@ const initialForm: FormData = {
 };
 
 export default function Contact() {
+  const [topic, setTopic] = useState<InquiryTopic>('custom');
   const [formData, setFormData] = useState<FormData>(initialForm);
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const interest = params.get('interest');
+    if (interest === 'gc-erp' || interest === 'g-hims' || interest === 'custom' || interest === 'research') {
+      setTopic(interest);
+    }
+  }, []);
+
+  const activeTopic = topicOptions.find((item) => item.id === topic) ?? topicOptions[2];
 
   const validate = () => {
     const next: FormErrors = {};
@@ -66,11 +115,16 @@ export default function Contact() {
     setIsSubmitting(true);
     setSubmitError('');
 
+    const payload: FormData = {
+      ...formData,
+      projectDetails: `[Inquiry Focus: ${activeTopic.tag}]\n\n${formData.projectDetails.trim()}`,
+    };
+
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
         signal: AbortSignal.timeout(15000),
       });
 
@@ -169,6 +223,27 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate>
+                <div className="mb-6">
+                  <p className="text-sm font-medium text-zinc-300">What are you evaluating?</p>
+                  <div className="mt-2.5 grid gap-2 sm:grid-cols-2">
+                    {topicOptions.map((option) => (
+                      <button
+                        key={option.id}
+                        type="button"
+                        onClick={() => setTopic(option.id)}
+                        className={cn(
+                          'rounded-xl border px-3.5 py-2.5 text-left text-xs font-semibold transition',
+                          topic === option.id
+                            ? 'border-indigo-500 bg-indigo-600/15 text-indigo-200'
+                            : 'border-zinc-800 bg-zinc-950 text-zinc-400 hover:border-zinc-700 hover:text-white',
+                        )}
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 <div className="grid gap-5 sm:grid-cols-2">
                   <label className="text-sm font-medium text-zinc-300">
                     Name
@@ -222,7 +297,7 @@ export default function Contact() {
                     onChange={handleChange}
                     rows={8}
                     className={cn(fieldClass(Boolean(errors.projectDetails)), 'resize-y')}
-                    placeholder="Describe the workflow, who uses it, what breaks today, and any important constraints."
+                    placeholder={activeTopic.placeholder}
                     aria-invalid={Boolean(errors.projectDetails)}
                   />
                   {errors.projectDetails && (

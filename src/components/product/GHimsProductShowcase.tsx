@@ -170,7 +170,7 @@ function Patient360Scene() {
       <div className="flex flex-col justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-xs sm:flex-row sm:items-start">
         <div>
           <p className="text-[8px] font-black uppercase tracking-[0.12em] text-blue-600">Patient 360 • canonical clinical projection</p>
-          <h3 className="mt-1 text-base font-black tracking-tight text-slate-950">Ayesha Malik</h3>
+          <h3 className="mt-1 text-base font-black tracking-tight text-slate-950">Jennifer Shaw</h3>
           <p className="mt-1 text-[8px] text-slate-500">MRN-10284 • OPD-24017 • 34Y • Female • Synthetic</p>
         </div>
         <div className="flex gap-1.5">
@@ -286,7 +286,7 @@ function OpdScene() {
       </div>
       <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
         {[
-          ['A-17', 'Ayesha Malik', 'MRN-10284', 'With doctor', '18m'],
+          ['A-17', 'Jennifer Shaw', 'MRN-10284', 'With doctor', '18m'],
           ['A-18', 'Hamza Ali', 'MRN-10921', 'Vitals pending', '11m'],
           ['A-19', 'Maryam Noor', 'MRN-10462', 'Waiting', '7m'],
           ['A-20', 'Usman Tariq', 'MRN-11208', 'Waiting', '3m'],
@@ -309,7 +309,7 @@ function DiagnosticsScene() {
       <div className="rounded-2xl border border-slate-200 bg-white p-4">
         <p className="text-[8px] font-black uppercase tracking-wide text-blue-600">LIS Lab & Radiology</p>
         <h3 className="mt-1 text-base font-black text-slate-950">Diagnostic order LAB-4092</h3>
-        <p className="mt-1 text-[8px] text-slate-500">CBC • Ayesha Malik • OPD-24017</p>
+        <p className="mt-1 text-[8px] text-slate-500">CBC • Jennifer Shaw • OPD-24017</p>
         <div className="mt-4 grid grid-cols-2 gap-2">
           {[
             ['Ordered', 'Complete', 'emerald'],

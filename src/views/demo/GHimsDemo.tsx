@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Link from '../../components/AppLink';
 import {
   Activity,
   ArrowRight,
@@ -68,7 +69,7 @@ const initialEvents: ClinicalEvent[] = [
     module: 'queue',
     type: 'patient.checked_in',
     title: 'Patient checked into OPD queue',
-    detail: 'MRN-10284 • Ayesha Malik',
+    detail: 'MRN-10284 • Jennifer Shaw',
     time: '10:05',
   },
   {
@@ -84,13 +85,13 @@ const initialEvents: ClinicalEvent[] = [
     module: 'overview',
     type: 'patient.registered',
     title: 'Patient identity registered',
-    detail: 'MRN-10284 • Ayesha Malik',
+    detail: 'MRN-10284 • Jennifer Shaw',
     time: '09:53',
   },
 ];
 
 const queueRows = [
-  { token: 'A-17', patient: 'Ayesha Malik', mrn: 'MRN-10284', stage: 'With doctor', wait: '18m' },
+  { token: 'A-17', patient: 'Jennifer Shaw', mrn: 'MRN-10284', stage: 'With doctor', wait: '18m' },
   { token: 'A-18', patient: 'Hamza Ali', mrn: 'MRN-10921', stage: 'Vitals pending', wait: '11m' },
   { token: 'A-19', patient: 'Maryam Noor', mrn: 'MRN-10462', stage: 'Waiting', wait: '7m' },
   { token: 'A-20', patient: 'Usman Tariq', mrn: 'MRN-11208', stage: 'Waiting', wait: '3m' },
@@ -258,26 +259,66 @@ export default function GHimsDemo() {
         ? 'Billing due'
         : 'Completed';
 
+  const hasSimulatedActions =
+    vitalsRecorded ||
+    labOrdered ||
+    labPaid ||
+    sampleCollected ||
+    resultReady ||
+    medPrescribed ||
+    medDispensed ||
+    pharmacyPaid;
+
+  const resetSimulation = () => {
+    setVitalsRecorded(false);
+    setLabOrdered(false);
+    setLabPaid(false);
+    setSampleCollected(false);
+    setResultReady(false);
+    setMedPrescribed(false);
+    setMedDispensed(false);
+    setPharmacyPaid(false);
+    setEvents(initialEvents);
+    setModule('overview');
+  };
+
   return (
     <div className="min-h-screen bg-zinc-950 pt-16 text-zinc-100">
 
       <div className="border-b border-zinc-800 bg-black/40">
         <div className="mx-auto flex max-w-[1500px] flex-col gap-4 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
-            <div className="flex items-center gap-2 text-sm font-semibold text-white">
+            <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-white">
               <div className="grid h-8 w-8 place-items-center rounded-lg bg-white text-[10px] font-bold text-zinc-950">GC</div>
-              G-HIMS Clinical Operations Sandbox
+              <span>G-HIMS Clinical Operations Sandbox</span>
+              <span aria-hidden="true" className="text-zinc-600">·</span>
+              <Link to="/products/g-hims" className="text-xs font-medium text-indigo-300 hover:text-white">
+                Product overview
+              </Link>
+              <span aria-hidden="true" className="text-zinc-600">·</span>
+              <Link to="/demo/gc-erp" className="text-xs font-medium text-zinc-400 hover:text-white">
+                Switch to GC-ERP sandbox →
+              </Link>
             </div>
             <p className="mt-1 text-xs text-zinc-500">
               Synthetic patient data. Browser-only workflow simulation. Not clinical decision support or a production deployment.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2">
-            <button className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-xs font-medium text-zinc-300">
+          <div className="flex flex-wrap items-center gap-2">
+            {hasSimulatedActions && (
+              <button
+                type="button"
+                onClick={resetSimulation}
+                className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-xs font-medium text-zinc-300 hover:border-zinc-700 hover:text-white"
+              >
+                Reset sandbox
+              </button>
+            )}
+            <div className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-xs font-medium text-zinc-400">
+              <HeartPulse className="h-3.5 w-3.5 text-zinc-500" />
               Gotham General Hospital
-              <ChevronDown className="h-3.5 w-3.5" />
-            </button>
+            </div>
             <div className="relative">
               <select
                 value={role}
@@ -323,6 +364,77 @@ export default function GHimsDemo() {
         </aside>
 
         <main className="min-w-0 p-4 sm:p-6 lg:p-8">
+          <div className="mb-6 rounded-xl border border-zinc-800 bg-zinc-900/35 p-3.5">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <p className="text-xs font-semibold text-zinc-300">
+                Interactive OPD-to-Billing walkthrough · Click each step to test the clinical-financial chain:
+              </p>
+              <span className="font-mono text-[11px] tabular-nums text-zinc-500">
+                {[vitalsRecorded, labOrdered, labPaid, resultReady, medDispensed, pharmacyPaid].filter(Boolean).length}/6 milestones
+              </span>
+            </div>
+            <div className="mt-2.5 grid gap-2 sm:grid-cols-3 xl:grid-cols-6">
+              {[
+                {
+                  step: '01',
+                  label: vitalsRecorded ? 'Vitals recorded' : 'Record OPD vitals',
+                  done: vitalsRecorded,
+                  target: 'queue' as Module,
+                },
+                {
+                  step: '02',
+                  label: labOrdered && medPrescribed ? 'Orders placed' : 'Order CBC & Rx',
+                  done: labOrdered && medPrescribed,
+                  target: 'encounter' as Module,
+                },
+                {
+                  step: '03',
+                  label: labPaid ? 'CBC paid' : 'Pay CBC charge',
+                  done: labPaid,
+                  target: 'billing' as Module,
+                },
+                {
+                  step: '04',
+                  label: resultReady ? 'CBC result ready' : 'Release lab result',
+                  done: resultReady,
+                  target: 'diagnostics' as Module,
+                },
+                {
+                  step: '05',
+                  label: medDispensed ? 'Rx dispensed' : 'Dispense Rx',
+                  done: medDispensed,
+                  target: 'pharmacy' as Module,
+                },
+                {
+                  step: '06',
+                  label: pharmacyPaid ? 'Audit complete' : 'Settle & audit',
+                  done: pharmacyPaid,
+                  target: (medDispensed && !pharmacyPaid ? 'billing' : 'audit') as Module,
+                },
+              ].map((item) => (
+                <button
+                  key={item.step}
+                  type="button"
+                  onClick={() => setModule(item.target)}
+                  className={cn(
+                    'flex items-center justify-between gap-1.5 rounded-lg border px-2.5 py-2 text-left text-xs transition',
+                    module === item.target
+                      ? 'border-indigo-500 bg-indigo-600/15 text-white'
+                      : item.done
+                        ? 'border-emerald-900/60 bg-emerald-950/20 text-emerald-300'
+                        : 'border-zinc-800 bg-zinc-950 text-zinc-400 hover:border-zinc-700 hover:text-white',
+                  )}
+                >
+                  <span className="truncate font-medium">
+                    <span className="mr-1 font-mono text-[10px] opacity-70">{item.step}.</span>
+                    {item.label}
+                  </span>
+                  {item.done && <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-400" />}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">G-HIMS / {module}</p>
@@ -332,10 +444,23 @@ export default function GHimsDemo() {
               <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-400">{roleContext}</p>
             </div>
 
-            <button className="inline-flex items-center gap-2 self-start rounded-lg border border-zinc-800 px-3 py-2 text-xs font-medium text-zinc-300">
-              <Search className="h-3.5 w-3.5" />
-              Search patient
-            </button>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => setModule('queue')}
+                className="inline-flex items-center gap-2 whitespace-nowrap rounded-lg border border-zinc-800 px-3 py-2 text-xs font-medium text-zinc-300 hover:border-zinc-700 hover:text-white"
+              >
+                <Search className="h-3.5 w-3.5" />
+                OPD Queue
+              </button>
+              <button
+                type="button"
+                onClick={() => setModule('audit')}
+                className="whitespace-nowrap rounded-lg bg-white px-3 py-2 text-xs font-semibold text-zinc-950"
+              >
+                Event history ({events.length})
+              </button>
+            </div>
           </div>
 
           {module === 'overview' && (
@@ -362,7 +487,7 @@ export default function GHimsDemo() {
                   <div className="flex items-start justify-between">
                     <div>
                       <h2 className="text-sm font-semibold text-white">Active patient journey</h2>
-                      <p className="mt-1 text-xs text-zinc-500">Ayesha Malik • MRN-10284 • OPD-24017</p>
+                      <p className="mt-1 text-xs text-zinc-500">Jennifer Shaw • MRN-10284 • OPD-24017</p>
                     </div>
                     <Badge tone="info">In consultation</Badge>
                   </div>
@@ -391,7 +516,7 @@ export default function GHimsDemo() {
                       <UserRound className="h-5 w-5" />
                     </div>
                     <div>
-                      <p className="font-semibold text-white">Ayesha Malik</p>
+                      <p className="font-semibold text-white">Jennifer Shaw</p>
                       <p className="text-xs text-zinc-500">34Y • Female • MRN-10284</p>
                     </div>
                   </div>
@@ -508,7 +633,7 @@ export default function GHimsDemo() {
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <h2 className="text-sm font-semibold text-white">Diagnostic order LAB-4092</h2>
-                  <p className="mt-1 text-xs text-zinc-500">CBC • OPD-24017 • Ayesha Malik</p>
+                  <p className="mt-1 text-xs text-zinc-500">CBC • OPD-24017 • Jennifer Shaw</p>
                 </div>
                 <Badge tone={resultReady ? 'good' : labPaid ? 'info' : labOrdered ? 'warning' : 'neutral'}>{diagnosticStage}</Badge>
               </div>

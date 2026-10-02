@@ -78,9 +78,11 @@ export default function Home() {
         <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px gc-accent-line opacity-90" />
         <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[-18rem] h-[34rem] w-[50rem] -translate-x-1/2 rounded-full bg-indigo-600/10 blur-3xl" />
         <div className="mx-auto max-w-4xl text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1.5 text-xs font-medium text-indigo-200">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            Enterprise systems engineering
+          <div className="mb-6 inline-flex items-center gap-2 text-xs font-medium text-indigo-200">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+            <span>Enterprise systems engineering</span>
+            <span aria-hidden="true" className="text-zinc-600">·</span>
+            <span className="text-zinc-400">GC-ERP &amp; G-HIMS</span>
           </div>
 
           <h1 className="text-balance text-5xl font-semibold tracking-[-0.045em] text-white sm:text-6xl lg:text-7xl">
@@ -94,16 +96,16 @@ export default function Home() {
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               to="/products"
-              className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-200 sm:w-auto"
+              className="inline-flex min-h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-white px-6 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-200 sm:w-auto"
             >
               Explore products
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              to="/contact"
-              className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl border border-zinc-700 bg-zinc-900 px-6 py-3 text-sm font-semibold text-white transition hover:border-zinc-600 hover:bg-zinc-800 sm:w-auto"
+              to="/demo/gc-erp"
+              className="inline-flex min-h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-zinc-700 bg-zinc-900 px-6 py-3 text-sm font-semibold text-white transition hover:border-zinc-600 hover:bg-zinc-800 sm:w-auto"
             >
-              Discuss your system
+              Launch interactive sandbox
             </Link>
           </div>
         </div>
@@ -111,10 +113,13 @@ export default function Home() {
         <div className="gc-panel mx-auto mt-14 max-w-6xl overflow-hidden rounded-3xl p-2 lg:mt-16">
           <div className="mb-2 flex items-center justify-between rounded-2xl border border-[#1e293b] bg-[#0f1523] px-4 py-3">
             <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-indigo-300">GC Enterprise UI</p>
-              <p className="mt-0.5 text-xs text-zinc-400">A product language built from the same enterprise design system.</p>
+              <p className="text-xs font-semibold text-indigo-300">GC Enterprise UI · Interactive preview</p>
+              <p className="mt-0.5 text-xs text-zinc-400">Switch modules and inspect how operational and financial state stay connected.</p>
             </div>
-            <span className="hidden rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-[10px] font-semibold text-emerald-300 sm:inline">Operational</span>
+            <div className="hidden items-center gap-2 text-xs text-emerald-300 sm:flex">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span>Operational</span>
+            </div>
           </div>
           <EnterpriseProductShowcase />
         </div>
@@ -127,7 +132,7 @@ export default function Home() {
             ['Reliability', 'Built for critical data'],
           ].map(([label, value]) => (
             <div key={label}>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-zinc-600">{label}</p>
+              <p className="text-xs font-semibold text-zinc-500">{label}</p>
               <p className="mt-1 text-sm font-medium text-zinc-300">{value}</p>
             </div>
           ))}
@@ -204,12 +209,30 @@ export default function Home() {
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="text-sm font-semibold text-zinc-500">Enterprise engineering</p>
-            <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+            <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
               The interface is only the visible layer.
             </h2>
             <p className="mt-5 max-w-lg text-base leading-7 text-zinc-400">
               The harder work is protecting authority boundaries, keeping data consistent, recovering from failure and making system behavior explainable.
             </p>
+
+            <div className="mt-8 rounded-2xl border border-zinc-800 bg-zinc-950 p-5">
+              <p className="text-xs font-semibold text-indigo-300">Command-to-Ledger Trust Pipeline</p>
+              <div className="mt-4 space-y-2.5 text-xs">
+                {[
+                  ['01. Client Surface', 'Submits intent with idempotency key; never mutates state directly'],
+                  ['02. Trust Boundary', 'Server validates identity, tenant RLS, role, and approval authority'],
+                  ['03. Invariant Gate', 'Domain service verifies stock, clinical, or accounting rules'],
+                  ['04. Durable Commit', 'Append-only ledger entry + transactional outbox event recorded'],
+                ].map(([stage, desc]) => (
+                  <div key={stage} className="grid gap-2 rounded-xl border border-zinc-800/90 bg-zinc-900/50 px-3.5 py-2.5 sm:grid-cols-[145px_1fr]">
+                    <span className="font-mono font-semibold text-white">{stage}</span>
+                    <span className="text-zinc-400">{desc}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <Link
               to="/approach"
               className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-zinc-300"
@@ -228,6 +251,64 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </Section>
+
+      <Section className="border-b border-zinc-800/80 bg-black">
+        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold text-zinc-500">Research &amp; engineering evidence</p>
+            <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+              Claims backed by published research papers and repository evidence.
+            </h2>
+          </div>
+          <Link
+            to="/case-studies"
+            className="inline-flex items-center gap-2 whitespace-nowrap text-sm font-semibold text-white hover:text-zinc-300"
+          >
+            Explore full evidence library
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
+        <div className="mt-10 grid gap-4 lg:grid-cols-3">
+          {[
+            {
+              meta: 'G-HIMS · Clinical Intelligence Research',
+              title: 'From Fragmented Records to Clinical Context',
+              copy: '19-page concept-validation paper and 29-page technical architecture white paper on longitudinal Patient 360 projections and provenance.',
+              href: '/case-studies#clinical-intelligence-concept-validation',
+              cta: 'Read clinical research',
+            },
+            {
+              meta: 'G-HIMS · Revenue Integrity Research',
+              title: 'From Patient Activity to Financial Truth',
+              copy: 'Deterministic reconciliation across patient orders, fulfillment, billing, advances, subledgers, and general-ledger postings.',
+              href: '/case-studies#revenue-integrity-concept-validation',
+              cta: 'Read revenue study',
+            },
+            {
+              meta: 'GC-ERP · Systems & Security Study',
+              title: 'Multi-Tenant ERP with Immutable Ledgers',
+              copy: 'PostgreSQL row-level security, append-only inventory movements, immutable financial journals, and transactional outbox reliability.',
+              href: '/case-studies#gc-erp-ledgers-security',
+              cta: 'Read ERP architecture study',
+            },
+          ].map((item) => (
+            <Link
+              key={item.title}
+              to={item.href}
+              className="group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 transition hover:border-zinc-700 hover:bg-zinc-900"
+            >
+              <p className="text-xs font-semibold text-zinc-500">{item.meta}</p>
+              <h3 className="mt-3 text-xl font-semibold text-white">{item.title}</h3>
+              <p className="mt-3 flex-1 text-sm leading-6 text-zinc-400">{item.copy}</p>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-zinc-200 group-hover:text-white">
+                {item.cta}
+                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          ))}
         </div>
       </Section>
 

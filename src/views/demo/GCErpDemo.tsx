@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import Link from '../../components/AppLink';
 import {
   ArrowLeftRight,
   ArrowRight,
@@ -187,26 +188,50 @@ export default function GCErpDemo() {
     });
   };
 
+  const resetSimulation = () => {
+    setPoApproved(false);
+    setStockReceived(false);
+    setJournalPosted(false);
+    setEvents(seedEvents);
+    setModule('dashboard');
+  };
+
   return (
     <div className="min-h-screen bg-zinc-950 pt-16 text-zinc-100">
 
       <div className="border-b border-zinc-800 bg-black/40">
         <div className="mx-auto flex max-w-[1500px] flex-col gap-4 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
           <div>
-            <div className="flex items-center gap-2 text-sm font-semibold text-white">
+            <div className="flex flex-wrap items-center gap-2 text-sm font-semibold text-white">
               <div className="grid h-8 w-8 place-items-center rounded-lg bg-white text-[10px] font-bold text-zinc-950">GC</div>
-              GC-ERP Interactive Sandbox
+              <span>GC-ERP Interactive Sandbox</span>
+              <span aria-hidden="true" className="text-zinc-600">·</span>
+              <Link to="/products/gc-erp" className="text-xs font-medium text-indigo-300 hover:text-white">
+                Product overview
+              </Link>
+              <span aria-hidden="true" className="text-zinc-600">·</span>
+              <Link to="/demo/g-hims" className="text-xs font-medium text-zinc-400 hover:text-white">
+                Switch to G-HIMS sandbox →
+              </Link>
             </div>
             <p className="mt-1 text-xs text-zinc-500">
               Browser-only simulation with sample operational data. State resets when the page reloads.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2">
-            <button className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-xs font-medium text-zinc-300">
+          <div className="flex flex-wrap items-center gap-2">
+            {(poApproved || stockReceived || journalPosted) && (
+              <button
+                onClick={resetSimulation}
+                className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-xs font-medium text-zinc-300 hover:border-zinc-700 hover:text-white"
+              >
+                Reset sandbox
+              </button>
+            )}
+            <div className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-950 px-3 py-2 text-xs font-medium text-zinc-400">
+              <Building2 className="h-3.5 w-3.5 text-zinc-500" />
               Atlas Manufacturing
-              <ChevronDown className="h-3.5 w-3.5" />
-            </button>
+            </div>
             <div className="relative">
               <select
                 value={role}
@@ -252,6 +277,65 @@ export default function GCErpDemo() {
         </aside>
 
         <main className="min-w-0 p-4 sm:p-6 lg:p-8">
+          <div className="mb-6 rounded-xl border border-zinc-800 bg-zinc-900/35 p-3.5">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <p className="text-xs font-semibold text-zinc-300">
+                Interactive 30-second walkthrough · Click each step to test the cross-domain event chain:
+              </p>
+              <span className="font-mono text-[11px] tabular-nums text-zinc-500">
+                {[poApproved, stockReceived, journalPosted].filter(Boolean).length}/3 actions committed
+              </span>
+            </div>
+            <div className="mt-2.5 grid gap-2 sm:grid-cols-4">
+              {[
+                {
+                  step: '01',
+                  label: poApproved ? 'PO-4831 approved' : 'Approve PO-4831',
+                  done: poApproved,
+                  target: 'procurement' as Module,
+                },
+                {
+                  step: '02',
+                  label: stockReceived ? 'BEA-108 received (+40)' : 'Receive BEA-108 stock',
+                  done: stockReceived,
+                  target: 'inventory' as Module,
+                },
+                {
+                  step: '03',
+                  label: journalPosted ? 'Accrual JV-3101 posted' : 'Post receipt accrual',
+                  done: journalPosted,
+                  target: 'finance' as Module,
+                },
+                {
+                  step: '04',
+                  label: 'Inspect event audit',
+                  done: poApproved && stockReceived && journalPosted,
+                  target: 'audit' as Module,
+                },
+              ].map((item) => (
+                <button
+                  key={item.step}
+                  type="button"
+                  onClick={() => setModule(item.target)}
+                  className={cn(
+                    'flex items-center justify-between gap-2 rounded-lg border px-3 py-2 text-left text-xs transition',
+                    module === item.target
+                      ? 'border-indigo-500 bg-indigo-600/15 text-white'
+                      : item.done
+                        ? 'border-emerald-900/60 bg-emerald-950/20 text-emerald-300'
+                        : 'border-zinc-800 bg-zinc-950 text-zinc-400 hover:border-zinc-700 hover:text-white',
+                  )}
+                >
+                  <span className="truncate font-medium">
+                    <span className="mr-1.5 font-mono text-[10px] opacity-70">{item.step}.</span>
+                    {item.label}
+                  </span>
+                  {item.done && <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-emerald-400" />}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">GC-ERP / {module}</p>
@@ -261,11 +345,21 @@ export default function GCErpDemo() {
               <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-400">{roleSubtitle}</p>
             </div>
             <div className="flex gap-2">
-              <button className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 px-3 py-2 text-xs font-medium text-zinc-300">
+              <button
+                type="button"
+                onClick={() => setModule('inventory')}
+                className="inline-flex items-center gap-2 whitespace-nowrap rounded-lg border border-zinc-800 px-3 py-2 text-xs font-medium text-zinc-300 hover:border-zinc-700 hover:text-white"
+              >
                 <Search className="h-3.5 w-3.5" />
-                Search records
+                Inspect SKUs
               </button>
-              <button className="rounded-lg bg-white px-3 py-2 text-xs font-semibold text-zinc-950">Create report</button>
+              <button
+                type="button"
+                onClick={() => setModule('audit')}
+                className="whitespace-nowrap rounded-lg bg-white px-3 py-2 text-xs font-semibold text-zinc-950"
+              >
+                Audit log ({events.length})
+              </button>
             </div>
           </div>
 

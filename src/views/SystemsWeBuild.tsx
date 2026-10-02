@@ -45,19 +45,93 @@ const architecture = [
   },
 ];
 
+const solutionTracks = [
+  {
+    step: '01',
+    title: 'Bespoke enterprise platforms',
+    copy: 'Greenfield operational systems built around unusual authority models, multi-party approvals, regulatory traceability, or offline field constraints.',
+    href: '/contact?interest=custom',
+    cta: 'Scope a custom system',
+  },
+  {
+    step: '02',
+    title: 'Domain-adapted product foundations',
+    copy: 'Deploy the GC-ERP or G-HIMS architectural core and tailor domain modules, chart of accounts, tariffs, and approval matrices to your operation.',
+    href: '/products',
+    cta: 'Compare flagship products',
+  },
+  {
+    step: '03',
+    title: 'Workflow & integration modernization',
+    copy: 'Replace fragile spreadsheet bridges and disconnected departmental tools with an event-driven command backbone and auditable read models.',
+    href: '/approach',
+    cta: 'Review engineering approach',
+  },
+];
+
 export default function SystemsWeBuild() {
   return (
     <div className="pt-16">
 
       <Section className="border-b border-zinc-800 py-12 md:py-16" animate={false}>
         <div className="max-w-4xl">
-          <p className="text-sm font-semibold text-zinc-500">Products & systems</p>
-          <h1 className="mt-5 text-5xl font-semibold tracking-[-0.045em] text-white md:text-7xl">
+          <p className="text-sm font-semibold text-zinc-500">Solutions & custom systems engineering</p>
+          <h1 className="mt-5 text-balance text-5xl font-semibold tracking-[-0.045em] text-white md:text-7xl">
             Operational software should reflect the business, not force the business into the software.
           </h1>
           <p className="mt-7 max-w-2xl text-lg leading-8 text-zinc-400">
-            We build ERP, healthcare and custom enterprise platforms where workflows cross departments and the cost of missing context is high.
+            Whether you are adopting one of our flagship platforms or commissioning a custom enterprise system, we engineer around your real authority boundaries, department handoffs, and failure modes.
           </p>
+        </div>
+
+        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+          {solutionTracks.map((track) => (
+            <div key={track.step} className="flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6">
+              <span className="font-mono text-xs font-semibold tabular-nums text-indigo-400">{track.step}.</span>
+              <h2 className="mt-4 text-xl font-semibold text-white">{track.title}</h2>
+              <p className="mt-2.5 flex-1 text-sm leading-6 text-zinc-400">{track.copy}</p>
+              <Link
+                to={track.href}
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-zinc-200 hover:text-white"
+              >
+                {track.cta}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="saas-platforms" className="border-b border-zinc-800 bg-black">
+        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+          <div>
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900">
+              <CloudCog className="h-5 w-5 text-zinc-300" />
+            </div>
+            <p className="mt-7 text-sm font-semibold text-zinc-500">Custom enterprise platforms</p>
+            <h2 className="mt-3 text-balance text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+              When generic software cannot model your operating rules.
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-7 text-zinc-400">
+              We build domain-specific systems for organizations with complex approval chains, strict tenant or site isolation, offline field requirements, and high-stakes financial or clinical records.
+            </p>
+            <Link
+              to="/contact?interest=custom"
+              className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-zinc-300"
+            >
+              Discuss a custom platform
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-800 sm:grid-cols-2">
+            {platformCapabilities.map((item, index) => (
+              <div key={item} className="bg-zinc-950 p-6">
+                <span className="font-mono text-xs font-semibold tabular-nums text-zinc-600">{String(index + 1).padStart(2, '0')}.</span>
+                <p className="mt-6 text-base font-semibold text-white">{item}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
 
@@ -67,8 +141,8 @@ export default function SystemsWeBuild() {
             <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900">
               <Boxes className="h-5 w-5 text-zinc-300" />
             </div>
-            <p className="mt-7 text-sm font-semibold text-zinc-500">GC-ERP</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+            <p className="mt-7 text-sm font-semibold text-zinc-500">GC-ERP reference architecture</p>
+            <h2 className="mt-3 text-balance text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
               One operating system for the movement of money, material and work.
             </h2>
             <p className="mt-5 text-base leading-7 text-zinc-400">
@@ -76,25 +150,25 @@ export default function SystemsWeBuild() {
             </p>
 
             <div className="mt-6 rounded-2xl border border-indigo-900/50 bg-indigo-950/20 p-4">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-indigo-400">Highlighted modules</p>
-              <p className="mt-2 text-sm leading-6 text-zinc-300">
-                Dashboard • SCM • Inventory • Finance • CRM • Procurement • GC Enterprise Cockpit &amp; Core
+              <p className="text-xs font-semibold text-indigo-300">Highlighted modules</p>
+              <p className="mt-1.5 text-sm leading-6 text-zinc-300">
+                Dashboard · SCM · Inventory · Finance · CRM · Procurement · Enterprise Cockpit
               </p>
             </div>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <Link
                 to="/products/gc-erp"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
               >
                 Explore GC-ERP
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                to="/contact"
-                className="inline-flex items-center justify-center rounded-xl border border-zinc-700 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-900"
+                to="/contact?interest=gc-erp"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-xl border border-zinc-700 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-900"
               >
-                Discuss ERP
+                Discuss ERP solution
               </Link>
             </div>
           </div>
@@ -102,12 +176,9 @@ export default function SystemsWeBuild() {
           <div>
             <div className="mb-4 flex items-center justify-between gap-4">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">From the product code</p>
+                <p className="text-xs font-semibold text-zinc-500">From the product code · Source-derived UI</p>
                 <p className="mt-1 text-sm text-zinc-400">Switch modules to inspect the actual GC-ERP visual and operational language.</p>
               </div>
-              <span className="hidden rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1 text-[10px] font-semibold text-zinc-500 sm:inline">
-                Source-derived UI
-              </span>
             </div>
             <GCErpSystemsHighlight />
           </div>
@@ -120,8 +191,8 @@ export default function SystemsWeBuild() {
             <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900">
               <Stethoscope className="h-5 w-5 text-zinc-300" />
             </div>
-            <p className="mt-7 text-sm font-semibold text-zinc-500">G-HIMS</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+            <p className="mt-7 text-sm font-semibold text-zinc-500">G-HIMS reference architecture</p>
+            <h2 className="mt-3 text-balance text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
               Hospital operations where clinical, financial and operational events remain connected.
             </h2>
             <p className="mt-5 max-w-xl text-base leading-7 text-zinc-400">
@@ -129,69 +200,37 @@ export default function SystemsWeBuild() {
             </p>
 
             <div className="mt-6 rounded-2xl border border-blue-900/50 bg-blue-950/20 p-4">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-blue-400">Highlighted modules</p>
-              <p className="mt-2 text-sm leading-6 text-zinc-300">
-                Patient 360 • Finance • HCM • SCM
+              <p className="text-xs font-semibold text-blue-300">Highlighted modules</p>
+              <p className="mt-1.5 text-sm leading-6 text-zinc-300">
+                Patient 360 · Finance · HCM · SCM
               </p>
             </div>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <Link
                 to="/products/g-hims"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
               >
                 Explore G-HIMS
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <a
-                href="https://g-hims-gateway.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-zinc-700 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-900"
+              <Link
+                to="/contact?interest=g-hims"
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-zinc-700 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-900"
               >
-                Visit G-HIMS
-                <Globe2 className="h-4 w-4" />
-              </a>
+                Discuss HIMS solution
+              </Link>
             </div>
           </div>
 
           <div>
             <div className="mb-4 flex items-center justify-between gap-4">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-zinc-600">From the product code</p>
+                <p className="text-xs font-semibold text-zinc-500">From the product code · Source-derived UI</p>
                 <p className="mt-1 text-sm text-zinc-400">Switch modules to inspect the actual G-HIMS control surfaces.</p>
               </div>
-              <span className="hidden rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1 text-[10px] font-semibold text-zinc-500 sm:inline">
-                Source-derived UI
-              </span>
             </div>
             <GHimsSystemsHighlight />
-          </div>
-        </div>
-      </Section>
-
-      <Section id="saas-platforms" className="border-b border-zinc-800">
-        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-          <div>
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900">
-              <CloudCog className="h-5 w-5 text-zinc-300" />
-            </div>
-            <p className="mt-7 text-sm font-semibold text-zinc-500">Custom enterprise platforms</p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
-              When generic software cannot model your operating rules.
-            </h2>
-            <p className="mt-5 max-w-xl text-base leading-7 text-zinc-400">
-              We build domain-specific systems for organizations with unusual approval paths, authority models, offline requirements, integrations or data workflows.
-            </p>
-          </div>
-
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-800 sm:grid-cols-2">
-            {platformCapabilities.map((item, index) => (
-              <div key={item} className="bg-zinc-950 p-6">
-                <span className="text-[10px] font-semibold text-zinc-700">{String(index + 1).padStart(2, '0')}</span>
-                <p className="mt-8 text-base font-semibold text-white">{item}</p>
-              </div>
-            ))}
           </div>
         </div>
       </Section>

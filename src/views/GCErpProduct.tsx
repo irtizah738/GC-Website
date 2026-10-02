@@ -49,35 +49,61 @@ const architecture = [
   ['Integration-oriented', 'The repository includes APIs, event-mesh concepts, transaction mappings, workspace integrations, export/logistics interfaces, and industrial gateway boundaries.'],
 ];
 
+const deploymentModels = [
+  {
+    step: '01',
+    title: 'Dedicated enterprise cloud',
+    copy: 'Single-tenant or multi-entity cloud deployment with strict PostgreSQL row-level security, site isolation, and regional residency controls.',
+  },
+  {
+    step: '02',
+    title: 'Private industrial or on-premise',
+    copy: 'Deploy inside your own VPC or plant infrastructure when sovereign data policies, shop-floor latency, or internal ERP integration boundaries require it.',
+  },
+  {
+    step: '03',
+    title: 'Hybrid plant-floor & warehouse edge',
+    copy: 'Pair central financial and MRP control with offline-capable warehouse/MES edge queues so receiving, picking, and floor execution survive network drops.',
+  },
+];
+
 export default function GCErpProduct() {
   return (
     <div className="pt-16">
       <Section className="border-b border-zinc-800 py-12 md:py-16" animate={false}>
         <div className="max-w-4xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-900/60 bg-emerald-950/20 px-3 py-1.5 text-xs font-semibold text-emerald-300">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            Working engineering build
+          <div className="flex items-center gap-2 text-xs font-semibold text-zinc-400">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+            <span className="text-emerald-300">Working engineering build</span>
+            <span aria-hidden="true">·</span>
+            <span>GC-ERP · Manufacturing &amp; Enterprise Operations Platform</span>
           </div>
-          <p className="mt-7 text-sm font-semibold text-zinc-500">GC-ERP • Manufacturing & Enterprise Operations Platform</p>
-          <h1 className="mt-3 text-5xl font-semibold tracking-[-0.045em] text-white md:text-7xl">
+          <h1 className="mt-5 text-balance text-5xl font-semibold tracking-[-0.045em] text-white md:text-7xl">
             Manufacturing-first ERP built around the full transaction chain.
           </h1>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-zinc-400">
             GC-ERP connects customer demand, procurement, inventory, manufacturing, quality, maintenance, logistics, finance, workforce, and audit into one operating model instead of treating them as independent applications.
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-wrap gap-3">
             <Link
               to="/demo/gc-erp"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
             >
               Explore interactive sandbox
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              to="/contact"
-              className="inline-flex items-center justify-center rounded-xl border border-zinc-700 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-900"
+              to="/contact?interest=gc-erp"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-xl border border-zinc-700 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-900"
             >
               Discuss GC-ERP
+            </Link>
+            <Link
+              to="/case-studies#gc-erp-cross-domain"
+              className="inline-flex items-center gap-1.5 whitespace-nowrap px-3 py-3 text-sm font-semibold text-zinc-400 hover:text-white"
+            >
+              Read ERP case studies
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
@@ -196,17 +222,62 @@ export default function GCErpProduct() {
         </div>
       </Section>
 
+      <Section className="border-b border-zinc-800 bg-black">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold text-zinc-500">Deployment &amp; evaluation models</p>
+          <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+            Structured for industrial infrastructure and staged adoption.
+          </h2>
+          <p className="mt-5 text-base leading-7 text-zinc-400">
+            Manufacturers and multi-site operators can evaluate GC-ERP on a single workflow wedge—such as procure-to-pay, multi-warehouse inventory, or shop-floor work orders—before expanding across the full operating chain.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-4 lg:grid-cols-3">
+          {deploymentModels.map((item) => (
+            <div key={item.step} className="rounded-2xl border border-zinc-800 bg-zinc-950 p-6">
+              <span className="font-mono text-xs font-semibold tabular-nums text-indigo-400">{item.step}.</span>
+              <h3 className="mt-4 text-lg font-semibold text-white">{item.title}</h3>
+              <p className="mt-2.5 text-sm leading-6 text-zinc-400">{item.copy}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          <Link
+            to="/case-studies#gc-erp-cross-domain"
+            className="group flex items-center justify-between gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 transition hover:border-zinc-700 hover:bg-zinc-900"
+          >
+            <div>
+              <p className="text-xs font-semibold text-zinc-500">Case Study · Enterprise Operations</p>
+              <p className="mt-1.5 text-base font-semibold text-white">Designing an ERP around the transaction chain</p>
+            </div>
+            <ArrowRight className="h-4 w-4 shrink-0 text-zinc-400 transition group-hover:translate-x-0.5 group-hover:text-white" />
+          </Link>
+          <Link
+            to="/case-studies#gc-erp-ledgers-security"
+            className="group flex items-center justify-between gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5 transition hover:border-zinc-700 hover:bg-zinc-900"
+          >
+            <div>
+              <p className="text-xs font-semibold text-zinc-500">Case Study · Security &amp; Integrity</p>
+              <p className="mt-1.5 text-base font-semibold text-white">Multi-tenant ERP with immutable ledgers and reliable events</p>
+            </div>
+            <ArrowRight className="h-4 w-4 shrink-0 text-zinc-400 transition group-hover:translate-x-0.5 group-hover:text-white" />
+          </Link>
+        </div>
+      </Section>
+
       <Section className="text-center">
         <Boxes className="mx-auto h-6 w-6 text-zinc-600" />
-        <h2 className="mx-auto mt-6 max-w-3xl text-4xl font-semibold tracking-[-0.035em] text-white md:text-6xl">
+        <h2 className="mx-auto mt-6 max-w-3xl text-balance text-4xl font-semibold tracking-[-0.035em] text-white md:text-6xl">
           Need an ERP shaped around your manufacturing and operating model?
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-zinc-400">
           We can map demand, materials, production, quality, logistics, finance, workforce, and authority boundaries before deciding what should be standardized or custom.
         </p>
         <Link
-          to="/contact"
-          className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+          to="/contact?interest=gc-erp"
+          className="mt-8 inline-flex items-center gap-2 whitespace-nowrap rounded-xl bg-white px-6 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
         >
           Discuss GC-ERP
           <ArrowRight className="h-4 w-4" />

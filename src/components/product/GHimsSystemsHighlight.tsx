@@ -87,7 +87,7 @@ function Patient360() {
         <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-start">
           <div>
             <p className="text-[8px] font-black uppercase tracking-[0.14em] text-blue-600">Patient 360</p>
-            <h3 className="mt-1 text-lg font-black text-slate-950">Ayesha Malik</h3>
+            <h3 className="mt-1 text-lg font-black text-slate-950">Jennifer Shaw</h3>
             <p className="mt-1 text-[8px] text-slate-500">MRN-10284 • OPD-24017 • 34Y • Female • Synthetic</p>
           </div>
           <div className="flex gap-1.5">
