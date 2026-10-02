@@ -74,9 +74,11 @@ export default function Home() {
   return (
     <div className="pt-16">
 
-      <Section className="relative border-b border-zinc-800/80 py-12 md:py-16" animate={false}>
+      <Section className="relative overflow-hidden border-b border-zinc-800/80 py-12 md:py-16" animate={false}>
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px gc-accent-line opacity-90" />
+        <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[-18rem] h-[34rem] w-[50rem] -translate-x-1/2 rounded-full bg-indigo-600/10 blur-3xl" />
         <div className="mx-auto max-w-4xl text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/70 px-3 py-1.5 text-xs font-medium text-zinc-300">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1.5 text-xs font-medium text-indigo-200">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             Enterprise systems engineering
           </div>
@@ -106,7 +108,14 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mx-auto mt-14 max-w-6xl lg:mt-16">
+        <div className="gc-panel mx-auto mt-14 max-w-6xl overflow-hidden rounded-3xl p-2 lg:mt-16">
+          <div className="mb-2 flex items-center justify-between rounded-2xl border border-[#1e293b] bg-[#0f1523] px-4 py-3">
+            <div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-indigo-300">GC Enterprise UI</p>
+              <p className="mt-0.5 text-xs text-zinc-400">A product language built from the same enterprise design system.</p>
+            </div>
+            <span className="hidden rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-1 text-[10px] font-semibold text-emerald-300 sm:inline">Operational</span>
+          </div>
           <EnterpriseProductShowcase />
         </div>
 
