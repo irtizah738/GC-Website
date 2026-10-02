@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import CaseStudies from '@/src/pages/CaseStudies';
+import CaseStudies from '@/src/views/CaseStudies';
 
 export const metadata: Metadata = {
   title: 'Product Engineering Studies',
