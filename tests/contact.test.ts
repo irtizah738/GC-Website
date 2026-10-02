@@ -1,50 +1,76 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { Request, Response } from 'express';
-import sendEmail, { validateInquiry } from '../api/send-email';
+import { GET, POST } from '../app/api/send-email/route';
+import { validateInquiry } from '../src/lib/contact';
 
-const valid = { name: 'Alex', email: 'alex@example.com', company: 'Example', projectDetails: 'Architecture review' };
+const valid = {
+  name: 'Alex',
+  email: 'alex@example.com',
+  company: 'Example',
+  projectDetails: 'Architecture review',
+};
+
 test('accepts valid trimmed inquiry', () => {
   assert.equal(validateInquiry({ ...valid, name: ' Alex ' })?.name, 'Alex');
 });
+
 test('rejects missing fields and non-object input', () => {
-  for (const value of [null, [], 'test', {}, { ...valid, company: 123 }]) assert.equal(validateInquiry(value), null);
-});
-test('rejects malformed email, header injection and oversized input', () => {
-  for (const value of [{ ...valid, email: 'invalid' }, { ...valid, name: 'Alex\r\nBcc: injected' }, { ...valid, projectDetails: 'a'.repeat(5001) }]) assert.equal(validateInquiry(value), null);
+  for (const value of [null, [], 'test', {}, { ...valid, company: 123 }]) {
+    assert.equal(validateInquiry(value), null);
+  }
 });
 
-async function invoke(method: string, body: unknown, origin?: string) {
-  let code = 200;
-  let payload: unknown;
-  const headers: Record<string, string> = {};
-  const response = {
-    setHeader(key: string, value: string) { headers[key] = value; },
-    status(value: number) { code = value; return this; },
-    json(value: unknown) { payload = value; return this; },
-  } as unknown as Response;
-  await sendEmail({ method, body, headers: { origin } } as Request, response);
-  return { code, payload, headers };
+test('rejects malformed email, header injection and oversized input', () => {
+  for (const value of [
+    { ...valid, email: 'invalid' },
+    { ...valid, name: 'Alex\r\nBcc: injected' },
+    { ...valid, projectDetails: 'a'.repeat(5001) },
+  ]) {
+    assert.equal(validateInquiry(value), null);
+  }
+});
+
+function postRequest(body: unknown, origin?: string) {
+  const headers = new Headers({ 'Content-Type': 'application/json' });
+  if (origin) headers.set('Origin', origin);
+
+  return new Request('http://localhost/api/send-email', {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(body),
+  });
 }
+
 test('rejects unsupported method', async () => {
-  const result = await invoke('GET', valid);
-  assert.equal(result.code, 405);
-  assert.equal(result.headers.Allow, 'POST');
+  const response = await GET();
+  assert.equal(response.status, 405);
+  assert.equal(response.headers.get('Allow'), 'POST');
+  assert.equal(response.headers.get('Cache-Control'), 'no-store');
 });
+
 test('rejects foreign browser origin', async () => {
-  assert.equal((await invoke('POST', valid, 'https://untrusted.example')).code, 403);
+  const response = await POST(postRequest(valid, 'https://untrusted.example'));
+  assert.equal(response.status, 403);
 });
+
 test('rejects invalid payload before invoking email service', async () => {
-  assert.equal((await invoke('POST', {})).code, 400);
+  const response = await POST(postRequest({}));
+  assert.equal(response.status, 400);
 });
+
 test('reports missing email configuration without false success', async () => {
-  const saved = process.env.RESEND_API_KEY;
+  const savedApiKey = process.env.RESEND_API_KEY;
+  const savedFrom = process.env.CONTACT_FROM_EMAIL;
+
   delete process.env.RESEND_API_KEY;
+  delete process.env.CONTACT_FROM_EMAIL;
+
   try {
-    const result = await invoke('POST', valid);
-    assert.equal(result.code, 503);
-    assert.equal(result.headers['Cache-Control'], 'no-store');
+    const response = await POST(postRequest(valid));
+    assert.equal(response.status, 503);
+    assert.equal(response.headers.get('Cache-Control'), 'no-store');
   } finally {
-    if (saved !== undefined) process.env.RESEND_API_KEY = saved;
+    if (savedApiKey !== undefined) process.env.RESEND_API_KEY = savedApiKey;
+    if (savedFrom !== undefined) process.env.CONTACT_FROM_EMAIL = savedFrom;
   }
 });
