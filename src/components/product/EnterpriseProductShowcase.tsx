@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import {
   Bell,
   Boxes,
@@ -9,11 +9,9 @@ import {
   ChevronDown,
   CircleDollarSign,
   Factory,
-  FileCheck,
   Headphones,
   LayoutDashboard,
   Microscope,
-  PackageCheck,
   Search,
   Send,
   Settings,
@@ -211,7 +209,7 @@ export default function EnterpriseProductShowcase() {
   );
 }
 
-function SidebarGroup({ title, children }: { title: string; children: React.ReactNode }) {
+function SidebarGroup({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div className="mb-4">
       <p className="mb-1.5 px-2.5 text-[7px] font-black uppercase tracking-[0.16em] text-slate-600">{title}</p>
