@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Industries from '@/src/pages/Industries';
+import Industries from '@/src/views/Industries';
 
 export const metadata: Metadata = {
   title: 'Industries & Operational Environments',
