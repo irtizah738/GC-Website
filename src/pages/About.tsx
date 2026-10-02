@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from '../components/AppLink';
 import {
   ArrowRight,
   Check,
@@ -7,7 +7,6 @@ import {
   Stethoscope,
   Workflow,
 } from 'lucide-react';
-import { SEO } from '../components/SEO';
 import Section from '../components/Section';
 
 const team = [
@@ -41,11 +40,6 @@ const operatingPrinciples = [
 export default function About() {
   return (
     <div className="pt-16">
-      <SEO
-        title="About Gotham Coders | Enterprise Systems Engineering"
-        description="Gotham Coders builds ERP, healthcare, and domain-specific enterprise systems around operational reality, data integrity, and resilient architecture."
-        pathname="/about"
-      />
 
       <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
         <div className="max-w-4xl">
