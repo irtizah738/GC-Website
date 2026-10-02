@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import AILab from '@/src/pages/AILab';
+import AILab from '@/src/views/AILab';
 
 export const metadata: Metadata = {
   title: 'AI Lab',
