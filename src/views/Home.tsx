@@ -19,22 +19,22 @@ const capabilities = [
     icon: Boxes,
     title: 'GC-ERP',
     description: 'Connected finance, procurement, inventory and manufacturing workflows built around the way your business actually operates.',
-    href: '/systems#erp-systems',
+    href: '/products/gc-erp',
     cta: 'Explore ERP',
   },
   {
     icon: Stethoscope,
     title: 'G-HIMS',
     description: 'Clinical, financial and operational hospital workflows with offline resilience, traceability and role-aware controls.',
-    href: '/systems#hmis-healthcare',
+    href: '/products/g-hims',
     cta: 'Explore HIMS',
   },
   {
     icon: CloudCog,
-    title: 'Enterprise Platforms',
-    description: 'Multi-tenant SaaS and domain-specific systems for organizations whose workflows do not fit generic software.',
-    href: '/systems#saas-platforms',
-    cta: 'Explore platforms',
+    title: 'Custom Enterprise Systems',
+    description: 'Custom enterprise platforms for organizations whose workflows, authority models, or operating constraints do not fit generic software.',
+    href: '/systems',
+    cta: 'Explore solutions',
   },
 ];
 
@@ -91,10 +91,10 @@ export default function Home() {
 
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
-              to="/demo/gc-erp"
+              to="/products"
               className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-200 sm:w-auto"
             >
-              Explore GC-ERP
+              Explore products
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
@@ -128,13 +128,13 @@ export default function Home() {
       <Section className="border-b border-zinc-800/80">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
-            <p className="text-sm font-semibold text-zinc-500">What we build</p>
+            <p className="text-sm font-semibold text-zinc-500">Flagship products</p>
             <h2 className="mt-4 max-w-xl text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
-              Software for organizations with real operational complexity.
+              Products that prove how we think about complex operations.
             </h2>
           </div>
           <p className="max-w-xl text-base leading-7 text-zinc-400 lg:justify-self-end">
-            We focus on systems where departments, money, inventory, people and critical records must stay synchronized without sacrificing traceability or control.
+            G-HIMS and GC-ERP are Gotham Coders products. Custom enterprise systems are the solutions layer built from the same architecture-first engineering discipline.
           </p>
         </div>
 
