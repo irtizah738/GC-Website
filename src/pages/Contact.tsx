@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import {
   AlertCircle,
@@ -7,7 +9,6 @@ import {
   Loader2,
   Mail,
 } from 'lucide-react';
-import { SEO } from '../components/SEO';
 import Section from '../components/Section';
 import { cn } from '../lib/utils';
 
@@ -99,11 +100,6 @@ export default function Contact() {
 
   return (
     <div className="pt-16">
-      <SEO
-        title="Talk to Gotham Coders | Enterprise Systems Discussion"
-        description="Discuss an ERP, healthcare, or custom enterprise system with Gotham Coders."
-        pathname="/contact"
-      />
 
       <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
         <div className="max-w-4xl">
