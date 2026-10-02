@@ -6,12 +6,10 @@ import {
   Check,
   CloudCog,
   Database,
-  Factory,
   GitBranch,
   Layers3,
   ShieldCheck,
   Stethoscope,
-  Workflow,
 } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import Section from '../components/Section';
