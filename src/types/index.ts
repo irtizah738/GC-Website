@@ -8,19 +8,6 @@ export interface Industry {
   icon: string;
 }
 
-export interface CaseStudy {
-  id: string;
-  title: string;
-  client: string;
-  industry: string;
-  problemContext: string;
-  systemComplexity: string;
-  architectureDecisions: string;
-  tradeoffs: string;
-  outcome: string;
-  techStack: string[];
-}
-
 export interface EngineeringPrinciple {
   id: string;
   title: string;
