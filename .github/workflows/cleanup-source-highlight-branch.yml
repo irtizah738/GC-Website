@@ -1,0 +1,21 @@
+name: Cleanup Source Highlight Branch
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/cleanup-source-highlight-branch.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete merged feature branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh api --method DELETE "repos/${GH_REPO}/git/refs/heads/feat/source-derived-system-highlights"
