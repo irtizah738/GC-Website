@@ -1,3 +1,5 @@
+'use client';
+
 import { useMemo, useState } from 'react';
 import {
   ArrowLeftRight,
@@ -19,7 +21,6 @@ import {
   Truck,
   UsersRound,
 } from 'lucide-react';
-import { SEO } from '../../components/SEO';
 import { cn } from '../../lib/utils';
 
 type Role = 'executive' | 'procurement' | 'warehouse' | 'finance';
@@ -188,11 +189,6 @@ export default function GCErpDemo() {
 
   return (
     <div className="min-h-screen bg-zinc-950 pt-16 text-zinc-100">
-      <SEO
-        title="GC-ERP Interactive Demo | Gotham Coders"
-        description="Explore a browser-based GC-ERP simulation across procurement, inventory, manufacturing, finance and audit."
-        pathname="/demo/gc-erp"
-      />
 
       <div className="border-b border-zinc-800 bg-black/40">
         <div className="mx-auto flex max-w-[1500px] flex-col gap-4 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
