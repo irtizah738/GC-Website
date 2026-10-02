@@ -123,12 +123,11 @@ function MiniBars({ values }: { values: number[] }) {
   return (
     <div className="flex h-20 items-end gap-1.5" aria-label="Operational trend">
       {values.map((value, index) => (
-        <div key={index} className="flex-1 rounded-t-sm bg-zinc-200 dark:bg-zinc-700">
-          <div
-            className="w-full rounded-t-sm bg-zinc-900 dark:bg-white"
-            style={{ height: `${value}%` }}
-          />
-        </div>
+        <div
+          key={index}
+          className="flex-1 rounded-t-sm bg-zinc-900 dark:bg-white"
+          style={{ height: `${value}%` }}
+        />
       ))}
     </div>
   );
