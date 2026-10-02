@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from '../components/AppLink';
 import {
   ArrowRight,
   Check,
@@ -10,7 +10,6 @@ import {
   WifiOff,
   Zap,
 } from 'lucide-react';
-import { SEO } from '../components/SEO';
 import Section from '../components/Section';
 import { principles } from '../data/principles';
 
@@ -34,11 +33,6 @@ const failureSequence = [
 export default function EngineeringApproach() {
   return (
     <div className="pt-16">
-      <SEO
-        title="Engineering Approach | Gotham Coders"
-        description="How Gotham Coders designs event-driven, offline-capable, multi-tenant, auditable enterprise systems."
-        pathname="/approach"
-      />
 
       <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
         <div className="max-w-4xl">
