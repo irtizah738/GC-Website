@@ -13,7 +13,7 @@ const products = [
     icon: Stethoscope,
     name: 'G-HIMS',
     category: 'Hospital Operating System',
-    status: 'Controlled-pilot qualification',
+    status: 'Pilot qualification program',
     description:
       'A hospital operating system connecting clinical, financial, workforce, supply-chain, and operational workflows around one governed event backbone.',
     href: '/products/g-hims',
