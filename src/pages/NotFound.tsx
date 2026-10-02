@@ -1,15 +1,10 @@
-import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import Link from '../components/AppLink';
 import { ArrowLeft } from 'lucide-react';
 import Section from '../components/Section';
 
 export default function NotFound() {
   return (
     <Section className="min-h-[70vh] pt-40" animate={false}>
-      <Helmet>
-        <title>Page Not Found | Gotham Coders</title>
-        <meta name="robots" content="noindex" />
-      </Helmet>
       <div className="max-w-2xl">
         <p className="text-sm font-semibold text-zinc-600">404</p>
         <h1 className="mt-4 text-5xl font-semibold tracking-[-0.04em] text-white md:text-6xl">Page not found.</h1>
