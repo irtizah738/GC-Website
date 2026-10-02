@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from '../components/AppLink';
 import {
   ArrowRight,
   Boxes,
@@ -7,7 +7,6 @@ import {
   ShieldCheck,
   Stethoscope,
 } from 'lucide-react';
-import { SEO } from '../components/SEO';
 import Section from '../components/Section';
 import { caseStudies } from '../data/case-studies';
 
@@ -16,11 +15,6 @@ const studyIcons = [Boxes, Stethoscope];
 export default function CaseStudies() {
   return (
     <div className="pt-16">
-      <SEO
-        title="Product Engineering Studies | Gotham Coders"
-        description="Transparent engineering studies showing how Gotham Coders approaches ERP, healthcare, workflow, auditability, and enterprise product design."
-        pathname="/case-studies"
-      />
 
       <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
         <div className="max-w-4xl">
