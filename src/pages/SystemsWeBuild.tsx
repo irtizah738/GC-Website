@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from '../components/AppLink';
 import {
   ArrowRight,
   Boxes,
@@ -16,7 +16,6 @@ import {
   Stethoscope,
   UsersRound,
 } from 'lucide-react';
-import { SEO } from '../components/SEO';
 import Section from '../components/Section';
 import EnterpriseProductShowcase from '../components/product/EnterpriseProductShowcase';
 
@@ -73,11 +72,6 @@ const architecture = [
 export default function SystemsWeBuild() {
   return (
     <div className="pt-16">
-      <SEO
-        title="Enterprise Products & Systems | Gotham Coders"
-        description="Explore GC-ERP, G-HIMS and custom enterprise platforms built for complex operational workflows."
-        pathname="/systems"
-      />
 
       <Section className="border-b border-zinc-800 pb-20 pt-20 md:pt-28" animate={false}>
         <div className="max-w-4xl">
