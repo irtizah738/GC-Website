@@ -8,7 +8,6 @@ import React, { useEffect, lazy, Suspense, Component } from 'react';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 import { AnimatePresence, motion, MotionConfig } from 'motion/react';
 import { AlertCircle } from 'lucide-react';
-import { ThemeProvider } from './lib/ThemeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { Loading } from './components/ui/Loading';
@@ -154,7 +153,6 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 export default function App() {
   return (
     <HelmetProvider>
-      <ThemeProvider>
       <MotionConfig reducedMotion="user">
         <Helmet>
           <link rel="icon" type="image/jpeg" href={LOGO_URL} />
@@ -175,7 +173,6 @@ export default function App() {
           </ErrorBoundary>
         </Router>
       </MotionConfig>
-      </ThemeProvider>
     </HelmetProvider>
   );
 }

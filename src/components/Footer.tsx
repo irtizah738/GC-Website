@@ -13,11 +13,18 @@ const groups = [
     ],
   },
   {
-    title: 'Company',
+    title: 'Explore',
     links: [
       ['Industries', '/industries'],
       ['Engineering', '/approach'],
       ['Evidence', '/case-studies'],
+      ['AI Lab', '/ai-lab'],
+      ['Engineering notes', '/blog'],
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
       ['About', '/about'],
       ['Contact', '/contact'],
     ],
@@ -28,7 +35,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-zinc-800 bg-black">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_.8fr_.8fr]">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_.7fr_.7fr_.7fr]">
           <div>
             <Link to="/" className="flex items-center gap-2.5">
               <span className="grid h-8 w-8 place-items-center rounded-lg bg-white text-[10px] font-bold text-zinc-950">GC</span>

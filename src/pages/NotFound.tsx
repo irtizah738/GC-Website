@@ -1,15 +1,29 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { ArrowLeft } from 'lucide-react';
 import Section from '../components/Section';
-import { Heading } from '../components/ui/Heading';
-import { Text } from '../components/ui/Text';
 
 export default function NotFound() {
-  return <Section className="pt-40 min-h-[70vh] space-y-6">
-    <Helmet><title>Page Not Found | Gotham Coders</title><meta name="robots" content="noindex" /></Helmet>
-    <Text variant="caption">404</Text>
-    <Heading level={1}>Page not found</Heading>
-    <Text>The page may have moved. Explore our systems or return to the homepage.</Text>
-    <Link to="/" className="inline-flex px-6 py-3 bg-white text-zinc-950 rounded-xl font-bold">Return Home</Link>
-  </Section>;
+  return (
+    <Section className="min-h-[70vh] pt-40" animate={false}>
+      <Helmet>
+        <title>Page Not Found | Gotham Coders</title>
+        <meta name="robots" content="noindex" />
+      </Helmet>
+      <div className="max-w-2xl">
+        <p className="text-sm font-semibold text-zinc-600">404</p>
+        <h1 className="mt-4 text-5xl font-semibold tracking-[-0.04em] text-white md:text-6xl">Page not found.</h1>
+        <p className="mt-5 text-base leading-7 text-zinc-400">
+          The page may have moved or the address may be incorrect.
+        </p>
+        <Link
+          to="/"
+          className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Return home
+        </Link>
+      </div>
+    </Section>
+  );
 }
