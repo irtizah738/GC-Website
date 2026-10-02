@@ -1,5 +1,8 @@
+'use client';
+
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
+import Link from './AppLink';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowRight, Menu, X } from 'lucide-react';
 import { cn } from '../lib/utils';
@@ -15,7 +18,7 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 12);
@@ -26,7 +29,7 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -40,7 +43,7 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', closeOnEscape);
   }, [isOpen]);
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => pathname === path;
 
   return (
     <nav
