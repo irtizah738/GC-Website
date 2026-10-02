@@ -48,7 +48,7 @@ export default function GHimsProduct() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-emerald-900/60 bg-emerald-950/20 px-3 py-1.5 text-xs font-semibold text-emerald-300">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              Controlled-pilot qualification
+              Pilot qualification program
             </div>
             <p className="mt-7 text-sm font-semibold text-zinc-500">G-HIMS • Hospital Operating System</p>
             <h1 className="mt-3 text-5xl font-semibold tracking-[-0.045em] text-white md:text-7xl">
