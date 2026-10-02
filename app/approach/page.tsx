@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import EngineeringApproach from '@/src/pages/EngineeringApproach';
+import EngineeringApproach from '@/src/views/EngineeringApproach';
 
 export const metadata: Metadata = {
   title: 'Engineering Approach',
