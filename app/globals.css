@@ -69,6 +69,20 @@
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+  }
+
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   ::selection {
     background: rgba(79, 70, 229, 0.32);
     color: #ffffff;
@@ -187,4 +201,38 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+
+/* Shared enterprise interaction polish */
+.gc-site [class*="rounded-2xl"][class*="border-zinc-800"][class*="bg-zinc-900"],
+.gc-site [class*="rounded-3xl"][class*="border-zinc-800"][class*="bg-zinc-900"] {
+  box-shadow: 0 22px 54px -42px rgba(15, 23, 42, 0.95);
+}
+
+.gc-site [class*="rounded-2xl"][class*="border-zinc-800"][class*="bg-zinc-900"]:hover,
+.gc-site [class*="rounded-3xl"][class*="border-zinc-800"][class*="bg-zinc-900"]:hover {
+  border-color: #2e4063;
+}
+
+.gc-site input,
+.gc-site textarea,
+.gc-site select {
+  caret-color: #818cf8;
+}
+
+.gc-site input:focus,
+.gc-site textarea:focus,
+.gc-site select:focus {
+  border-color: #4f46e5 !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.14);
+}
+
+.gc-site a,
+.gc-site button {
+  text-underline-offset: 3px;
+}
+
+.gc-site section {
+  isolation: isolate;
 }
