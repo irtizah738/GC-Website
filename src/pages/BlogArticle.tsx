@@ -1,9 +1,7 @@
-import { Link, useParams } from 'react-router-dom';
+import Link from '../components/AppLink';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { SEO } from '../components/SEO';
 import Section from '../components/Section';
 import { posts } from './Blog';
-import NotFound from './NotFound';
 
 const notes: Record<string, Array<{ title: string; text: string }>> = {
   'event-driven-architecture-guide': [
@@ -23,15 +21,11 @@ const notes: Record<string, Array<{ title: string; text: string }>> = {
   ],
 };
 
-export default function BlogArticle() {
-  const { slug } = useParams();
-  const post = posts.find((item) => item.slug === slug);
-
-  if (!post || !slug || !notes[slug]) return <NotFound />;
+export default function BlogArticle({ slug }: { slug: string }) {
+  const post = posts.find((item) => item.slug === slug)!;
 
   return (
     <article className="pt-16">
-      <SEO title={`${post.title} | Gotham Coders`} description={post.excerpt} pathname={`/blog/${slug}`} type="article" />
 
       <Section className="border-b border-zinc-800 pb-16 pt-16 md:pt-24" animate={false}>
         <div className="mx-auto max-w-3xl">
