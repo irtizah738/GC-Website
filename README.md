@@ -45,14 +45,27 @@ Set these server-only variables:
 - `RESEND_API_KEY`
 - `CONTACT_FROM_EMAIL`
 - `CONTACT_TO_EMAIL` (defaults to `help@gothamcoders.com`)
-- `SITE_ORIGIN` (defaults to `https://gothamcoders.com`)
+- `SITE_ORIGIN` (optional comma-separated allowlist; defaults to both `https://gothamcoders.com` and `https://www.gothamcoders.com`)
 
 The handler validates input, rejects unrelated browser origins, disables caching, and never exposes Resend credentials to the client.
 
 Before enabling high-volume public traffic, configure Vercel Firewall / rate limiting or another edge abuse-control layer for the contact endpoint.
 
-## Deployment
+## Deployment topology
 
-Production deployment is handled through Cloudflare. The application is a Next.js App Router project and should be deployed with a Cloudflare-compatible Next.js runtime rather than SPA rewrites or the retired Vite/Express stack.
+Production uses Cloudflare in front of Vercel:
 
-The contact endpoint requires server-side runtime support and the environment variables listed above.
+```text
+Browser
+  -> Cloudflare DNS / proxy / TLS / edge controls
+  -> Vercel Next.js runtime
+       -> App Router pages
+       -> server rendering
+       -> /api/send-email
+```
+
+Vercel is the application runtime. Cloudflare owns the public DNS/proxy edge. The repository should remain a normal Next.js App Router project; do not add SPA rewrites or restore the retired Vite/Express stack.
+
+The Vercel project must define the server-side variables listed above. Cloudflare DNS should route the production hostname(s) to the Vercel deployment according to the domain configuration in the two platforms.
+
+The contact endpoint requires server-side runtime support and should remain on Vercel rather than being converted into a static-only deployment.
