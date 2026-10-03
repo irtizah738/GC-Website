@@ -17,11 +17,23 @@ function json(body: unknown, status: number, extraHeaders?: HeadersInit) {
   });
 }
 
+function allowedOrigins() {
+  const configured = (process.env.SITE_ORIGIN || '')
+    .split(',')
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  const defaults = [
+    'https://gothamcoders.com',
+    'https://www.gothamcoders.com',
+  ];
+
+  return new Set(configured.length > 0 ? configured : defaults);
+}
+
 function isAllowedOrigin(origin: string | null) {
   if (!origin) return true;
-
-  const allowedOrigin = process.env.SITE_ORIGIN || 'https://gothamcoders.com';
-  if (origin === allowedOrigin) return true;
+  if (allowedOrigins().has(origin)) return true;
 
   return process.env.NODE_ENV !== 'production' && /^http:\/\/localhost:\d+$/.test(origin);
 }
