@@ -53,4 +53,6 @@ Before enabling high-volume public traffic, configure Vercel Firewall / rate lim
 
 ## Deployment
 
-The repository is structured for native Vercel Next.js detection. No SPA rewrite or custom Express/Vite server is required.
+Production deployment is handled through Cloudflare. The application is a Next.js App Router project and should be deployed with a Cloudflare-compatible Next.js runtime rather than SPA rewrites or the retired Vite/Express stack.
+
+The contact endpoint requires server-side runtime support and the environment variables listed above.
