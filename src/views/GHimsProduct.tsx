@@ -62,46 +62,55 @@ export default function GHimsProduct() {
   return (
     <div className="pt-16">
       <Section className="border-b border-zinc-800 py-12 md:py-16" animate={false}>
-        <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-          <div>
-            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-zinc-400">
-              <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              <span className="text-emerald-300">Pilot qualification program</span>
-              <span aria-hidden="true">·</span>
-              <span>G-HIMS · Hospital Operating System</span>
-            </div>
-            <h1 className="mt-5 text-balance text-5xl font-semibold tracking-[-0.045em] text-white md:text-7xl">
-              One operating backbone across clinical, financial, and hospital operations.
-            </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-zinc-400">
-              G-HIMS is designed for hospitals where patient care, diagnostics, pharmacy, billing, workforce, inventory, and operational capacity cannot afford to live in disconnected systems.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                to="/demo/g-hims"
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
-              >
-                Explore interactive demo
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/contact?interest=g-hims"
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-xl border border-zinc-700 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-900"
-              >
-                Discuss G-HIMS
-              </Link>
-              <Link
-                to="/case-studies#g-hims-patient-360"
-                className="inline-flex items-center gap-1.5 whitespace-nowrap px-3 py-3 text-sm font-semibold text-zinc-400 hover:text-white"
-              >
-                Read clinical research
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
+        <div className="max-w-4xl">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-zinc-400">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+            <span className="text-emerald-300">Pilot qualification program</span>
+            <span aria-hidden="true">·</span>
+            <span>G-HIMS · Hospital Operating System</span>
           </div>
-
-          <GHimsProductShowcase />
+          <h1 className="mt-5 text-balance text-5xl font-semibold tracking-[-0.045em] text-white md:text-7xl">
+            One operating backbone across clinical, financial, and hospital operations.
+          </h1>
+          <p className="mt-7 max-w-3xl text-lg leading-8 text-zinc-400">
+            G-HIMS is designed for hospitals where patient care, diagnostics, pharmacy, billing, workforce, inventory, and operational capacity cannot afford to live in disconnected systems.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              to="/demo/g-hims"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 hover:bg-zinc-200"
+            >
+              Explore interactive demo
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              to="/contact?interest=g-hims"
+              className="inline-flex items-center justify-center whitespace-nowrap rounded-xl border border-zinc-700 px-5 py-3 text-sm font-semibold text-white hover:bg-zinc-900"
+            >
+              Discuss G-HIMS
+            </Link>
+            <Link
+              to="/case-studies#g-hims-patient-360"
+              className="inline-flex items-center gap-1.5 whitespace-nowrap px-3 py-3 text-sm font-semibold text-zinc-400 hover:text-white"
+            >
+              Read clinical research
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
+      </Section>
+
+      <Section className="border-b border-zinc-800">
+        <div className="mb-8 max-w-3xl">
+          <p className="text-sm font-semibold text-zinc-500">Product experience</p>
+          <h2 className="mt-4 text-4xl font-semibold tracking-[-0.035em] text-white md:text-5xl">
+            Clinical context before module hopping.
+          </h2>
+          <p className="mt-5 text-base leading-7 text-zinc-400">
+            The workspace below is synthetic, but it mirrors the governed patient, encounter, diagnostics, billing, capacity, and operational surfaces represented in G-HIMS.
+          </p>
+        </div>
+        <GHimsProductShowcase />
       </Section>
 
       <Section className="border-b border-zinc-800">
