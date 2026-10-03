@@ -27,7 +27,25 @@ import {
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
-type View = 'dashboard' | 'inventory' | 'production' | 'finance';
+type View =
+  | 'dashboard'
+  | 'inventory'
+  | 'qa'
+  | 'warehouse'
+  | 'production'
+  | 'scm'
+  | 'procurement'
+  | 'sales'
+  | 'forecast'
+  | 'finance'
+  | 'hr'
+  | 'crm'
+  | 'facilities'
+  | 'helpdesk'
+  | 'cockpit'
+  | 'eventbus'
+  | 'audit'
+  | 'settings';
 
 const primary = [
   { id: 'dashboard', label: 'Command Center', icon: LayoutDashboard },
@@ -50,10 +68,10 @@ const enterprise = [
 ];
 
 const governance = [
-  { label: 'GC Enterprise Cockpit', icon: Terminal },
-  { label: 'Global Event Bus', icon: Zap },
-  { label: 'Compliance Audit', icon: ShieldCheck },
-  { label: 'System Settings', icon: Settings },
+  { id: 'cockpit', label: 'GC Enterprise Cockpit', icon: Terminal },
+  { id: 'eventbus', label: 'Global Event Bus', icon: Zap },
+  { id: 'audit', label: 'Compliance Audit', icon: ShieldCheck },
+  { id: 'settings', label: 'System Settings', icon: Settings },
 ];
 
 const kpis = [
@@ -63,14 +81,105 @@ const kpis = [
   ['QA Pass Rate', '96.4%', '3 quarantined', Microscope, 'emerald'],
 ];
 
+const viewDetails: Record<View, { title: string; description: string; signals: string[] }> = {
+  dashboard: {
+    title: 'Executive Command Center',
+    description: 'Real-time enterprise planning, supply-chain telemetry, approvals, and operational analytics.',
+    signals: ['Inventory $742K', '42 open sales orders', '18 open purchase orders', 'QA pass rate 96.4%'],
+  },
+  inventory: {
+    title: 'Inventory & Stock',
+    description: 'SKU master, availability, batch control, warehouse balances, reorder, and valuation.',
+    signals: ['1,248 active SKUs', '84,210 units on hand', '12 reorder alerts', '99.1% reconciled'],
+  },
+  qa: {
+    title: 'Batch & Lot QA',
+    description: 'Inspection, holds, genealogy, NCR, CAPA, and release decisions connected to receiving and production.',
+    signals: ['3 quarantined lots', '96.4% pass rate', '2 NCRs open', 'Genealogy complete'],
+  },
+  warehouse: {
+    title: 'Multi-Warehouse',
+    description: 'Cross-site stock, bin-level availability, directed movement, reservations, counting, and fulfillment health.',
+    signals: ['4 active warehouses', '98.8% pick accuracy', '6 transfers in flight', '0 blocked receipts'],
+  },
+  production: {
+    title: 'Production & MES',
+    description: 'Production orders, work centers, BOMs, routings, WIP, quality, and OEE.',
+    signals: ['14 WIP orders', '87.6% OEE', '42m downtime', '1.8% scrap rate'],
+  },
+  scm: {
+    title: 'Supply Chain & SCM',
+    description: 'Demand, replenishment, supplier commitments, logistics, warehouse movement, and exception management in one operational view.',
+    signals: ['7 supplier risks', '93% OTIF', '6 inbound loads', '4 expedite actions'],
+  },
+  procurement: {
+    title: 'Procurement',
+    description: 'Requisitions, sourcing, approvals, purchase orders, goods receipt, supplier controls, and procure-to-pay consequences.',
+    signals: ['18 open POs', '$284K committed', '4 awaiting approval', '2 receipts due today'],
+  },
+  sales: {
+    title: 'Sales Orders',
+    description: 'Customer demand, quotations, orders, reservations, fulfillment, shipment, invoicing, and collection context.',
+    signals: ['42 active orders', '$186K open', '6 awaiting fulfillment', '3 priority customers'],
+  },
+  forecast: {
+    title: 'Demand Forecast',
+    description: 'Planning signals combine sales history, open demand, seasonality, shortages, and production constraints.',
+    signals: ['8-week horizon', '91% forecast fit', '5 shortage risks', '3 recommended buys'],
+  },
+  finance: {
+    title: 'Finance & Accounting',
+    description: 'General ledger, AP, AR, banking, assets, costing, close, and reconciliation.',
+    signals: ['$612K cash', '$338K receivables', '$271K payables', 'Books balanced'],
+  },
+  hr: {
+    title: 'HR & Talent',
+    description: 'Organization, workforce lifecycle, attendance, leave, payroll, recruitment, performance, and compliance.',
+    signals: ['428 active staff', '96% attendance', '12 leave requests', '7 open positions'],
+  },
+  crm: {
+    title: 'Sales CRM & Deals',
+    description: 'Accounts, opportunities, pipeline, quotations, activities, communications, and conversion tracking.',
+    signals: ['$1.8M pipeline', '23 active deals', '7 quotes pending', '4 renewals due'],
+  },
+  facilities: {
+    title: 'Facilities & Cleanrooms',
+    description: 'Facility status, environmental controls, maintenance dependencies, room readiness, and regulated workspace evidence.',
+    signals: ['18 zones healthy', '2 maintenance tasks', '0 cleanroom alarms', '99.6% uptime'],
+  },
+  helpdesk: {
+    title: 'IT Helpdesk & SLA',
+    description: 'Incidents, requests, ownership, service levels, escalation, and operational technology support context.',
+    signals: ['11 open tickets', '92% SLA health', '2 escalations', '18m median response'],
+  },
+  cockpit: {
+    title: 'GC Enterprise Cockpit',
+    description: 'Cross-domain control surface for authority, workflows, exceptions, reconciliation, and operational command.',
+    signals: ['12 domains online', '7 approvals pending', '0 integrity breaks', '3 executive exceptions'],
+  },
+  eventbus: {
+    title: 'Global Event Bus',
+    description: 'Domain events, delivery state, idempotency, outbox/inbox health, and cross-module consequences.',
+    signals: ['99.98% delivered', '0 failed events', '42ms median latency', '6 consumers online'],
+  },
+  audit: {
+    title: 'Compliance Audit',
+    description: 'Immutable operational lineage showing actor, source transaction, authority, postings, movements, and evidence.',
+    signals: ['100% actor trace', 'Ledger immutable', '0 orphan events', 'Evidence export ready'],
+  },
+  settings: {
+    title: 'System Settings',
+    description: 'Tenant configuration, company structure, warehouse policy, workflow rules, numbering, and governance defaults.',
+    signals: ['4 legal entities', '6 warehouses', '12 workflows active', 'Policy set current'],
+  },
+};
+
 export default function EnterpriseProductShowcase() {
   const [view, setView] = useState<View>('dashboard');
+  const mobileNav = [...primary, ...enterprise, ...governance];
+  const activeView = viewDetails[view];
 
-  const switchView = (id: string) => {
-    if (id === 'dashboard' || id === 'inventory' || id === 'production' || id === 'finance') {
-      setView(id);
-    }
-  };
+  const switchView = (id: View) => setView(id);
 
   return (
     <div className="overflow-hidden rounded-2xl border border-[#223049] bg-[#0a0e17] shadow-[0_30px_100px_-35px_rgba(0,0,0,0.65)]">
@@ -82,16 +191,24 @@ export default function EnterpriseProductShowcase() {
           <div className="hidden sm:block">
             <p className="text-[10px] font-bold text-white">GC-ERP</p>
             <p className="text-[8px] text-slate-500">
-              {view === 'dashboard' ? 'Command Center' : view === 'inventory' ? 'Inventory & Stock' : view === 'production' ? 'Production & MES' : 'Finance & Accounting'}
+              {activeView.title}
             </p>
           </div>
           <div className="hidden h-5 w-px bg-[#223049] md:block" />
-          <button className="hidden items-center gap-1.5 rounded-lg border border-[#223049] bg-[#0b101c] px-2.5 py-1.5 text-[9px] font-semibold text-slate-300 md:flex">
+          <button
+            type="button"
+            onClick={() => switchView('dashboard')}
+            className="hidden items-center gap-1.5 rounded-lg border border-[#223049] bg-[#0b101c] px-2.5 py-1.5 text-[9px] font-semibold text-slate-300 transition hover:bg-[#18223a] md:flex"
+          >
             <Building2 className="h-3.5 w-3.5 text-indigo-400" />
             Gotham Manufacturing
             <ChevronDown className="h-3 w-3 text-slate-500" />
           </button>
-          <button className="hidden items-center gap-1.5 rounded-lg border border-[#223049] bg-[#0b101c] px-2.5 py-1.5 text-[9px] font-semibold text-slate-400 lg:flex">
+          <button
+            type="button"
+            onClick={() => switchView('warehouse')}
+            className="hidden items-center gap-1.5 rounded-lg border border-[#223049] bg-[#0b101c] px-2.5 py-1.5 text-[9px] font-semibold text-slate-400 transition hover:bg-[#18223a] lg:flex"
+          >
             <Warehouse className="h-3.5 w-3.5" />
             All Warehouses
             <ChevronDown className="h-3 w-3" />
@@ -104,15 +221,44 @@ export default function EnterpriseProductShowcase() {
             Search products, POs, orders, T-Codes...
             <span className="rounded border border-[#2e4063] px-1 text-[8px] text-slate-400">⌘K</span>
           </div>
-          <button className="hidden rounded-lg border border-[#223049] bg-[#131b2e] px-2.5 py-1.5 text-[9px] font-bold text-slate-300 md:flex md:items-center md:gap-1.5">
+          <button
+            type="button"
+            onClick={() => switchView('cockpit')}
+            className="hidden rounded-lg border border-[#223049] bg-[#131b2e] px-2.5 py-1.5 text-[9px] font-bold text-slate-300 transition hover:bg-[#18223a] md:flex md:items-center md:gap-1.5"
+          >
             <Terminal className="h-3.5 w-3.5 text-cyan-400" />
             / T-Code
           </button>
-          <button aria-label="Notifications" className="rounded-lg p-2 text-slate-400 hover:bg-[#18223a]">
+          <button
+            type="button"
+            aria-label="Open helpdesk"
+            onClick={() => switchView('helpdesk')}
+            className="rounded-lg p-2 text-slate-400 hover:bg-[#18223a]"
+          >
             <Bell className="h-4 w-4" />
           </button>
           <div className="grid h-7 w-7 place-items-center rounded-full bg-indigo-600 text-[8px] font-black text-white">SA</div>
         </div>
+      </div>
+
+      <div className="flex gap-2 overflow-x-auto border-b border-[#1e293b] bg-[#0f1523] px-3 py-2 lg:hidden">
+        {mobileNav.map(({ id, label, icon: Icon }) => (
+          <button
+            type="button"
+            key={id}
+            onClick={() => switchView(id as View)}
+            aria-pressed={view === id}
+            className={cn(
+              'flex shrink-0 items-center gap-1.5 rounded-lg border px-2.5 py-2 text-[8px] font-bold transition',
+              view === id
+                ? 'border-indigo-500 bg-indigo-600 text-white'
+                : 'border-[#223049] bg-[#131b2e] text-slate-400 hover:bg-[#18223a] hover:text-white',
+            )}
+          >
+            <Icon className="h-3.5 w-3.5" />
+            {label}
+          </button>
+        ))}
       </div>
 
       <div className="grid lg:grid-cols-[190px_1fr]">
@@ -121,7 +267,7 @@ export default function EnterpriseProductShowcase() {
             {primary.map(({ id, label, icon: Icon, badge }) => (
               <button
                 key={id}
-                onClick={() => switchView(id)}
+                onClick={() => switchView(id as View)}
                 className={cn(
                   'flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-[9px] font-semibold transition',
                   view === id
@@ -144,7 +290,7 @@ export default function EnterpriseProductShowcase() {
             {enterprise.map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
-                onClick={() => switchView(id)}
+                onClick={() => switchView(id as View)}
                 className={cn(
                   'flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-[9px] font-semibold transition',
                   view === id ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:bg-[#18223a] hover:text-white',
@@ -157,11 +303,20 @@ export default function EnterpriseProductShowcase() {
           </SidebarGroup>
 
           <SidebarGroup title="Governance">
-            {governance.map(({ label, icon: Icon }) => (
-              <div key={label} className="flex items-center gap-2 rounded-lg px-2.5 py-2 text-[9px] font-medium text-slate-500">
+            {governance.map(({ id, label, icon: Icon }) => (
+              <button
+                type="button"
+                key={id}
+                onClick={() => switchView(id as View)}
+                aria-pressed={view === id}
+                className={cn(
+                  'flex w-full items-center gap-2 rounded-lg px-2.5 py-2 text-left text-[9px] font-medium transition',
+                  view === id ? 'bg-indigo-600 text-white' : 'text-slate-500 hover:bg-[#18223a] hover:text-white',
+                )}
+              >
                 <Icon className="h-3.5 w-3.5" />
                 <span className="truncate">{label}</span>
-              </div>
+              </button>
             ))}
           </SidebarGroup>
         </aside>
@@ -170,30 +325,27 @@ export default function EnterpriseProductShowcase() {
           <div className="border-b border-[#1e293b] pb-4">
             <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
               <div>
-                <h3 className="text-lg font-bold tracking-tight text-white">
-                  {view === 'dashboard' && 'Executive Command Center'}
-                  {view === 'inventory' && 'Inventory & Stock'}
-                  {view === 'production' && 'Production & MES'}
-                  {view === 'finance' && 'Finance & Accounting'}
-                </h3>
-                <p className="mt-1 text-[9px] leading-4 text-slate-500">
-                  {view === 'dashboard' && 'Real-time enterprise planning, supply-chain telemetry, approvals, and operational analytics'}
-                  {view === 'inventory' && 'SKU master, availability, batch control, warehouse balances, reorder, and valuation'}
-                  {view === 'production' && 'Production orders, work centers, BOMs, routings, WIP, quality, and OEE'}
-                  {view === 'finance' && 'General ledger, AP, AR, banking, assets, costing, close, and reconciliation'}
-                </p>
+                <h3 className="text-lg font-bold tracking-tight text-white">{activeView.title}</h3>
+                <p className="mt-1 text-[9px] leading-4 text-slate-500">{activeView.description}</p>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                {['Executive Overview', 'Supply Chain & SCM', 'Approvals (7)', 'Event Telemetry'].map((tab, index) => (
-                  <span
+                {[
+                  ['Executive Overview', 'dashboard'],
+                  ['Supply Chain & SCM', 'scm'],
+                  ['Approvals (7)', 'procurement'],
+                  ['Event Telemetry', 'eventbus'],
+                ].map(([tab, target]) => (
+                  <button
+                    type="button"
                     key={tab}
+                    onClick={() => switchView(target as View)}
                     className={cn(
-                      'rounded-lg px-2.5 py-1.5 text-[8px] font-bold',
-                      index === 0 ? 'bg-indigo-600 text-white' : 'bg-[#18223a] text-slate-400',
+                      'rounded-lg px-2.5 py-1.5 text-[8px] font-bold transition',
+                      view === target ? 'bg-indigo-600 text-white' : 'bg-[#18223a] text-slate-400 hover:text-white',
                     )}
                   >
                     {tab}
-                  </span>
+                  </button>
                 ))}
               </div>
             </div>
@@ -203,7 +355,55 @@ export default function EnterpriseProductShowcase() {
           {view === 'inventory' && <InventoryScene />}
           {view === 'production' && <ProductionScene />}
           {view === 'finance' && <FinanceScene />}
+          {!['dashboard', 'inventory', 'production', 'finance'].includes(view) && (
+            <EnterpriseModuleScene view={view} />
+          )}
         </main>
+      </div>
+    </div>
+  );
+}
+
+function EnterpriseModuleScene({ view }: { view: View }) {
+  const detail = viewDetails[view];
+
+  return (
+    <div className="mt-4 space-y-3">
+      <div className="grid grid-cols-2 gap-2 xl:grid-cols-4">
+        {detail.signals.map((signal, index) => (
+          <div key={signal} className="rounded-xl border border-[#223049] bg-[#131b2e] p-3">
+            <p className="text-[7px] font-black uppercase tracking-wide text-slate-600">Live signal {String(index + 1).padStart(2, '0')}</p>
+            <p className="mt-3 text-[10px] font-black text-white">{signal}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid gap-3 xl:grid-cols-[1.15fr_.85fr]">
+        <section className="rounded-xl border border-[#223049] bg-[#131b2e] p-4">
+          <p className="text-[10px] font-bold text-white">Authoritative workflow activity</p>
+          <p className="text-[8px] text-slate-500">Synthetic interaction preview</p>
+          <div className="mt-3 space-y-2">
+            {[
+              ['10:42', 'Command accepted by domain authority'],
+              ['10:38', 'Operational projection refreshed'],
+              ['10:31', 'Cross-domain consequence published'],
+              ['10:24', 'Audit and reconciliation evidence appended'],
+            ].map(([time, copy]) => (
+              <div key={time} className="grid grid-cols-[42px_1fr] gap-3 rounded-lg border border-[#1e293b] bg-[#0b101c] px-3 py-2.5">
+                <span className="font-mono text-[7px] font-bold text-slate-600">{time}</span>
+                <span className="text-[8px] font-semibold text-slate-300">{copy}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="rounded-xl border border-indigo-500/30 bg-indigo-500/10 p-4">
+          <p className="text-[8px] font-black uppercase tracking-wide text-indigo-300">Interactive product preview</p>
+          <p className="mt-2 text-[10px] font-black text-white">{detail.title}</p>
+          <p className="mt-2 text-[8px] leading-4 text-slate-400">
+            Use the sidebar, mobile module strip, or command tabs to move between enterprise domains and see the workspace respond immediately.
+          </p>
+        </section>
       </div>
     </div>
   );
